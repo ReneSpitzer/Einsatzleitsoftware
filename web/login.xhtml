@@ -9,11 +9,20 @@
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <h:body>
-        <h:form>
-             <h:commandLink value="Begin" action="/index.xhtml"/>
-        </h:form>
-       
-                       
+   <h:body>
+        <p:growl id="growl" life="5000" autoUpdate="true" showDetail="true" escape="false"/>
+
+        <h:form>    
+            <p:dialog id="dialog" header="Login" width="400" widgetVar="dlg" visible="true" closable="false" showEffect="clip" draggable="false" resizable="false" style="box-shadow: 7px 10px 5px #303030;"> 
+
+                    <p:panelGrid columns="2" style="margin: 0 auto">
+                        <h:outputText value="username:"/>            
+                        <h:inputText value="#{loginBean.username}" id="username"/>            
+                        <h:outputText value="password:"/>            
+                        <h:inputSecret value="#{loginBean.password}" id="password"/>            
+                    </p:panelGrid>
+                    <p:commandButton  id="button" value="Login" action="#{loginBean.doLogin}" style="float:right"/>            
+            </p:dialog>
+        </h:form>   
     </h:body>
 </html>
