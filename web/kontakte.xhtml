@@ -12,11 +12,8 @@ and open the template in the editor.
     </head>
     <body>
         <ui:composition template="./WEB-INF/templatekomm.xhtml" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-            
+                            xmlns:h="http://xmlns.jcp.org/jsf/html"
+                            xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
             <ui:define name="top">
                 <h:outputText value="Kotaktverwaltung"/>
             </ui:define>
@@ -24,54 +21,45 @@ and open the template in the editor.
                 <h:form>
                     <h:panelGrid columns="2">
                      
-                        <h:outputLabel for="Kontaktname" value="Kontaktname"/>
-                        <h:inputText id="Kontaktname" value="#{kontaktverwaltungsBean.kontakt.kname}"/>  
-                        <h:outputLabel for="Bez" value="Kontaktbezeichnung"/>
-                        <h:inputText id="Bez" value="#{kontaktverwaltungsBean.kontakt.bez}"/>   
-                        <h:outputLabel for="Funk" value="Funknummer"/>
-                        <h:inputText id="Funk" value="#{kontaktverwaltungsBean.kontakt.funknr}"/>
-                    </h:panelGrid>
-                    <h:commandButton action="#{kontaktverwaltungsBean.addKontakt()}" value="Hinzufügen" />
-                  <!--  <h:commandButton action="#{KontaktverwaltungsBean }" value="Speichern"  /> -->
-                    
-                     
+                     <!--   <h:outputLabel for="Name" value="Schubluchnummer"/>
+                        <h:inputText id="SbNr" value="#{buchBean.buch.sb_nr}"/>  
+                        <h:outputLabel for="SbTl" value="Schulbuchtitel-lang"/>
+                        <h:inputText id="SbTl" value="#{buchBean.buch.sb_titel_lang}"/>   
+                        <h:outputLabel for="SbTk" value="Schulbuchtitel-kurz"/>
+                        <h:inputText id="SbTk" value="#{buchBean.buch.sb_titel_kurz}"/>
+                        <h:outputLabel for="Anm" value="Anmerkung"/>
+                        <h:inputText id="Anm" value="#{buchBean.buch.anmerkung}"/>
                    
+       
+                        <h:outputLabel for="Pr" value="Preis"/>
+                        <h:inputText id="Pr" value="#{buchBean.buch.preis}"/>   
+                        <h:outputLabel for="verl" value="Verlag"/>
+                        <h:inputText id="verl" value="#{buchBean.buch.verlag}"/>
+                        <h:outputLabel for="fa" value="Fach"/>
+
+                        <h:selectOneMenu  id="fa" value="#{buchBean.buch.fach}" > 
+                            <f:selectItems value="#{buchBean.schulbuchmanagerservice.flist}" var="fach" 
+                                           itemValue="#{fach}" itemLabel="#{fach.fachbez}" />  
+                            <f:converter converterId="FachConverter" />
+                        </h:selectOneMenu>
+
+                        <h:outputLabel for="abt" value="Abteilung"/>
+                        <h:selectOneMenu  id="abt" value="#{buchBean.buch.abt}" >     
+                            <f:selectItems value="#{buchBean.schulbuchmanagerservice.alist}" var="abt" 
+                                           itemValue="#{abt}" itemLabel="#{abt.abt_name}" />  
+                            <f:converter converterId="AbtConverter" />
+                        </h:selectOneMenu>
+                        <h:outputLabel for="lehrerex" value="Lehrerexample" />
+                        <h:selectBooleanCheckbox id="lehrerex" value="#{buchBean.buch.lehrerexample}"/> 
+                        <h:outputLabel for="st" value="Status"/>
+                         <h:selectBooleanCheckbox id="st" value="#{buchBean.buch.status_aktiv}"/> 
+                    </h:panelGrid>
+                    <h:commandButton action="#{buchBean.add}" value="Hinzufügen" />
+                    <h:commandButton action="#{buchBean.save}" value="Speichern" rendered="#{buchBean.opposit()}" />
+                    <h:commandButton action="buecher.xhtml" immediate="true" value="Zurück"/>
+                     -->
                 </h:form>
-                     <h:form>
-                         <h:dataTable value="#{kontaktverwaltungsBean.einsatzleitsoftwares.kontaktListe}" var="kon" cellpadding="10" cellspacing="5" >
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="KID"/>
-                            </f:facet>
-                            <h:outputText value="#{kon.kid}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Kontaktname "/>
-                            </f:facet>
-                            <h:outputText value="#{kon.kname}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Kontaktbezeichnung "/>
-                            </f:facet>
-                            <h:outputText value="#{kon.bez}"/>
-                        </h:column>  <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Funknummer "/>
-                            </f:facet>
-                            <h:outputText value="#{kon.funknr}"/>
-                        </h:column>
-               
-                        <h:column>
-                            <h:commandLink value="edit" action="#{buchBean.edit(buch)}"/>
-                        </h:column>
-                        <h:column>
-                            <h:commandLink value="del" action="#{kontaktverwaltungsBean}" immediate="true"/>
-                        </h:column>
-                    </h:dataTable>
                     
-                </h:form>
                      
                 
             </ui:define>
