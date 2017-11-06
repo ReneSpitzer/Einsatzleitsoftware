@@ -26,8 +26,7 @@
                         <p:submenu label="Mail">
                             <p:menuitem value="Posteingang" outcome="/posteingang.xhtml"  />
                             <p:menuitem value="Postausgang" outcome="/postausgang.xhtml"  />
-                            <p:menuitem value="Archiv" outcome="/archiv.xhtml"  />
-                            <p:menuitem value="Papierkrob" outcome="/papierkorb.xhtml"  />       
+                            <p:menuitem value="Archiv" outcome="/archiv.xhtml"/>     
                         </p:submenu>
                         <p:submenu label="Kontakte">
                            <p:menuitem value="Kontakte" outcome="/kontakte.xhtml"  />  
@@ -37,7 +36,14 @@
                     </h:form>
                 </ui:insert>
             </p:layoutUnit>
+            <p:layoutUnit position="east" >
+                <ui:insert name="mail">
 
+
+
+                </ui:insert>
+                
+            </p:layoutUnit>
             <p:layoutUnit position="center" >
                 <ui:insert name="content">
 

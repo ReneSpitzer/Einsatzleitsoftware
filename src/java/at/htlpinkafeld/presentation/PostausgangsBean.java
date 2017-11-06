@@ -5,6 +5,7 @@
  */
 package at.htlpinkafeld.presentation;
 
+import at.htlpinkafeld.pojo.Kontakt;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -15,6 +16,6 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class PostausgangsBean {
-    
+   
     
 }
