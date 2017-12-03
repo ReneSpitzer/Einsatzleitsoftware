@@ -5,6 +5,7 @@
  */
 package at.htlpinkafeld.pojo;
 
+import java.sql.Time;
 import java.util.Date;
 import java.util.Objects;
 
@@ -21,12 +22,13 @@ public class Einsatz {
     private String eleiter;
     private int enr;
     private String emittel;
-    private Date uhrzeit;
+    private String uhrzeit;
+    private String datum;
     private String e_status;
     
     public Einsatz(){}
 
-    public Einsatz(int eid, String eort, String estraße, String hausnr, String aufgabe, String eleiter, int enr, String emittel, Date uhrzeit, String e_status) {
+    public Einsatz(int eid, String eort, String estraße, String hausnr, String aufgabe, String eleiter, int enr, String emittel, String uhrzeit, String datum, String e_status) {
         this.eid = eid;
         this.eort = eort;
         this.estraße = estraße;
@@ -36,6 +38,7 @@ public class Einsatz {
         this.enr = enr;
         this.emittel = emittel;
         this.uhrzeit = uhrzeit;
+        this.datum = datum;
         this.e_status = e_status;
     }
 
@@ -103,11 +106,11 @@ public class Einsatz {
         this.emittel = emittel;
     }
 
-    public Date getUhrzeit() {
+    public String getUhrzeit() {
         return uhrzeit;
     }
 
-    public void setUhrzeit(Date uhrzeit) {
+    public void setUhrzeit(String uhrzeit) {
         this.uhrzeit = uhrzeit;
     }
 
@@ -117,6 +120,14 @@ public class Einsatz {
 
     public void setE_status(String e_status) {
         this.e_status = e_status;
+    }
+
+    public String getDatum() {
+        return datum;
+    }
+
+    public void setDatum(String datum) {
+        this.datum = datum;
     }
 
     @Override
