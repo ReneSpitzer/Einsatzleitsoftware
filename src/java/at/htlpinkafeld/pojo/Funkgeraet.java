@@ -15,6 +15,10 @@ public class Funkgeraet {
     private int fid;
     private String bez;
     private int nr;
+    
+    public Funkgeraet(){
+        
+    }
 
     public Funkgeraet(int fid, String bez, int nr) {
         this.fid = fid;

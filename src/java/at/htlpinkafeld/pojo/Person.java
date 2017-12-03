@@ -22,6 +22,10 @@ public class Person {
     private String grad;
     private String email;
     private int telnr;
+    
+    public Person(){
+        
+    }
 
     public Person(int pid, String vorname, String nachname, Date gebDat, String str, String hausnr, String grad, String email, int telnr) {
         this.pid = pid;
