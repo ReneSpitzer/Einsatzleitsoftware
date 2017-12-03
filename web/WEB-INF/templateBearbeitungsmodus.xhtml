@@ -20,7 +20,7 @@
                     </h:panelGrid>
                     
                     <h:panelGrid columns="1">
-                         <h:outputText value="Kommunikationsmodul"/>
+                         <h:outputText value="Bearbeitungsmodus"/>
                     </h:panelGrid>
                     
                    
@@ -29,22 +29,19 @@
 
             <p:layoutUnit position="west">
                 <ui:insert name="menu">
-                    <h:form>
-                  
-                    </h:form>
+           
                 </ui:insert>
             </p:layoutUnit>
 
             <p:layoutUnit position="center" >
                 <ui:insert name="content">
 
-
-
                 </ui:insert>
             </p:layoutUnit>
+            
             <ui:insert name="bottom">
                 <h:form>
-                    <h:commandLink value="back" action="/login.xhtml"/>
+                    <h:commandLink value="back" action="/grundmodul.xhtml"/>
 
                 </h:form>
             </ui:insert>
@@ -54,9 +51,6 @@
                     <h:outputText value="created by RFP"/>
                 </ui:insert>
             </p:layoutUnit>
-
-
-
         </p:layout>
     </h:body>
 </html>
