@@ -2,16 +2,16 @@
                             xmlns:h="http://xmlns.jcp.org/jsf/html"
                             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                                xmlns:p="http://primefaces.org/ui">
-       <ui:define name="content">
+    <ui:define name="content">
 
-   
+
         <p:growl id="growl" life="5000" autoUpdate="true" showDetail="true" escape="false"/>
         <h:form>    
-                <p:dialog id="dialog" header="Übersicht" width="800" widgetVar="dlg" visible="true" closable="false" showEffect="clip" draggable="ture" resizable="true" style="box-shadow: 7px 10px 5px #303050;"> 
-                <p:commandButton  id="button1" value="Neuen Einsatz erstellen" action="/grundmodul.xhtml" style="float:left"/> 
-                <p:commandButton  id="button2" value="Grundmodul" action="/einsatzerstellen.xhtml" style="float:left"/>
-                <p:commandButton  id="button3" value="Abggeschlossene Einsätze" action="/abgeschlosseneeinsätze.xhtml" style="float:left"/>
-                </p:dialog>
+            <p:dialog id="dialog" header="Übersicht" width="300" height="200" visible="true" closable="false" draggable="false" resizable="false" style="box-shadow: 7px 10px 5px #303050;"> 
+                <p:commandButton  id="button1" value="Neuen Einsatz erstellen" action="/einsatzerstellen.xhtml" style="float:left;"/> 
+                <p:commandButton  id="button2" value="Grundmodul" action="/grundmodul.xhtml" style="float:left; padding: 0px;"/>
+                <p:commandButton  id="button3" value="Abggeschlossene Einsätze" action="/abgeschlosseneeinsätze.xhtml" style="float:left;padding: 0px;"/>
+            </p:dialog>
         </h:form> 
-        </ui:define>
- </ui:composition>
+    </ui:define>
+</ui:composition>

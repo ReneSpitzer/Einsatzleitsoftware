@@ -7,37 +7,38 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
-
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <h:body>
+    <h:body style="background-color:black;">
         <p:layout fullPage="true"> 
 
-            <p:layoutUnit position="north">
-                <ui:insert name="top">
-                    <h:outputText value="Einsatzleitsoftware der FF-Pinkafeld"/>
-                </ui:insert>
+            <p:layoutUnit position="north" style="background-color:red;" maxSize="400">
+                <p:layout fullPage="true"  style="background-color: red;">
+                    <ui:insert name="top">
+                        <h:panelGrid >
+                            
+                            <h:outputText value="Einsatzleitsoftware der FF-Pinkafeld" style="color:black; font-size:xx-large; position:relative;left:680px" />
+                        </h:panelGrid>
+                        
+                    </ui:insert>
+                </p:layout>
             </p:layoutUnit>
 
-
-         
-            <p:layoutUnit position="center" >
-                <ui:insert name="content">
-
-
-
-                </ui:insert>
-            </p:layoutUnit>
-            
-
-            <p:layoutUnit position="south">
-                <ui:insert name="bottom">           
-                    <h:outputText value="created by RFP"/>
-                </ui:insert>
+            <p:layoutUnit position="center" style="background-color:red;">
+                <p:layout fullPage="true"  style="background-color: red;">
+                    <ui:insert name="content">
+                        
+                    </ui:insert>
+                </p:layout>
             </p:layoutUnit>
 
-
-
+            <p:layoutUnit position="south" style="background-color:red;">
+                <p:layout fullPage="true"  style="background-color: red;">
+                    <ui:insert name="bottom">           
+                        <h:outputText value="Created by RFP" style="color:black; font-size:xx-large;" />
+                    </ui:insert>
+                </p:layout>
+            </p:layoutUnit>
         </p:layout>
     </h:body>
 </html>

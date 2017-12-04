@@ -1,16 +1,27 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+  <ui:composition template="./WEB-INF/templatestart.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                            xmlns:h="http://xmlns.jcp.org/jsf/html"
+                            xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                            xmlns:p="http://primefaces.org/ui"
+                            xmlns:f="http://xmlns.jcp.org/jsf/core">
+       <ui:define name="content">
+            <p:growl id="growl" life="5000" autoUpdate="true" showDetail="true" escape="false"/>
+          <h:form>
+                
+            <p:dialog id="dialog" header="Login"  widgetVar="dlg" visible="true" closable="false" showEffect="clip" draggable="false" resizable="false" style="box-shadow: 7px 10px 5px #303050;"> 
+              <h:dataTable value="#{einsatzBean.EList}" var="einsatz" cellpadding="10" cellspacing="5" >
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Einsatzname"/>
+                            </f:facet>
+                            <h:outputText value="#{einsatz.name}"/>
+                        </h:column>     
+                        <h:column>
+                            <h:commandLink value="Details anzeigen" action="#{einsatzBean.showDetail()}"/>
+                        </h:column>
+                  
+                    </h:dataTable>
+                </p:dialog>
+        </h:form> 
+
+        </ui:define>
+ </ui:composition>

@@ -5,17 +5,39 @@
  */
 package at.htlpinkafeld.presentation;
 
+import at.htlpinkafeld.pojo.Benutzer;
+import at.htlpinkafeld.service.EinsatzleitsoftwareService;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+
 /**
  *
  * @author Bernhard
  */
+@ManagedBean
+@SessionScoped
 public class LoginBean {
+
+   // @ManagedProperty(value = "#{einsatzleitsoftwareService}")
+   // private EinsatzleitsoftwareService service;
     public String username;
     public String password;
-    
-    public LoginBean() {
-    }
 
+    List<Benutzer> BList = new ArrayList<>();
+
+    public LoginBean() {
+        BList.add(new Benutzer(1,"Herbert",false,"1234ABC"));
+    }
+/*
+    @PostConstruct
+    public void set() {
+        BList = service.getBenutzerListe();
+    }
+*/
     public LoginBean(String username, String password) {
         this.username = username;
         this.password = password;
@@ -36,9 +58,14 @@ public class LoginBean {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    public Object doLogin()
-    {
-        return null;
+
+    public Object doLogin() {
+        for (Benutzer b : BList) {
+            if (b.getUsername().equals(username) && b.getPassword().equals(this.password)) {
+                return "/uebersichtauswahl.xhtml";
+            }
+        }
+
+        return "/login.xhtml";
     }
 }

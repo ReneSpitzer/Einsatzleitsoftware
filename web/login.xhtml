@@ -7,19 +7,19 @@
    
         <p:growl id="growl" life="5000" autoUpdate="true" showDetail="true" escape="false"/>
 
-        <h:form>    
-            <p:dialog id="dialog" header="Login" width="400" widgetVar="dlg" visible="true" closable="false" showEffect="clip" draggable="false" resizable="false" style="box-shadow: 7px 10px 5px #303050;"> 
+        <h:form> 
+            <p:dialog id="dialog" header="Login"  widgetVar="dlg" visible="true" closable="false" showEffect="clip" draggable="false" resizable="false" style="box-shadow: 7px 10px 5px #303050;"> 
 
-                    <p:panelGrid columns="2" style="margin: 0 auto">
-                        <h:outputText value="username:"/>            
+                    <p:panelGrid columns="2" style="margin: 0 auto;">
+                        <h:outputText value="Benutzername:" />            
                         <h:inputText value="#{loginBean.username}" id="username"/>            
-                        <h:outputText value="password:"/>            
+                        <h:outputText value="Passwort:"/>            
                         <h:inputSecret value="#{loginBean.password}" id="password"/>
                         
                     </p:panelGrid>
-                <p:commandButton  id="button" value="Login" action="#{loginBean.doLogin()}" style="float:right"/>
-                <p:commandButton  id="button1" value="Gast-Login" action="/abgeschlosseneeinsätze.xhtml" style="float:right"/> 
-                
+                <p:commandButton  id="button" value="Login" action="#{loginBean.doLogin()}" style="float:left;"/>
+                <p:commandButton  id="button1" value="Gast-Login" action="/abgeschlosseneeinsätze.xhtml" style="float:right;"/> 
+           
             </p:dialog>
         </h:form> 
         </ui:define>

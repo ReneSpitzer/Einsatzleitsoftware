@@ -5,9 +5,11 @@
  */
 package at.htlpinkafeld.service;
 
+import at.htlpinkafeld.pojo.Benutzer;
 import at.htlpinkafeld.pojo.Kontakt;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -18,11 +20,17 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class EinsatzleitsoftwareService {
-private List<Kontakt> KontaktListe= new ArrayList();
+private List<Kontakt> KontaktListe= new ArrayList<>();
+private List<Benutzer> BenutzerListe = new ArrayList<>();
 
 public EinsatzleitsoftwareService(){
+}  
     
+@PostConstruct
+  public void set(){  
+    BenutzerListe.add(new Benutzer(1,"Herbert",false,"1234ABC"));
 }
+  
 public void addKontakt(Kontakt k){
     KontaktListe.add(k);
     System.out.println("Kontakt angelegt");
@@ -38,6 +46,14 @@ public void deleteKontakt(Kontakt k){
 
     public void setKontaktListe(List<Kontakt> KontaktListe) {
         this.KontaktListe = KontaktListe;
+    }
+
+    public List<Benutzer> getBenutzerListe() {
+        return BenutzerListe;
+    }
+
+    public void setBenutzerListe(List<Benutzer> BenutzerListe) {
+        this.BenutzerListe = BenutzerListe;
     }
 
 
