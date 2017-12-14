@@ -13,7 +13,7 @@ import java.util.Objects;
  *
  * @author Bernhard
  */
-public class Einsatz {
+public class Einsatz implements Identifiable{
     private int eid;
     private String eort;
     private String estraße;
@@ -41,13 +41,28 @@ public class Einsatz {
         this.datum = datum;
         this.e_status = e_status;
     }
+    
+    public Einsatz(String eort, String estraße, String hausnr, String aufgabe, String eleiter, int enr, String emittel, String uhrzeit, String datum, String e_status) {
+        this.eort = eort;
+        this.estraße = estraße;
+        this.hausnr = hausnr;
+        this.aufgabe = aufgabe;
+        this.eleiter = eleiter;
+        this.enr = enr;
+        this.emittel = emittel;
+        this.uhrzeit = uhrzeit;
+        this.datum = datum;
+        this.e_status = e_status;
+    }
 
-    public int getEid() {
+    @Override
+    public int getId() {
         return eid;
     }
 
-    public void setEid(int eid) {
-        this.eid = eid;
+    @Override
+    public void setId(int id) {
+        this.eid = id;
     }
 
     public String getEort() {

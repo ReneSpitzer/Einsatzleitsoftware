@@ -17,7 +17,7 @@ public class Fahrzeug {
     private String ort;
     private String type;
     private int anzPers;
-    private int status;
+    private int status; //0->verfügbar, 1->nicht verfügbar
     private String name;
 
     public Fahrzeug(){}

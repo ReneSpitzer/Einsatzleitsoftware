@@ -18,7 +18,8 @@ and open the template in the editor.
         <p:layout fullPage="false">
                 <p:tabView id="tabView">
                     <p:tab title="Einsätze">
-                        <p:dataTable var="einsatz" value="#{einsatzBean.oelist}">
+                      <div style="height: 200px; overflow: auto;">
+                          <p:dataTable var="einsatz" value="#{einsatzBean.oelist}" resizableColumns="true">
                             <f:facet name="header">
                                 <p:outputLabel value="Offene Einsätze" />
                             </f:facet>
@@ -30,7 +31,7 @@ and open the template in the editor.
                                 <p:outputLabel value="#{einsatz.enr}" />
                             </p:column>
                             
-                            <p:column>
+                            <p:column resizable="true">
                                 <f:facet name="header">
                                     <p:outputLabel value="Ort" />
                                 </f:facet>
@@ -71,9 +72,10 @@ and open the template in the editor.
                                 <p:outputLabel value="#{einsatz.uhrzeit}" />
                             </p:column>
                         </p:dataTable>
+                       </div>  
                         
-                        
-                        <p:dataTable var="einsatz" value="#{einsatzBean.eialist}">
+                       <div style="height: 200px; overflow: auto;">
+                        <p:dataTable var="einsatz" value="#{einsatzBean.eialist}" resizableColumns="true">
                             <f:facet name="header">
                                 <p:outputLabel value="Einsätze in Arbeit" />
                             </f:facet>
@@ -126,21 +128,23 @@ and open the template in the editor.
                                 <p:outputLabel value="#{einsatz.uhrzeit}" />
                             </p:column>
                         </p:dataTable>
+                       </div>
                     </p:tab>
+                    
                     <p:tab title="Abgeschlossene Einsätze">
-                         <p:dataTable var="einsatz" value="#{einsatzBean.aelist}">
+                         <p:dataTable var="einsatz" value="#{einsatzBean.aelist}" resizableColumns="true">
                             <f:facet name="header">
                                 <p:outputLabel value="Abgeschlossene Einsätze" />
                             </f:facet>
                             
-                            <p:column>
+                            <p:column resizable="true">
                                 <f:facet name="header">
                                     <p:outputLabel value="Einsatznummer" />
                                 </f:facet>
                                 <p:outputLabel value="#{einsatz.enr}" />
                             </p:column>
                             
-                            <p:column>
+                            <p:column resizable="true">
                                 <f:facet name="header">
                                     <p:outputLabel value="Ort" />
                                 </f:facet>
@@ -151,36 +155,39 @@ and open the template in the editor.
                                 <p:outputLabel value="#{einsatz.hausnr}" />
                             </p:column>
                             
-                            <p:column>
+                            <p:column resizable="true">
                                 <f:facet name="header">
                                     <p:outputLabel value="Aufgabe" />
                                 </f:facet>
                                 <p:outputLabel value="#{einsatz.aufgabe}" />
                             </p:column>
                             
-                            <p:column>
+                            <p:column resizable="true">
                                 <f:facet name="header">
                                     <p:outputLabel value="Leiter" />
                                 </f:facet>
                                 <p:outputLabel value="#{einsatz.eleiter}" />
                             </p:column>
                             
-                            <p:column>
+                            <p:column resizable="true">
                                 <f:facet name="header">
                                     <p:outputLabel value="Einsatzmittel" />
                                 </f:facet>
                                 <p:outputLabel value="#{einsatz.emittel}" />
                             </p:column>
                             
-                            <p:column>
+                            <p:column resizable="true">
                                 <f:facet name="header">
                                     <p:outputLabel value="Datum" />
-                                </f:facet>
+                                </f:facet> 
                                 <p:outputLabel value="#{einsatz.datum}" />
                                 <p:outputLabel value=" - " />
                                 <p:outputLabel value="#{einsatz.uhrzeit}" />
                             </p:column>
                         </p:dataTable>   
+                    </p:tab>
+                    <p:tab title="Fahrzeuge">
+                        <p:outputLabel value="in Arbeit" />
                     </p:tab>
                     <p:tab title="Kommunikationsmodul">
                         <p:outputLabel value="in Arbeit" />

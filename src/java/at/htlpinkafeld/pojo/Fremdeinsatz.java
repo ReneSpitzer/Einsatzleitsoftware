@@ -11,26 +11,31 @@ import java.util.Objects;
  *
  * @author Bernhard
  */
-public class Fremdeinsatz {
+public class Fremdeinsatz implements Identifiable{
     private int frid;
     private String absender;
     private String empfaenger;
     
-    public Fremdeinsatz(){
-        
-    }
+    public Fremdeinsatz(){}
 
+    public Fremdeinsatz(String absender, String empfaenger) {
+        this.absender = absender;
+        this.empfaenger = empfaenger;
+    }
+    
     public Fremdeinsatz(int frid, String absender, String empfaenger) {
         this.frid = frid;
         this.absender = absender;
         this.empfaenger = empfaenger;
     }
 
-    public int getFrid() {
+    @Override
+    public int getId() {
         return frid;
     }
 
-    public void setFrid(int frid) {
+    @Override
+    public void setId(int id) {
         this.frid = frid;
     }
 

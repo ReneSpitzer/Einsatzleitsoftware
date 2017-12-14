@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author Bernhard
  */
-public class Benutzer {
+public class Benutzer implements Identifiable{
     private int bid;
     private String username;
     private boolean admin;
@@ -25,13 +25,21 @@ public class Benutzer {
         this.admin = admin;
         this.password = password;
     }
-
-    public int getBid() {
-        return bid;
+    
+    public Benutzer(String username, boolean admin, String password) {
+        this.username = username;
+        this.admin = admin;
+        this.password = password;
     }
 
-    public void setBid(int bid) {
-        this.bid = bid;
+    @Override
+    public void setId(int id) {
+        this.bid = id;
+    }
+
+    @Override
+    public int getId() {
+        return this.bid;
     }
 
     public String getUsername() {
