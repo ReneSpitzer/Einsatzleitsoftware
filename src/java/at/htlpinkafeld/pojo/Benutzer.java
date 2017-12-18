@@ -17,6 +17,8 @@ public class Benutzer {
     private boolean admin;
     private String password;
 
+    public Benutzer() {}
+    
     public Benutzer(int bid, String username, boolean admin, String password) {
         this.bid = bid;
         this.username = username;

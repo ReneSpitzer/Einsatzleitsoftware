@@ -1,26 +1,200 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-       xmlns:p="http://primefaces.org/ui">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <p:layout fullPage="ture">
-            <p:layoutUnit position="north">
-               
-                
-                
-                
-                
-                
-            </p:layoutUnit>  
-        </p:layout>
-    </body>
-</html>
+<ui:composition template="./WEB-INF/templatestart.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+                <p:layout fullPage="true">
+                <h:form>
+
+
+
+                    <p:tabView id="tabView">
+                        <p:tab title="Einsätze">
+                            <p:dataTable var="einsatz" value="#{einsatzBean.oelist}">
+                                <f:facet name="header">
+                                    <p:outputLabel value="Offene Einsätze" />
+                                </f:facet>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Einsatznummer" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.enr}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Ort" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.eort}" />
+                                    <p:outputLabel value=" - " />
+                                    <p:outputLabel value="#{einsatz.estraße}" />
+                                    <p:outputLabel value=" " />
+                                    <p:outputLabel value="#{einsatz.hausnr}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Aufgabe" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.aufgabe}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Leiter" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.eleiter}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Einsatzmittel" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.emittel}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Datum" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.datum}" />
+                                    <p:outputLabel value=" - " />
+                                    <p:outputLabel value="#{einsatz.uhrzeit}" />
+                                </p:column>
+                            </p:dataTable>
+
+
+                            <p:dataTable var="einsatz" value="#{einsatzBean.eialist}">
+                                <f:facet name="header">
+                                    <p:outputLabel value="Einsätze in Arbeit" />
+                                </f:facet>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Einsatznummer" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.enr}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Ort" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.eort}" />
+                                    <p:outputLabel value=" - " />
+                                    <p:outputLabel value="#{einsatz.estraße}" />
+                                    <p:outputLabel value=" " />
+                                    <p:outputLabel value="#{einsatz.hausnr}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Aufgabe" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.aufgabe}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Leiter" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.eleiter}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Einsatzmittel" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.emittel}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Datum" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.datum}" />
+                                    <p:outputLabel value=" " />
+                                    <p:outputLabel value="#{einsatz.uhrzeit}" />
+                                </p:column>
+                            </p:dataTable>
+                        </p:tab>
+                        <p:tab title="Abgeschlossene Einsätze">
+                            <p:dataTable var="einsatz" value="#{einsatzBean.aelist}">
+                                <f:facet name="header">
+                                    <p:outputLabel value="Abgeschlossene Einsätze" />
+                                </f:facet>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Einsatznummer" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.enr}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Ort" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.eort}" />
+                                    <p:outputLabel value=" - " />
+                                    <p:outputLabel value="#{einsatz.estraße}" />
+                                    <p:outputLabel value=" " />
+                                    <p:outputLabel value="#{einsatz.hausnr}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Aufgabe" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.aufgabe}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Leiter" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.eleiter}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Einsatzmittel" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.emittel}" />
+                                </p:column>
+
+                                <p:column>
+                                    <f:facet name="header">
+                                        <p:outputLabel value="Datum" />
+                                    </f:facet>
+                                    <p:outputLabel value="#{einsatz.datum}" />
+                                    <p:outputLabel value=" - " />
+                                    <p:outputLabel value="#{einsatz.uhrzeit}" />
+                                </p:column>
+                            </p:dataTable>   
+                        </p:tab>
+                        <p:tab title="Kommunikationsmodul">
+                            <p:outputLabel value="in Arbeit" />
+                        </p:tab>
+                        <p:tab title="Nüssler">
+                            <p:outputLabel value="in Arbeit" />
+                        </p:tab>
+                        <p:tab title="Bearbeitungsmodus">
+                            <p:outputLabel value="in Arbeit" />
+                        </p:tab>
+                    </p:tabView>
+                </h:form>
+                </p:layout>
+
+     
+
+    </ui:define>
+    <ui:define name="bottom">
+        <h:form>
+            <p:commandButton value="Zurück zur Übersicht" action="/uebersichtauswahl.xhtml"/>     
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -26,18 +26,42 @@ public class LoginBean {
    // private EinsatzleitsoftwareService service;
     public String username;
     public String password;
+    public boolean visibleB=true;
+    public boolean visibleL =false;
 
     List<Benutzer> BList = new ArrayList<>();
 
     public LoginBean() {
         BList.add(new Benutzer(1,"Herbert",false,"1234ABC"));
     }
+
+    public boolean isVisibleB() {
+        return visibleB;
+    }
+
+    public void setVisibleB(boolean visibleB) {
+        this.visibleB = visibleB;
+    }
+
+    public List<Benutzer> getBList() {
+        return BList;
+    }
+
+    public void setBList(List<Benutzer> BList) {
+        this.BList = BList;
+    }
 /*
     @PostConstruct
     public void set() {
         BList = service.getBenutzerListe();
     }
+    
 */
+    public Object doGastLogin(){
+        this.visibleB=false;
+        this.visibleL=true;
+        return "/abgeschlosseneeinsätze.xhtml";
+    }
     public LoginBean(String username, String password) {
         this.username = username;
         this.password = password;
@@ -60,6 +84,8 @@ public class LoginBean {
     }
 
     public Object doLogin() {
+        this.visibleB=true;
+        this.visibleL=false;
         for (Benutzer b : BList) {
             if (b.getUsername().equals(username) && b.getPassword().equals(this.password)) {
                 return "/uebersichtauswahl.xhtml";
@@ -68,4 +94,13 @@ public class LoginBean {
 
         return "/login.xhtml";
     }
+
+    public void setVisibleL(boolean visibleL) {
+        this.visibleL = visibleL;
+    }
+
+    public boolean isVisibleL() {
+        return visibleL;
+    }
+    
 }

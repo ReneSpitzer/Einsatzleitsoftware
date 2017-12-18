@@ -4,24 +4,65 @@
                             xmlns:p="http://primefaces.org/ui"
                             xmlns:f="http://xmlns.jcp.org/jsf/core">
        <ui:define name="content">
-            <p:growl id="growl" life="5000" autoUpdate="true" showDetail="true" escape="false"/>
-          <h:form>
-                
-            <p:dialog id="dialog" header="Login"  widgetVar="dlg" visible="true" closable="false" showEffect="clip" draggable="false" resizable="false" style="box-shadow: 7px 10px 5px #303050;"> 
-              <h:dataTable value="#{einsatzBean.EList}" var="einsatz" cellpadding="10" cellspacing="5" >
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Einsatzname"/>
-                            </f:facet>
-                            <h:outputText value="#{einsatz.name}"/>
-                        </h:column>     
-                        <h:column>
-                            <h:commandLink value="Details anzeigen" action="#{einsatzBean.showDetail()}"/>
-                        </h:column>
-                  
-                    </h:dataTable>
-                </p:dialog>
-        </h:form> 
 
+       <p:dataTable var="einsatz" value="#{einsatzBean.aelist}">
+           <f:facet name="header">
+                                <p:outputLabel value="Abgeschlossene Einsätze" />
+                            </f:facet>
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="Einsatznummer" />
+                                </f:facet>
+                                <p:outputLabel value="#{einsatz.enr}" />
+                            </p:column>
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="Ort" />
+                                </f:facet>
+                                <p:outputLabel value="#{einsatz.eort}" />
+                                <p:outputLabel value=" - " />
+                                <p:outputLabel value="#{einsatz.estraße}" />
+                                <p:outputLabel value=" " />
+                                <p:outputLabel value="#{einsatz.hausnr}" />
+                            </p:column>
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="Aufgabe" />
+                                </f:facet>
+                                <p:outputLabel value="#{einsatz.aufgabe}" />
+                            </p:column>
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="Leiter" />
+                                </f:facet>
+                                <p:outputLabel value="#{einsatz.eleiter}" />
+                            </p:column>
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="Einsatzmittel" />
+                                </f:facet>
+                                <p:outputLabel value="#{einsatz.emittel}" />
+                            </p:column>
+                            
+                            <p:column>
+                                <f:facet name="header">
+                                    <p:outputLabel value="Datum" />
+                                </f:facet>
+                                <p:outputLabel value="#{einsatz.datum}" />
+                                <p:outputLabel value=" - " />
+                                <p:outputLabel value="#{einsatz.uhrzeit}" />
+                            </p:column>
+                        </p:dataTable>   
         </ui:define>
+      <ui:define name="bottom">
+          <h:form>
+          <p:commandButton value="Zurück zur Übersicht" action="/uebersichtauswahl.xhtml" rendered="#{loginBean.visibleB}"/>
+          <p:commandButton value="Zurück zum Login" action="/login.xhtml" rendered="#{loginBean.visibleL}"/> 
+          </h:form>
+      </ui:define>
  </ui:composition>

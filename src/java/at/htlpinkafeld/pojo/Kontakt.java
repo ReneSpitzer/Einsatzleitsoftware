@@ -16,6 +16,10 @@ public class Kontakt {
     private String kname;
     private String bez;
     private long funknr;
+    
+    public Kontakt(){
+        
+    }
 
     public Kontakt(int kid, String kname, String bez, long funknr) {
         this.kid = kid;

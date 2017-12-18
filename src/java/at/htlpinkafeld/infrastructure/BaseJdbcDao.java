@@ -52,8 +52,8 @@ public abstract class BaseJdbcDao<T extends Identifiable> {
 
     public void delete(T t) {
         String sql = "DELETE FROM " + TABLENAME + " WHERE " + PKNAME + " = ?";
-        try (WrappedConnection wCon = ConnectionManager.getInstance().getWrappedConnection();
-                PreparedStatement ps = this.getPreparedStatement(wCon.getConn(), sql, t.getId());) {
+        try (Connection wCon = ConnectionManager.getInstance().getConnection();
+                PreparedStatement ps = this.getPreparedStatement(wCon, sql, t.getId());) {
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BaseJdbcDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,8 +64,8 @@ public abstract class BaseJdbcDao<T extends Identifiable> {
         T t = null;
         String sql = "SELECT * FROM " + TABLENAME + " WHERE " + PKNAME + " = ? LIMIT 1";
 
-        try (WrappedConnection wCon = ConnectionManager.getInstance().getWrappedConnection();
-                PreparedStatement ps = this.getPreparedStatement(wCon.getConn(), sql, id);
+        try (Connection wCon = ConnectionManager.getInstance().getConnection();
+                PreparedStatement ps = this.getPreparedStatement(wCon, sql, id);
                 ResultSet rs = ps.executeQuery();) {
             if (rs.next()) {
                 t = this.getPojoFromResultSet(rs);
@@ -80,8 +80,8 @@ public abstract class BaseJdbcDao<T extends Identifiable> {
     public List<T> list() {
         List<T> results = new ArrayList<>();
         String sql = "SELECT * FROM " + TABLENAME;
-        try (WrappedConnection wCon = ConnectionManager.getInstance().getWrappedConnection();
-            Statement st = wCon.getConn().createStatement();
+        try (Connection wCon = ConnectionManager.getInstance().getConnection();
+            Statement st = wCon.createStatement();
             ResultSet result = st.executeQuery(sql)) 
         {
 
@@ -99,8 +99,8 @@ public abstract class BaseJdbcDao<T extends Identifiable> {
             return;
         }
 
-        try (WrappedConnection wCon = ConnectionManager.getInstance().getWrappedConnection();
-                PreparedStatement st = getUpdateStatement(wCon.getConn(), t)) {
+        try (Connection wCon = ConnectionManager.getInstance().getConnection();
+                PreparedStatement st = getUpdateStatement(wCon, t)) {
             st.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BaseJdbcDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -112,8 +112,8 @@ public abstract class BaseJdbcDao<T extends Identifiable> {
             return;
         }
 
-        try (WrappedConnection wCon = ConnectionManager.getInstance().getWrappedConnection();
-                PreparedStatement st = getInsertStatement(wCon.getConn(), t);
+        try (Connection wCon = ConnectionManager.getInstance().getConnection();
+                PreparedStatement st = getInsertStatement(wCon, t);
                 ResultSet genKeys = (st.executeUpdate() == 1) ? st.getGeneratedKeys() : null) {
 
             if (genKeys != null && genKeys.next()) {

@@ -20,6 +20,8 @@ public class Fahrzeug {
     private int status;
     private String name;
 
+    public Fahrzeug(){}
+    
     public Fahrzeug(int fid, String organisation, String ort, String type, int anzPers, int status, String name) {
         this.fid = fid;
         this.organisation = organisation;
