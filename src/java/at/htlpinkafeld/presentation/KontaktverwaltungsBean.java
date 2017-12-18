@@ -32,7 +32,7 @@ public class KontaktverwaltungsBean {
         this.kontakt = kontakt;
     }
     public void addKontakt(){
-        kontakt.setKid(id);
+        kontakt.setId(id);
         einsatzleitsoftwares.addKontakt(kontakt);
         id++;
     }

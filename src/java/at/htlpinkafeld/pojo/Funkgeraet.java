@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author Bernhard
  */
-public class Funkgeraet {
+public class Funkgeraet implements Identifiable{
     private int fid;
     private String bez;
     private int nr;
@@ -20,17 +20,24 @@ public class Funkgeraet {
         
     }
 
+    public Funkgeraet(String bez, int nr) {
+        this.bez = bez;
+        this.nr = nr;
+    }
+    
     public Funkgeraet(int fid, String bez, int nr) {
         this.fid = fid;
         this.bez = bez;
         this.nr = nr;
     }
 
-    public int getFid() {
+    @Override
+    public int getId() {
         return fid;
     }
 
-    public void setFid(int fid) {
+    @Override
+    public void setId(int id) {
         this.fid = fid;
     }
 

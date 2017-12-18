@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author Bernhard
  */
-public class Kontakt {
+public class Kontakt implements Identifiable{
     private int kid;
     private String kname;
     private String bez;
@@ -21,6 +21,12 @@ public class Kontakt {
         
     }
 
+    public Kontakt(String kname, String bez, long funknr) {
+        this.kname = kname;
+        this.bez = bez;
+        this.funknr = funknr;
+    }
+    
     public Kontakt(int kid, String kname, String bez, long funknr) {
         this.kid = kid;
         this.kname = kname;
@@ -28,11 +34,13 @@ public class Kontakt {
         this.funknr = funknr;
     }
 
-    public int getKid() {
+    @Override
+    public int getId() {
         return kid;
     }
 
-    public void setKid(int kid) {
+    @Override
+    public void setId(int id) {
         this.kid = kid;
     }
 

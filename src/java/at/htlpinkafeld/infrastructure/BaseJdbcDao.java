@@ -36,11 +36,11 @@ public abstract class BaseJdbcDao<T extends Identifiable> {
         this.PKNAME = PKNAME;
     }
 
-    public String getTABLENAME() {
+    public String getTablename() {
         return TABLENAME;
     }
 
-    public String getPKNAME() {
+    public String getPkName() {
         return PKNAME;
     }
 

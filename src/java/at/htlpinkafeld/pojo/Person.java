@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author Bernhard
  */
-public class Person {
+public class Person implements Identifiable{
     private int pid;
     private String vorname;
     private String nachname;
@@ -27,6 +27,17 @@ public class Person {
         
     }
 
+    public Person(String vorname, String nachname, Date gebDat, String str, String hausnr, String grad, String email, int telnr) {
+        this.vorname = vorname;
+        this.nachname = nachname;
+        this.gebDat = gebDat;
+        this.str = str;
+        this.hausnr = hausnr;
+        this.grad = grad;
+        this.email = email;
+        this.telnr = telnr;
+    }
+    
     public Person(int pid, String vorname, String nachname, Date gebDat, String str, String hausnr, String grad, String email, int telnr) {
         this.pid = pid;
         this.vorname = vorname;
@@ -39,11 +50,13 @@ public class Person {
         this.telnr = telnr;
     }
 
-    public int getPid() {
+    @Override
+    public int getId() {
         return pid;
     }
 
-    public void setPid(int pid) {
+    @Override
+    public void setId(int pid) {
         this.pid = pid;
     }
 

@@ -5,7 +5,6 @@
  */
 package at.htlpinkafeld.pojo;
 
-import java.io.Serializable;
 import java.sql.Time;
 import java.util.Date;
 import java.util.Objects;
@@ -14,7 +13,7 @@ import java.util.Objects;
  *
  * @author Bernhard
  */
-public class Einsatz implements Serializable {
+public class Einsatz implements Identifiable{
     private int eid;
     private String eort;
     private String estraße;
@@ -26,23 +25,9 @@ public class Einsatz implements Serializable {
     private String uhrzeit;
     private String datum;
     private String e_status;
-   /* 
-    public Einsatz(){
-        this.eid = 9999;
-        this.eort = "";
-        this.estraße = "";
-        this.hausnr = "";
-        this.aufgabe = "";
-        this.eleiter = "";
-        this.enr = 9999;
-        this.emittel = "";
-        this.uhrzeit = "";
-        this.datum = "";
-        this.e_status = "";}
-*/
-    public Einsatz(){
-        
-    }
+    
+    public Einsatz(){}
+
     public Einsatz(int eid, String eort, String estraße, String hausnr, String aufgabe, String eleiter, int enr, String emittel, String uhrzeit, String datum, String e_status) {
         this.eid = eid;
         this.eort = eort;
@@ -56,13 +41,28 @@ public class Einsatz implements Serializable {
         this.datum = datum;
         this.e_status = e_status;
     }
+    
+    public Einsatz(String eort, String estraße, String hausnr, String aufgabe, String eleiter, int enr, String emittel, String uhrzeit, String datum, String e_status) {
+        this.eort = eort;
+        this.estraße = estraße;
+        this.hausnr = hausnr;
+        this.aufgabe = aufgabe;
+        this.eleiter = eleiter;
+        this.enr = enr;
+        this.emittel = emittel;
+        this.uhrzeit = uhrzeit;
+        this.datum = datum;
+        this.e_status = e_status;
+    }
 
-    public int getEid() {
+    @Override
+    public int getId() {
         return eid;
     }
 
-    public void setEid(int eid) {
-        this.eid = eid;
+    @Override
+    public void setId(int id) {
+        this.eid = id;
     }
 
     public String getEort() {

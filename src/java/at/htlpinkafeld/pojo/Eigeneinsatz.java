@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author Bernhard
  */
-public class Eigeneinsatz {
+public class Eigeneinsatz implements Identifiable{
     private int eeid;
     private String absender;
     private String empfaenger;
@@ -26,13 +26,21 @@ public class Eigeneinsatz {
         this.empfaenger = empfaenger;
         this.zusatztext = zusatztext;
     }
+    
+    public Eigeneinsatz(String absender, String empfaenger, String zusatztext) {
+        this.absender = absender;
+        this.empfaenger = empfaenger;
+        this.zusatztext = zusatztext;
+    }
 
-    public int getEeid() {
+    @Override
+    public int getId() {
         return eeid;
     }
 
-    public void setEeid(int eeid) {
-        this.eeid = eeid;
+    @Override
+    public void setId(int id) {
+        this.eeid = id;
     }
 
     public String getAbsender() {

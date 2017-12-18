@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true"> 
+
+            <p:layoutUnit position="north">
+                <ui:insert name="top">
+                    <h:panelGrid columns="1">
+                         <h:outputText value="Einsatzleitsoftware" />
+                    </h:panelGrid>
+                    
+                    <h:panelGrid columns="1">
+                         <h:outputText value="Bearbeitungsmodus"/>
+                    </h:panelGrid>
+                    
+                   
+                </ui:insert>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west">
+                <ui:insert name="menu">
+           
+                </ui:insert>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center" >
+                <ui:insert name="content">
+
+                </ui:insert>
+            </p:layoutUnit>
+            
+            <ui:insert name="bottom">
+                <h:form>
+                    <h:commandLink value="back" action="/grundmodul.xhtml"/>
+
+                </h:form>
+            </ui:insert>
+
+            <p:layoutUnit position="south">
+                <ui:insert name="bottom">           
+                    <h:outputText value="created by RFP"/>
+                </ui:insert>
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>
