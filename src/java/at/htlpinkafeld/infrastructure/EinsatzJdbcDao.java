@@ -26,14 +26,15 @@ public class EinsatzJdbcDao extends BaseJdbcDao<Einsatz> implements Dao<Einsatz>
     protected Einsatz getPojoFromResultSet(ResultSet result) throws SQLException {
         Einsatz e = new Einsatz(result.getString("eort"), result.getString("estraße"), result.getString("hausnr"),
         result.getString("aufgabe"), result.getString("eleiter"), result.getInt("enr"), result.getString("emittel"), 
-        result.getString("uhrzeit"), result.getString("datum"), result.getString("e_status"));
+        result.getString("uhrzeit"), result.getString("datum"), result.getString("e_status"), result.getInt("bid"));
         e.setId(result.getInt(this.getPkName()));
         return e;
     }
 
     @Override
     protected PreparedStatement getUpdateStatement(Connection c, Einsatz t) throws SQLException {
-        String s = "UPDATE " + getTablename() + " SET eort=?, estraße=?, hausnr=?, aufgabe=?, eleiter=?, enr=?, emittel=?, uhrzeit=?, datum=?, e_status=? WHERE " + getPkName() + "=?";
+        String s = "UPDATE " + getTablename() + " SET eort=?, estraße=?, hausnr=?, aufgabe=?, eleiter=?, enr=?, emittel=?, uhrzeit=?, "
+                + "datum=?, e_status=?, bid=? WHERE " + getPkName() + "=?";
         PreparedStatement stmt = c.prepareStatement(s);
         stmt.setString(1, t.getEort());
         stmt.setString(2, t.getEstraße());
@@ -45,15 +46,16 @@ public class EinsatzJdbcDao extends BaseJdbcDao<Einsatz> implements Dao<Einsatz>
         stmt.setString(8, t.getUhrzeit());
         stmt.setString(9, t.getDatum());
         stmt.setString(10, t.getE_status());
-        stmt.setInt(11, t.getId());
+        stmt.setInt(11, t.getBid());
+        stmt.setInt(12, t.getId());
         return stmt;
 
     }
 
     @Override
     protected PreparedStatement getInsertStatement(Connection c, Einsatz t) throws SQLException {
-        String s = "INSERT INTO " + getTablename() + " (eort, estraße, hausnr, aufgabe, eleiter, enr, emittel, uhrzeit, datum, e_status) "
-                + "VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String s = "INSERT INTO " + getTablename() + " (eort, estraße, hausnr, aufgabe, eleiter, enr, emittel, uhrzeit, datum, "
+                + "e_status), bid VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement stmt = c.prepareStatement(s, Statement.RETURN_GENERATED_KEYS);
         stmt.setString(1, t.getEort());
         stmt.setString(2, t.getEstraße());
@@ -65,6 +67,7 @@ public class EinsatzJdbcDao extends BaseJdbcDao<Einsatz> implements Dao<Einsatz>
         stmt.setString(8, t.getUhrzeit());
         stmt.setString(9, t.getDatum());
         stmt.setString(10, t.getE_status());
+        stmt.setInt(11, t.getBid());
         return stmt;
     }
 }

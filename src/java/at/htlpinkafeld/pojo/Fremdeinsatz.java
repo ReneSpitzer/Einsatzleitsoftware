@@ -15,18 +15,22 @@ public class Fremdeinsatz implements Identifiable{
     private int frid;
     private String absender;
     private String empfaenger;
+    private int eid;
+    private Einsatz einsatz;
     
     public Fremdeinsatz(){}
 
-    public Fremdeinsatz(String absender, String empfaenger) {
+    public Fremdeinsatz(String absender, String empfaenger, int eid) {
         this.absender = absender;
         this.empfaenger = empfaenger;
+        this.eid = eid;
     }
     
-    public Fremdeinsatz(int frid, String absender, String empfaenger) {
+    public Fremdeinsatz(int frid, String absender, String empfaenger, int eid) {
         this.frid = frid;
         this.absender = absender;
         this.empfaenger = empfaenger;
+        this.eid = eid;
     }
 
     @Override
@@ -53,6 +57,22 @@ public class Fremdeinsatz implements Identifiable{
 
     public void setEmpfaenger(String empfaenger) {
         this.empfaenger = empfaenger;
+    }
+
+    public int getEid() {
+        return eid;
+    }
+
+    public void setEid(int eid) {
+        this.eid = eid;
+    }
+
+    public Einsatz getEinsatz() {
+        return einsatz;
+    }
+
+    public void setEinsatz(Einsatz einsatz) {
+        this.einsatz = einsatz;
     }
 
     @Override

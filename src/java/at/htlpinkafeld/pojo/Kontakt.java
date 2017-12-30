@@ -16,22 +16,26 @@ public class Kontakt implements Identifiable{
     private String kname;
     private String bez;
     private long funknr;
+    private Einsatz einsatz;
+    private int eid;
     
     public Kontakt(){
         
     }
 
-    public Kontakt(String kname, String bez, long funknr) {
+    public Kontakt(String kname, String bez, long funknr, int eid) {
         this.kname = kname;
         this.bez = bez;
         this.funknr = funknr;
+        this.eid = eid;
     }
     
-    public Kontakt(int kid, String kname, String bez, long funknr) {
+    public Kontakt(int kid, String kname, String bez, long funknr, int eid) {
         this.kid = kid;
         this.kname = kname;
         this.bez = bez;
         this.funknr = funknr;
+        this.eid = eid;
     }
 
     @Override
@@ -66,6 +70,22 @@ public class Kontakt implements Identifiable{
 
     public void setFunknr(long funknr) {
         this.funknr = funknr;
+    }
+
+    public int getKid() {
+        return kid;
+    }
+
+    public void setKid(int kid) {
+        this.kid = kid;
+    }
+
+    public Einsatz getEinsatz() {
+        return einsatz;
+    }
+
+    public void setEinsatz(Einsatz einsatz) {
+        this.einsatz = einsatz;
     }
 
     @Override

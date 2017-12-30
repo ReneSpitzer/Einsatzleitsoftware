@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  * @author Bernhard
  */
-public class Fahrzeug {
+public class Fahrzeuge implements Identifiable{
     private int fid;
     private String organisation;
     private String ort;
@@ -19,10 +19,21 @@ public class Fahrzeug {
     private int anzPers;
     private int status; //0->verfügbar, 1->nicht verfügbar
     private String name;
+    private Benutzer benutzer;
+    private int bid;
 
-    public Fahrzeug(){}
+    public Fahrzeuge(){}
     
-    public Fahrzeug(int fid, String organisation, String ort, String type, int anzPers, int status, String name) {
+    public Fahrzeuge(String organisation, String ort, String type, int anzPers, int status, String name, int bid) {
+        this.organisation = organisation;
+        this.ort = ort;
+        this.type = type;
+        this.anzPers = anzPers;
+        this.status = status;
+        this.name = name;
+    }
+    
+    public Fahrzeuge(int fid, String organisation, String ort, String type, int anzPers, int status, String name, int bid) {
         this.fid = fid;
         this.organisation = organisation;
         this.ort = ort;
@@ -32,11 +43,13 @@ public class Fahrzeug {
         this.name = name;
     }
 
-    public int getFid() {
+    @Override
+    public int getId() {
         return fid;
     }
 
-    public void setFid(int fid) {
+    @Override
+    public void setId(int fid) {
         this.fid = fid;
     }
 
@@ -88,6 +101,22 @@ public class Fahrzeug {
         this.name = name;
     }
 
+    public Benutzer getBenutzer() {
+        return benutzer;
+    }
+
+    public void setBenutzer(Benutzer benutzer) {
+        this.benutzer = benutzer;
+    }
+
+    public int getBid() {
+        return bid;
+    }
+
+    public void setBid(int bid) {
+        this.bid = bid;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
@@ -112,7 +141,7 @@ public class Fahrzeug {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Fahrzeug other = (Fahrzeug) obj;
+        final Fahrzeuge other = (Fahrzeuge) obj;
         if (this.fid != other.fid) {
             return false;
         }

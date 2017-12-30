@@ -25,10 +25,12 @@ public class Einsatz implements Identifiable{
     private String uhrzeit;
     private String datum;
     private String e_status;
+    private int bid;
+    private Benutzer benutzer;
     
     public Einsatz(){}
 
-    public Einsatz(int eid, String eort, String estraße, String hausnr, String aufgabe, String eleiter, int enr, String emittel, String uhrzeit, String datum, String e_status) {
+    public Einsatz(int eid, String eort, String estraße, String hausnr, String aufgabe, String eleiter, int enr, String emittel, String uhrzeit, String datum, String e_status, int bid) {
         this.eid = eid;
         this.eort = eort;
         this.estraße = estraße;
@@ -40,9 +42,10 @@ public class Einsatz implements Identifiable{
         this.uhrzeit = uhrzeit;
         this.datum = datum;
         this.e_status = e_status;
+        this.bid = bid;
     }
     
-    public Einsatz(String eort, String estraße, String hausnr, String aufgabe, String eleiter, int enr, String emittel, String uhrzeit, String datum, String e_status) {
+    public Einsatz(String eort, String estraße, String hausnr, String aufgabe, String eleiter, int enr, String emittel, String uhrzeit, String datum, String e_status, int bid) {
         this.eort = eort;
         this.estraße = estraße;
         this.hausnr = hausnr;
@@ -53,6 +56,7 @@ public class Einsatz implements Identifiable{
         this.uhrzeit = uhrzeit;
         this.datum = datum;
         this.e_status = e_status;
+        this.bid = bid;
     }
 
     @Override
@@ -143,6 +147,22 @@ public class Einsatz implements Identifiable{
 
     public void setDatum(String datum) {
         this.datum = datum;
+    }
+
+    public int getBid() {
+        return bid;
+    }
+
+    public void setBid(int bid) {
+        this.bid = bid;
+    }
+
+    public Benutzer getBenutzer() {
+        return benutzer;
+    }
+
+    public void setBenutzer(Benutzer benutzer) {
+        this.benutzer = benutzer;
     }
 
     @Override

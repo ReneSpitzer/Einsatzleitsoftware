@@ -28,7 +28,7 @@ public EinsatzleitsoftwareService(){
     
 @PostConstruct
   public void set(){  
-    BenutzerListe.add(new Benutzer(1,"Herbert",false,"1234ABC"));
+    BenutzerListe.add(new Benutzer(1,"Herbert",false,"1234ABC",1));
 }
   
 public void addKontakt(Kontakt k){

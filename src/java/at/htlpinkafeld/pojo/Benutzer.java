@@ -16,20 +16,24 @@ public class Benutzer implements Identifiable{
     private String username;
     private boolean admin;
     private String password;
+    private int pid;
+    private Person person;
 
     public Benutzer() {}
     
-    public Benutzer(int bid, String username, boolean admin, String password) {
+    public Benutzer(int bid, String username, boolean admin, String password, int pid) {
         this.bid = bid;
         this.username = username;
         this.admin = admin;
         this.password = password;
+        this.pid = pid;
     }
     
-    public Benutzer(String username, boolean admin, String password) {
+    public Benutzer(String username, boolean admin, String password, int pid) {
         this.username = username;
         this.admin = admin;
         this.password = password;
+        this.pid = pid;
     }
 
     @Override
@@ -64,6 +68,22 @@ public class Benutzer implements Identifiable{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getPid() {
+        return pid;
+    }
+
+    public void setPid(int pid) {
+        this.pid = pid;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @Override

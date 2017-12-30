@@ -24,30 +24,33 @@ public class EigeneinsatzJdbcDao extends BaseJdbcDao<Eigeneinsatz> implements Da
 
     @Override
     protected Eigeneinsatz getPojoFromResultSet(ResultSet result) throws SQLException {
-        Eigeneinsatz ee = new Eigeneinsatz(result.getString("absender"), result.getString("empfaenger"), result.getString("zusatztext"));
+        Eigeneinsatz ee = new Eigeneinsatz(result.getString("absender"), result.getString("empfaenger"), result.getString("zusatztext"),
+            result.getInt("eid"));
         ee.setId(result.getInt(this.getPkName()));
         return ee;
     }
 
     @Override
     protected PreparedStatement getUpdateStatement(Connection c, Eigeneinsatz t) throws SQLException {
-        String s = "UPDATE " + getTablename() + " SET absender=?, empfaenger=?, zusatztext=? WHERE " + getPkName() + "=?";
+        String s = "UPDATE " + getTablename() + " SET absender=?, empfaenger=?, zusatztext=?, eid=? WHERE " + getPkName() + "=?";
         PreparedStatement stmt = c.prepareStatement(s);
         stmt.setString(1, t.getAbsender());
         stmt.setString(2, t.getEmpfaenger());
         stmt.setString(3, t.getZusatztext());
-        stmt.setInt(4, t.getId());
+        stmt.setInt(4, t.getEid());
+        stmt.setInt(5, t.getId());
         return stmt;
 
     }
 
     @Override
     protected PreparedStatement getInsertStatement(Connection c, Eigeneinsatz t) throws SQLException {
-        String s = "INSERT INTO " + getTablename() + " (absender, empfaenger, zusatztext) VALUES (?,?,?)";
+        String s = "INSERT INTO " + getTablename() + " (absender, empfaenger, zusatztext, eid) VALUES (?,?,?,?)";
         PreparedStatement stmt = c.prepareStatement(s, Statement.RETURN_GENERATED_KEYS);
         stmt.setString(1, t.getAbsender());
         stmt.setString(2, t.getEmpfaenger());
         stmt.setString(3, t.getZusatztext());
+        stmt.setInt(4, t.getEid());
         return stmt;
     }
 }
