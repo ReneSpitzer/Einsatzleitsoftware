@@ -55,6 +55,4 @@ public void deleteKontakt(Kontakt k){
     public void setBenutzerListe(List<Benutzer> BenutzerListe) {
         this.BenutzerListe = BenutzerListe;
     }
-
-
 }

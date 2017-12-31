@@ -32,7 +32,7 @@ public class LoginBean {
     List<Benutzer> BList = new ArrayList<>();
 
     public LoginBean() {
-        BList.add(new Benutzer(1,"Herbert",false,"1234ABC", 1));
+        BList.add(new Benutzer(1,"Herbert",false,"1234ABC",1));
     }
 
     public boolean isVisibleB() {

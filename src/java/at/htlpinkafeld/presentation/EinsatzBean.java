@@ -31,17 +31,17 @@ public class EinsatzBean {
     
     public EinsatzBean() {
         oelist.add(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
-                "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen", 1));
+                "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen",1));
         oelist.add(new Einsatz(1,"Oberwart", "Eo", "7", "Hochwasser", 
                 "Prunner", 2, "LFZ02", "14:06", "20.11.2017", "offen", 1));
         eialist.add(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
-                "Fuchs", 3, "LFZ01", "13:05", "25.11.2017", "in Arbeit", 2));
+                "Fuchs", 3, "LFZ01", "13:05", "25.11.2017", "in Arbeit", 1));
         eialist.add(new Einsatz(1,"Oberwart", "Eo", "7", "Hochwasser", 
-                "Prunner", 4, "LFZ02", "14:06", "20.11.2017", "offen", 2));
+                "Prunner", 4, "LFZ02", "14:06", "20.11.2017", "offen", 1));
         aelist.add(new Einsatz(1,"Güssing", "gu", "1a", "Lkw Unfall ", 
-                "Spitzer", 1, "LFZ04", "13:05", "27.8.2017", "abgeschlossen", 3));
+                "Spitzer", 1, "LFZ04", "13:05", "27.8.2017", "abgeschlossen", 1));
         aelist.add(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
-                "Spitzer", 1, "LFZ06", "13:05", "25.11.2017", "abgeschlossen", 3));
+                "Spitzer", 1, "LFZ06", "13:05", "25.11.2017", "abgeschlossen", 1));
         flist.add(new Fahrzeuge(1, "", "Pinkafeld", "FZ1", 10, 0, "FZ1", 1));
         flist.add(new Fahrzeuge(2, "", "Oberwart", "FZ2", 2, 0, "FZ2", 1));
         ortlist.add(new Ort(1,"Pinkafeld"));

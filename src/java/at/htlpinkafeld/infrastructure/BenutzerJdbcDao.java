@@ -24,15 +24,15 @@ public class BenutzerJdbcDao extends BaseJdbcDao<Benutzer> implements Dao<Benutz
 
     @Override
     protected Benutzer getPojoFromResultSet(ResultSet result) throws SQLException {
-        Benutzer b = new Benutzer(result.getString("username"), result.getBoolean("admin"), result.getString("password"), 
-            result.getInt("pid"));
+        Benutzer b = new Benutzer(result.getString("username"), result.getBoolean("admin"), result.getString("password"),
+                                  result.getInt("pid"));
         b.setId(result.getInt(this.getPkName()));
         return b;
     }
 
     @Override
     protected PreparedStatement getUpdateStatement(Connection c, Benutzer t) throws SQLException {
-        String s = "UPDATE " + getTablename() + " SET username=?, admin=?, password=?, pid=? WHERE " + getPkName() + "=?";
+        String s = "UPDATE " + getTablename() + " SET username=?, admin=?, password=?, pid WHERE " + getPkName() + "=?";
         PreparedStatement stmt = c.prepareStatement(s);
         stmt.setString(1, t.getUsername());
         stmt.setBoolean(2, t.isAdmin());
@@ -45,12 +45,11 @@ public class BenutzerJdbcDao extends BaseJdbcDao<Benutzer> implements Dao<Benutz
 
     @Override
     protected PreparedStatement getInsertStatement(Connection c, Benutzer t) throws SQLException {
-        String s = "INSERT INTO " + getTablename() + " (username, admin, password, pid) VALUES (?,?,?,?)";
+        String s = "INSERT INTO " + getTablename() + " (username, admin, password) VALUES (?,?,?)";
         PreparedStatement stmt = c.prepareStatement(s, Statement.RETURN_GENERATED_KEYS);
         stmt.setString(1, t.getUsername());
         stmt.setBoolean(2, t.isAdmin());
         stmt.setString(3, t.getPassword());
-        stmt.setInt(4, t.getPid());
         return stmt;
     }
 }

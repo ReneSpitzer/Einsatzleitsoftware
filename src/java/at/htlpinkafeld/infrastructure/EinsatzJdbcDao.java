@@ -46,7 +46,6 @@ public class EinsatzJdbcDao extends BaseJdbcDao<Einsatz> implements Dao<Einsatz>
         stmt.setString(8, t.getUhrzeit());
         stmt.setString(9, t.getDatum());
         stmt.setString(10, t.getE_status());
-        stmt.setInt(11, t.getBid());
         stmt.setInt(12, t.getId());
         return stmt;
 
@@ -55,7 +54,7 @@ public class EinsatzJdbcDao extends BaseJdbcDao<Einsatz> implements Dao<Einsatz>
     @Override
     protected PreparedStatement getInsertStatement(Connection c, Einsatz t) throws SQLException {
         String s = "INSERT INTO " + getTablename() + " (eort, estraße, hausnr, aufgabe, eleiter, enr, emittel, uhrzeit, datum, "
-                + "e_status), bid VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+                + "e_status, bid) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement stmt = c.prepareStatement(s, Statement.RETURN_GENERATED_KEYS);
         stmt.setString(1, t.getEort());
         stmt.setString(2, t.getEstraße());
@@ -67,7 +66,6 @@ public class EinsatzJdbcDao extends BaseJdbcDao<Einsatz> implements Dao<Einsatz>
         stmt.setString(8, t.getUhrzeit());
         stmt.setString(9, t.getDatum());
         stmt.setString(10, t.getE_status());
-        stmt.setInt(11, t.getBid());
         return stmt;
     }
 }

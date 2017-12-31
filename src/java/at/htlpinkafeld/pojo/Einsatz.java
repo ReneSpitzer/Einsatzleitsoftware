@@ -45,7 +45,7 @@ public class Einsatz implements Identifiable{
         this.bid = bid;
     }
     
-    public Einsatz(String eort, String estraße, String hausnr, String aufgabe, String eleiter, int enr, String emittel, String uhrzeit, String datum, String e_status, int bid) {
+    public Einsatz(String eort, String estraße, String hausnr, String aufgabe, String eleiter, int enr, String emittel, String uhrzeit, String datum, String e_status,int bid) {
         this.eort = eort;
         this.estraße = estraße;
         this.hausnr = hausnr;
@@ -56,7 +56,7 @@ public class Einsatz implements Identifiable{
         this.uhrzeit = uhrzeit;
         this.datum = datum;
         this.e_status = e_status;
-        this.bid = bid;
+       //this.bid = bid;
     }
 
     @Override

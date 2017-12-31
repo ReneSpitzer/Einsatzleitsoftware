@@ -7,9 +7,6 @@
     <ui:define name="content">
                 <p:layout fullPage="true">
                 <h:form>
-
-
-
                     <p:tabView id="tabView">
                         <p:tab title="Einsätze">
                             <p:dataTable var="einsatz" value="#{einsatzBean.oelist}">
@@ -63,6 +60,10 @@
                                     <p:outputLabel value="#{einsatz.datum}" />
                                     <p:outputLabel value=" - " />
                                     <p:outputLabel value="#{einsatz.uhrzeit}" />
+                                </p:column>
+                                
+                                <p:column>
+                                    <p:button value="Details" />
                                 </p:column>
                             </p:dataTable>
 
@@ -121,6 +122,8 @@
                                 </p:column>
                             </p:dataTable>
                         </p:tab>
+                        
+                        
                         <p:tab title="Abgeschlossene Einsätze">
                             <p:dataTable var="einsatz" value="#{einsatzBean.aelist}">
                                 <f:facet name="header">
@@ -184,6 +187,10 @@
                         </p:tab>
                         <p:tab title="Bearbeitungsmodus">
                             <p:outputLabel value="in Arbeit" />
+                        </p:tab>
+                        
+                        <p:tab title="Test">
+                            <p:outputLabel value="#{einsatzBean.oelist}" />
                         </p:tab>
                     </p:tabView>
                 </h:form>
