@@ -8,19 +8,21 @@ package at.htlpinkafeld.presentation;
 import at.htlpinkafeld.pojo.Einsatz;
 import at.htlpinkafeld.pojo.Fahrzeuge;
 import at.htlpinkafeld.pojo.Ort;
-import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 
 /**
  *
  * @author Bernhard
  */
+@ManagedBean
+@SessionScoped
 public class EinsatzBean {
+    private List<Einsatz> einsatzlist = new ArrayList<>(); //Liste von allen Einsätzen
     private List<Einsatz> oelist = new ArrayList<>(); //Liste der offenen Einsätzen
     private List<Einsatz> eialist = new ArrayList<>(); //Liste der Einsätzen in Arbeit
     private List<Einsatz> aelist = new ArrayList<>(); //Liste der abgeschlossenen Einsätzen
@@ -30,24 +32,42 @@ public class EinsatzBean {
     private Fahrzeuge fahrzeug = new Fahrzeuge();
     
     public EinsatzBean() {
-        oelist.add(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
+        einsatzlist.add(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen",1));
-        oelist.add(new Einsatz(1,"Oberwart", "Eo", "7", "Hochwasser", 
+        
+        einsatzlist.add(new Einsatz(2,"Oberwart", "Eo", "7", "Hochwasser", 
                 "Prunner", 2, "LFZ02", "14:06", "20.11.2017", "offen", 1));
-        eialist.add(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
-                "Fuchs", 3, "LFZ01", "13:05", "25.11.2017", "in Arbeit", 1));
-        eialist.add(new Einsatz(1,"Oberwart", "Eo", "7", "Hochwasser", 
-                "Prunner", 4, "LFZ02", "14:06", "20.11.2017", "offen", 1));
-        aelist.add(new Einsatz(1,"Güssing", "gu", "1a", "Lkw Unfall ", 
-                "Spitzer", 1, "LFZ04", "13:05", "27.8.2017", "abgeschlossen", 1));
-        aelist.add(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
-                "Spitzer", 1, "LFZ06", "13:05", "25.11.2017", "abgeschlossen", 1));
+        
+        einsatzlist.add(new Einsatz(3,"Hartberg", "Roseggergasse", "2", "Katze von Baum retten", 
+                "Altmann", 3, "LFZ03", "12:06", "20.1.2018", "in Arbeit", 1));
+        
+        einsatzlist.add(new Einsatz(4,"Test", "Testgasse", "7", "Hochwasser", 
+                "Maierhofer", 4, "LFZ04", "4:27", "2.11.2017", "in Arbeit", 1));
+        
+        einsatzlist.add(new Einsatz(5,"Güssing", "gu", "1a", "Lkw Unfall ", 
+                "Fleck", 5, "LFZ05", "13:05", "27.8.2017", "abgeschlossen", 1));
+        
+        einsatzlist.add(new Einsatz(6,"Oberloisdorf", "McStrasse", "15", "Brand löschen", 
+                "Spitzer", 6, "LFZ06", "15:03", "25.10.2017", "abgeschlossen", 1));
+        
+        fillOelist();
+        fillAelist();
+        fillEialist();
+        
         flist.add(new Fahrzeuge(1, "", "Pinkafeld", "FZ1", 10, 0, "FZ1", 1));
         flist.add(new Fahrzeuge(2, "", "Oberwart", "FZ2", 2, 0, "FZ2", 1));
         ortlist.add(new Ort(1,"Pinkafeld"));
         ortlist.add(new Ort(2,"Alle"));
     }
 
+    public List<Einsatz> getEinsatzlist() {
+        return einsatzlist;
+    }
+
+    public void setEinsatzlist(List<Einsatz> einsatzlist) {
+        this.einsatzlist = einsatzlist;
+    }
+    
     public List<Einsatz> getOelist() {
         return oelist;
     }
@@ -132,4 +152,62 @@ public class EinsatzBean {
         
         return null;
     }
+    
+    private void fillOelist(){
+        this.getOelist().removeAll(oelist);
+        for(Einsatz e: this.getEinsatzlist())
+        {
+            if(e.getE_status().equals("offen")){
+                if(!this.getOelist().contains(e))
+                    oelist.add(e);
+            }
+        }
+    }
+
+    private void fillEialist() {
+        this.getEialist().removeAll(eialist);
+        for(Einsatz e: this.getEinsatzlist())
+        {
+            if(e.getE_status().equals("in Arbeit")){
+                if(!this.getEialist().contains(e))
+                eialist.add(e);
+            }
+        }    
+    }
+
+    private void fillAelist() {
+        this.getAelist().removeAll(aelist);
+        for(Einsatz e: this.getEinsatzlist())
+        {
+            if(e.getE_status().equals("abgeschlossen")){
+                if(!this.getAelist().contains(e))
+                aelist.add(e);
+            }
+        }
+    }
+    
+    public Object changeToIA(Einsatz e)
+    {
+        Einsatz help = e;
+        this.getEinsatzlist().remove(e);
+        help.setE_status("in Arbeit");
+        this.getEinsatzlist().add(help);
+        fillEialist();
+        fillOelist();
+        fillAelist();
+        
+        return null;
+    }
+    
+    public Object changeToOffen(Einsatz e)
+    {
+        Einsatz help = e;
+        this.getEinsatzlist().remove(e);
+        help.setE_status("offen");
+        this.getEinsatzlist().add(help);
+        fillOelist();
+        fillEialist();
+        
+        return null;
+    } 
 }
