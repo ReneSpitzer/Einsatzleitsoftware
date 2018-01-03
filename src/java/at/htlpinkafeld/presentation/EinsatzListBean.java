@@ -21,7 +21,7 @@ import javax.faces.event.ValueChangeEvent;
  */
 @ManagedBean
 @SessionScoped
-public class EinsatzBean {
+public class EinsatzListBean {
     private List<Einsatz> einsatzlist = new ArrayList<>(); //Liste von allen Einsätzen
     private List<Einsatz> oelist = new ArrayList<>(); //Liste der offenen Einsätzen
     private List<Einsatz> eialist = new ArrayList<>(); //Liste der Einsätzen in Arbeit
@@ -31,7 +31,7 @@ public class EinsatzBean {
     private List<Fahrzeuge> felist = new LinkedList<>(); //Liste mit den tatsächlich angezeigten Fahrzeugen
     private Fahrzeuge fahrzeug = new Fahrzeuge();
     
-    public EinsatzBean() {
+    public EinsatzListBean() {
         einsatzlist.add(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen",1));
         

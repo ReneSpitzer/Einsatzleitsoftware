@@ -9,27 +9,27 @@
             <p:dialog  header="Einsatz erstellen"   visible="true" closable="false" showEffect="clip" draggable="false" resizable="false" style="box-shadow: 7px 10px 5px #303050;"> 
                     <p:panelGrid columns="2" style="margin: 0 auto;">
                         <h:outputText value="Einsatzaufgabe:" />            
-                        <h:inputText value="#{einsatzBean.einsatzlist.aufgabe}"/>
+                        <h:inputText value="#{einsatzListBean.einsatzlist.aufgabe}"/>
                         <h:outputText value="Einsatzdatum:" />            
-                        <h:inputText value="#{einsatzBean.einsatzlist.datum}" /> 
+                        <h:inputText value="#{einsatzListBean.einsatzlist.datum}" /> 
                         <h:outputText value="Einsatzstatus:" />            
-                        <h:inputText value="#{einsatzBean.einsatzlist.e_status}" />
+                        <h:inputText value="#{einsatzListBean.einsatzlist.e_status}" />
                         <h:outputText value="Einsatzleiter:" />            
-                        <h:inputText value="#{einsatzBean.einsatzlist.eleiter}" />  
+                        <h:inputText value="#{einsatzListBean.einsatzlist.eleiter}" />  
                         <h:outputText value="Einsatznummer:" />            
-                        <h:inputText value="#{einsatzBean.einsatzlist.enr}" /> 
+                        <h:inputText value="#{einsatzListBean.einsatzlist.enr}" /> 
                         <h:outputText value="Einsatzmittel:" />            
-                        <h:inputText value="#{einsatzBean.einsatzlist.emittel}" />
+                        <h:inputText value="#{einsatzListBean.einsatzlist.emittel}" />
                         <h:outputText value="Einsatzort:" />            
-                        <h:inputText value="#{einsatzBean.einsatzlist.eort}" />  
+                        <h:inputText value="#{einsatzListBean.einsatzlist.eort}" />  
                         <h:outputText value="Einsatzstraße:" />            
-                        <h:inputText value="#{einsatzBean.einsatzlist.estraße}" />  
+                        <h:inputText value="#{einsatzListBean.einsatzlist.estraße}" />  
                         <h:outputText value="Hausnummer:" />            
-                        <h:inputText value="#{einsatzBean.einsatzlist.hausnr}" />  
+                        <h:inputText value="#{einsatzListBean.einsatzlist.hausnr}" />  
                         <h:outputText value="Einsatzuhrzeit:" />            
-                        <h:inputText value="#{einsatzBean.einsatzlist.uhrzeit}" />  
+                        <h:inputText value="#{einsatzListBean.einsatzlist.uhrzeit}" />  
                     </p:panelGrid>
-                <p:commandButton  value="Einsatz erstellen" action="#{einsatzBean.createEinsatz()}" style="float:left;"/>
+                <p:commandButton  value="Einsatz erstellen" action="#{einsatzListBean.createEinsatz()}" style="float:left;"/>
                 <p:commandButton  value="Zurück zur Übersicht" action="/uebersichtauswahl.xhtml" style="float:right;"/> 
             </p:dialog>
         </h:form> 
