@@ -6,6 +6,7 @@
        <ui:define name="content">
 
            <p:dataTable var="einsatz" value="#{einsatzListBean.aelist}" resizableColumns="true" draggableRows="true" tableStyle="table-layout: auto;">
+                              <p:dataTable var="einsatz" value="#{einsatzListBean.aelist}" resizableColumns="true" draggableRows="true" tableStyle="table-layout: auto;">
                                 <f:facet name="header">
                                     <p:outputLabel value="Abgeschlossene Einsätze" />
                                 </f:facet>
@@ -14,7 +15,7 @@
                                     <f:facet name="header">
                                         <p:outputLabel value="Einsatznummer" />
                                     </f:facet>
-                                    <p:outputLabel value="#{einsatz.id}" />
+                                    <p:outputLabel value="#{einsatz.enr}" />
                                 </p:column>
 
                                 <p:column>
@@ -58,22 +59,12 @@
                                     <p:outputLabel value="#{einsatz.uhrzeit}" />
                                 </p:column>
                                 
-                                <p:column width="125">
-                                    <p:menuButton value="Details">
-                                        <p:menuitem value="Einsatznummer: #{einsatz.enr}" />
-                                        <p:menuitem value="Ort: #{einsatz.eort}" />
-                                        <p:menuitem value="Straße: #{einsatz.estraße}" />
-                                        <p:menuitem value="Hausnummer: #{einsatz.hausnr}" />
-                                        <p:menuitem value="Aufgabe: #{einsatz.aufgabe}" />
-                                        <p:menuitem value="Leiter: #{einsatz.eleiter}" />
-                                        <p:menuitem value="Einsatzmittel: #{einsatz.emittel}" />
-                                        <p:menuitem value="Datum #{einsatz.datum}" />
-                                        <p:menuitem value="Uhrzeit #{einsatz.uhrzeit}" />
-                                    </p:menuButton>
-                                </p:column>
+                                <p:column width="125" >
+                                    <p:commandButton value="Details" action="#{einsatzBean.edit(einsatz)}"/>                                     
+                                </p:column> 
                                 
                                 <p:column width="250">
-                                    <p:button value="zu 'Einsätze in Arbeit' verschieben" />
+                                    <p:commandButton value="zu 'Einsätze in Arbeit' verschieben" action="#{einsatzListBean.changeToIA(einsatz)}" onclick="submit()"/>
                                 </p:column>
                             </p:dataTable>  
         </ui:define>

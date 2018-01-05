@@ -1,35 +1,41 @@
   <ui:composition template="./WEB-INF/templatestart.xhtml" xmlns="http://www.w3.org/1999/xhtml"
                             xmlns:h="http://xmlns.jcp.org/jsf/html"
                             xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                               xmlns:p="http://primefaces.org/ui">
+                            xmlns:p="http://primefaces.org/ui"
+                            xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="content">
         <p:growl id="growl" life="5000" autoUpdate="true" showDetail="true" escape="false"/>
 
         <h:form> 
             <p:dialog  header="Einsatz erstellen"   visible="true" closable="false" showEffect="clip" draggable="false" resizable="false" style="box-shadow: 7px 10px 5px #303050;"> 
                     <p:panelGrid columns="2" style="margin: 0 auto;">
-                        <h:outputText value="Einsatzaufgabe:" />            
-                        <h:inputText value="#{einsatzListBean.einsatzlist.aufgabe}"/>
-                        <h:outputText value="Einsatzdatum:" />            
-                        <h:inputText value="#{einsatzListBean.einsatzlist.datum}" /> 
-                        <h:outputText value="Einsatzstatus:" />            
-                        <h:inputText value="#{einsatzListBean.einsatzlist.e_status}" />
-                        <h:outputText value="Einsatzleiter:" />            
-                        <h:inputText value="#{einsatzListBean.einsatzlist.eleiter}" />  
                         <h:outputText value="Einsatznummer:" />            
-                        <h:inputText value="#{einsatzListBean.einsatzlist.enr}" /> 
-                        <h:outputText value="Einsatzmittel:" />            
-                        <h:inputText value="#{einsatzListBean.einsatzlist.emittel}" />
+                        <h:inputText value="#{einsatzBean.einsatz.enr}"/>
                         <h:outputText value="Einsatzort:" />            
-                        <h:inputText value="#{einsatzListBean.einsatzlist.eort}" />  
-                        <h:outputText value="Einsatzstraße:" />            
-                        <h:inputText value="#{einsatzListBean.einsatzlist.estraße}" />  
-                        <h:outputText value="Hausnummer:" />            
-                        <h:inputText value="#{einsatzListBean.einsatzlist.hausnr}" />  
+                        <h:inputText value="#{einsatzBean.einsatz.eort}" /> 
+                        <h:outputText value="Einsatstraße:" />            
+                        <h:inputText value="#{einsatzBean.einsatz.estraße}" /> 
+                        <h:outputText value="Einsatzhausnummer:" />            
+                        <h:inputText value="#{einsatzBean.einsatz.hausnr}" />
+                        <h:outputText value="Einsatzaufgabe:" />            
+                        <h:inputText value="#{einsatzBean.einsatz.aufgabe}" />  
+                        <h:outputText value="Einsatzleiter:" />            
+                        <h:inputText value="#{einsatzBean.einsatz.eleiter}" /> 
+                        <h:outputText value="Einsatzmittel:" />            
+                        <h:inputText value="#{einsatzBean.einsatz.emittel}" />
+                        <h:outputText value="Einsatzdatum:" />            
+                        <h:inputText value="#{einsatzBean.einsatz.datum}" />  
                         <h:outputText value="Einsatzuhrzeit:" />            
-                        <h:inputText value="#{einsatzListBean.einsatzlist.uhrzeit}" />  
+                        <h:inputText value="#{einsatzBean.einsatz.uhrzeit}" />  
+                        <h:outputText value="Status" />            
+                        <h:selectOneMenu value="#{einsatzBean.einsatz.e_status}" >
+                            <f:selectItems value="#{einsatzListBean.statuslist}" var="status" 
+                                   itemValue="#{status}" itemLabel="#{status}" />                            
+                        </h:selectOneMenu>                         
                     </p:panelGrid>
-                <p:commandButton  value="Einsatz erstellen" action="#{einsatzListBean.createEinsatz()}" style="float:left;"/>
+                <p:commandButton  value="Sichern" action="#{einsatzListBean.save(einsatzBean.einsatz)}" style="float:left;" />
+                <p:commandButton value="Cancel" action="grundmodul.xhtml" immediate="true" />
+
                 <p:commandButton  value="Zurück zur Übersicht" action="/uebersichtauswahl.xhtml" style="float:right;"/> 
             </p:dialog>
         </h:form> 

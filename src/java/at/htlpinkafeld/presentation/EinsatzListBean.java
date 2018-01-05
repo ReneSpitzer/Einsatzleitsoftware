@@ -30,6 +30,8 @@ public class EinsatzListBean {
     private List<Ort> ortlist = new ArrayList();
     private List<Fahrzeuge> felist = new LinkedList<>(); //Liste mit den tatsächlich angezeigten Fahrzeugen
     private Fahrzeuge fahrzeug = new Fahrzeuge();
+    private String selectedStatus;
+    private List<String> statuslist = new ArrayList<>();
     
     public EinsatzListBean() {
         einsatzlist.add(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
@@ -58,6 +60,10 @@ public class EinsatzListBean {
         flist.add(new Fahrzeuge(2, "", "Oberwart", "FZ2", 2, 0, "FZ2", 1));
         ortlist.add(new Ort(1,"Pinkafeld"));
         ortlist.add(new Ort(2,"Alle"));
+        
+        statuslist.add("offen");
+        statuslist.add("in Arbeit");
+        statuslist.add("abgeschlossen");
     }
 
     public List<Einsatz> getEinsatzlist() {
@@ -66,6 +72,22 @@ public class EinsatzListBean {
 
     public void setEinsatzlist(List<Einsatz> einsatzlist) {
         this.einsatzlist = einsatzlist;
+    }
+
+    public String getSelectedStatus() {
+        return selectedStatus;
+    }
+
+    public void setSelectedStatus(String selectedStatus) {
+        this.selectedStatus = selectedStatus;
+    }
+
+    public List<String> getStatuslist() {
+        return statuslist;
+    }
+
+    public void setStatuslist(List<String> statuslist) {
+        this.statuslist = statuslist;
     }
     
     public List<Einsatz> getOelist() {
@@ -210,4 +232,15 @@ public class EinsatzListBean {
         
         return null;
     } 
+    
+    public String save(Einsatz e){
+        if( !einsatzlist.contains(e) )
+            einsatzlist.add(e);
+        
+        fillEialist();
+        fillOelist();
+        fillAelist();
+        
+        return "grundmodul.xhtml";
+    }
 }

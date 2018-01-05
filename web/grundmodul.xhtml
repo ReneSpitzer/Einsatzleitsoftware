@@ -17,9 +17,9 @@
 
                                 <p:column>
                                     <f:facet name="header">
-                                        <p:outputLabel value="Einsatznummer" />
+                                        <p:outputLabel value="Einsatznummer" style="color:background" />
                                     </f:facet>
-                                    <p:outputLabel value="#{einsatz.id}" />
+                                    <p:outputLabel value="#{einsatz.enr}" />
                                 </p:column>
 
                                 <p:column>
@@ -64,18 +64,7 @@
                                 </p:column>
                                 
                                 <p:column width="125" >
-                                    <p:menuButton value="Details">
-                                        <p:menuitem value="Einsatznummer: #{einsatz.enr}" />
-                                        <p:menuitem value="Ort: #{einsatz.eort}" />
-                                        <p:menuitem value="Straße: #{einsatz.estraße}" />
-                                        <p:menuitem value="Hausnummer: #{einsatz.hausnr}" />
-                                        <p:menuitem value="Aufgabe: #{einsatz.aufgabe}" />
-                                        <p:menuitem value="Leiter: #{einsatz.eleiter}" />
-                                        <p:menuitem value="Einsatzmittel: #{einsatz.emittel}" />
-                                        <p:menuitem value="Datum #{einsatz.datum}" />
-                                        <p:menuitem value="Uhrzeit #{einsatz.uhrzeit}" />
-                                        <p:menuitem value="Status: #{einsatz.e_status}" />
-                                    </p:menuButton>
+                                    <p:commandButton value="Details" action="#{einsatzBean.edit(einsatz)}" onclick="einsatzerstellen.xhtml"/>                                     
                                 </p:column>  
                                 
                                 <p:column width="250">
@@ -93,7 +82,7 @@
                                     <f:facet name="header">
                                         <p:outputLabel value="Einsatznummer" />
                                     </f:facet>
-                                    <p:outputLabel value="#{einsatz.id}" />
+                                    <p:outputLabel value="#{einsatz.enr}" />
                                 </p:column>
 
                                 <p:column>
@@ -138,19 +127,8 @@
                                 </p:column>
                                 
                                 <p:column width="125">
-                                    <p:menuButton value="Details">
-                                        <p:menuitem value="Einsatznummer: #{einsatz.enr}" />
-                                        <p:menuitem value="Ort: #{einsatz.eort}" />
-                                        <p:menuitem value="Straße: #{einsatz.estraße}" />
-                                        <p:menuitem value="Hausnummer: #{einsatz.hausnr}" />
-                                        <p:menuitem value="Aufgabe: #{einsatz.aufgabe}" />
-                                        <p:menuitem value="Leiter: #{einsatz.eleiter}" />
-                                        <p:menuitem value="Einsatzmittel: #{einsatz.emittel}" />
-                                        <p:menuitem value="Datum #{einsatz.datum}" />
-                                        <p:menuitem value="Uhrzeit #{einsatz.uhrzeit}" />
-                                        <p:menuitem value="Status: #{einsatz.e_status}" />
-                                    </p:menuButton>
-                                </p:column>
+                                    <p:commandButton value="Details" action="#{einsatzBean.edit(einsatz)}" onclick="einsatzerstellen.xhtml"/>                                    
+                                </p:column>                               
                                 
                                 <p:column width="250">
                                     <p:commandButton value="zu 'offenen Einsätze' verschieben" action="#{einsatzListBean.changeToOffen(einsatz)}" onclick="submit()"/>
@@ -169,7 +147,7 @@
                                     <f:facet name="header">
                                         <p:outputLabel value="Einsatznummer" />
                                     </f:facet>
-                                    <p:outputLabel value="#{einsatz.id}" />
+                                    <p:outputLabel value="#{einsatz.enr}" />
                                 </p:column>
 
                                 <p:column>
@@ -213,20 +191,9 @@
                                     <p:outputLabel value="#{einsatz.uhrzeit}" />
                                 </p:column>
                                 
-                                <p:column width="125">
-                                    <p:menuButton value="Details">
-                                        <p:menuitem value="Einsatznummer: #{einsatz.enr}" />
-                                        <p:menuitem value="Ort: #{einsatz.eort}" />
-                                        <p:menuitem value="Straße: #{einsatz.estraße}" />
-                                        <p:menuitem value="Hausnummer: #{einsatz.hausnr}" />
-                                        <p:menuitem value="Aufgabe: #{einsatz.aufgabe}" />
-                                        <p:menuitem value="Leiter: #{einsatz.eleiter}" />
-                                        <p:menuitem value="Einsatzmittel: #{einsatz.emittel}" />
-                                        <p:menuitem value="Datum #{einsatz.datum}" />
-                                        <p:menuitem value="Uhrzeit #{einsatz.uhrzeit}" />
-                                        <p:menuitem value="Status: #{einsatz.e_status}" />
-                                    </p:menuButton>
-                                </p:column>
+                                <p:column width="125" >
+                                    <p:commandButton value="Details" action="#{einsatzBean.edit(einsatz)}" onclick="einsatzerstellen.xhtml"/>                                   
+                                </p:column> 
                                 
                                 <p:column width="250">
                                     <p:commandButton value="zu 'Einsätze in Arbeit' verschieben" action="#{einsatzListBean.changeToIA(einsatz)}" onclick="submit()"/>
