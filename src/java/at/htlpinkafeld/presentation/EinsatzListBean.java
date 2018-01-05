@@ -26,6 +26,7 @@ public class EinsatzListBean {
     private List<Einsatz> oelist = new ArrayList<>(); //Liste der offenen Einsätzen
     private List<Einsatz> eialist = new ArrayList<>(); //Liste der Einsätzen in Arbeit
     private List<Einsatz> aelist = new ArrayList<>(); //Liste der abgeschlossenen Einsätzen
+    private List<Einsatz> arelist = new ArrayList<>(); //Liste der archivierten Einsätzen
     private List<Fahrzeuge> flist = new LinkedList<>(); //Liste aller Fahrzeugen
     private List<Ort> ortlist = new ArrayList();
     private List<Fahrzeuge> felist = new LinkedList<>(); //Liste mit den tatsächlich angezeigten Fahrzeugen
@@ -55,6 +56,7 @@ public class EinsatzListBean {
         fillOelist();
         fillAelist();
         fillEialist();
+        fillARelist();
         
         flist.add(new Fahrzeuge(1, "", "Pinkafeld", "FZ1", 10, 0, "FZ1", 1));
         flist.add(new Fahrzeuge(2, "", "Oberwart", "FZ2", 2, 0, "FZ2", 1));
@@ -72,6 +74,14 @@ public class EinsatzListBean {
 
     public void setEinsatzlist(List<Einsatz> einsatzlist) {
         this.einsatzlist = einsatzlist;
+    }
+
+    public List<Einsatz> getARelist() {
+        return arelist;
+    }
+
+    public void setARelist(List<Einsatz> arelist) {
+        this.arelist = arelist;
     }
 
     public String getSelectedStatus() {
@@ -208,30 +218,61 @@ public class EinsatzListBean {
         }
     }
     
+    private void fillARelist() {
+        this.getARelist().removeAll(arelist);
+        for(Einsatz e: this.getEinsatzlist())
+        {
+            if(e.getE_status().equals("archiviert")){
+                if(!this.getARelist().contains(e))
+                arelist.add(e);
+            }
+        }
+    }
+    
     public Object changeToIA(Einsatz e)
     {
         Einsatz help = e;
         this.getEinsatzlist().remove(e);
         help.setE_status("in Arbeit");
         this.getEinsatzlist().add(help);
+        
         fillEialist();
         fillOelist();
         fillAelist();
+        fillARelist();
         
         return null;
     }
     
-    public Object changeToOffen(Einsatz e)
+    public Object changeToAbgeschlossen(Einsatz e)
     {
         Einsatz help = e;
         this.getEinsatzlist().remove(e);
-        help.setE_status("offen");
+        help.setE_status("abgeschlossen");
         this.getEinsatzlist().add(help);
+        
         fillOelist();
         fillEialist();
+        fillAelist();
+        fillARelist();
         
         return null;
     } 
+    
+    public Object changeToArchiviert(Einsatz e)
+    {
+        Einsatz help = e;
+        this.getEinsatzlist().remove(e);
+        help.setE_status("archiviert");
+        this.getEinsatzlist().add(help);
+        
+        fillOelist();
+        fillEialist();
+        fillAelist();
+        fillARelist();
+        
+        return null;
+    }
     
     public String save(Einsatz e){
         if( !einsatzlist.contains(e) )
@@ -240,6 +281,7 @@ public class EinsatzListBean {
         fillEialist();
         fillOelist();
         fillAelist();
+        fillARelist();
         
         return "grundmodul.xhtml";
     }

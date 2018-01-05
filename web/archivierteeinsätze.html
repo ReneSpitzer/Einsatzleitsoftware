@@ -5,9 +5,9 @@
                             xmlns:f="http://xmlns.jcp.org/jsf/core">
        <ui:define name="content">
 
-           <p:dataTable var="einsatz" value="#{einsatzListBean.aelist}" resizableColumns="true" draggableRows="true" tableStyle="table-layout: auto;">
+           <p:dataTable var="einsatz" value="#{einsatzListBean.ARelist}" resizableColumns="true" draggableRows="true" tableStyle="table-layout: auto;">
                                 <f:facet name="header">
-                                    <p:outputLabel value="Abgeschlossene Einsätze" style="color:green"/>
+                                    <p:outputLabel value="Archivierte Einsätze" style="color:green"/>
                                 </f:facet>
 
                                 <p:column style="color:green">
@@ -63,15 +63,14 @@
                                 </p:column> 
                                 
                                 <p:column width="250">
-                                    <p:commandButton value="zu 'Einsätze in Arbeit' verschieben" action="#{einsatzListBean.changeToIA(einsatz)}" onclick="submit()" style="color:green"/>
+                                    <p:commandButton value="zu 'Abgeschossenen Einsätze' verschieben" action="#{einsatzListBean.changeToAbgeschlossen(einsatz)}" onclick="submit()" style="color:green"/>
                                 </p:column>
                             </p:dataTable>   
         </ui:define>
       <ui:define name="bottom">
-          <h:form>
           <p:commandButton value="Zurück zur Übersicht" action="/uebersichtauswahl.xhtml" rendered="#{loginBean.visibleB}"/>
-          <p:commandButton value="Archivierte Einsätze" action="/archivierteeinsätze.xhtml" rendered="#{loginBean.visibleB}"/>
-          <p:commandButton value="Zurück zum Login" action="/login.xhtml" rendered="#{loginBean.visibleL}"/> 
+          <p:commandButton value="Zurück z
+          <h:form>um Login" action="/login.xhtml" rendered="#{loginBean.visibleL}"/> 
           </h:form>
       </ui:define>
  </ui:composition>
