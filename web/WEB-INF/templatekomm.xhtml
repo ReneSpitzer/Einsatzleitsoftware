@@ -10,58 +10,63 @@
 
         <meta name="viewport1" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <h:body>
+    <h:body style="background-color:black;">
         <p:layout fullPage="true"> 
 
-            <p:layoutUnit position="north">
+            <p:layoutUnit position="north" style="background-color:red;">
+                 <p:layout fullPage="true"  style="background-color: red;">
                 <ui:insert name="top">
-                    <h:outputText value="Kommunikationsmodul"/>
+                    <h:outputText value="Kommunikationsmodul" style="color:black; font-size:xx-large; position:relative;left:680px"/>
                 </ui:insert>
+                 </p:layout>
             </p:layoutUnit>
 
-            <p:layoutUnit position="west">
+            <p:layoutUnit position="west" style="background-color: red;">
+                <p:layout fullPage="true"  style="background-color: red;">
                 <ui:insert name="menu">
                     <h:form>
                     <p:menu toggleable="true">
                         <p:submenu label="Mail">
-                            <p:menuitem value="Posteingang" outcome="/posteingang.xhtml"  />
-                            <p:menuitem value="Postausgang" outcome="/postausgang.xhtml"  />
-                            <p:menuitem value="Archiv" outcome="/archiv.xhtml"/>     
+                            <p:menuitem value="Posteingang" outcome="/kommPosteingang.xhtml"  />
+                            <p:menuitem value="Postausgang" outcome="/kommPostausgang.xhtml"  />
+                            <p:menuitem value="Archiv" outcome="/kommArchiv.xhtml"/>     
                         </p:submenu>
                         <p:submenu label="Kontakte">
-                           <p:menuitem value="Kontakte" outcome="/kontakte.xhtml"  />  
+                           <p:menuitem value="Kontakte" outcome="/kommKontakte.xhtml"  />  
                         </p:submenu>
                      
                     </p:menu>
                     </h:form>
                 </ui:insert>
+                </p:layout>
             </p:layoutUnit>
-            <p:layoutUnit position="east" >
+            <p:layoutUnit position="east"  style="background-color: red;" >
+                 <p:layout fullPage="true"  style="background-color: red;">
                 <ui:insert name="mail">
 
 
 
                 </ui:insert>
-                
+                 </p:layout>
             </p:layoutUnit>
-            <p:layoutUnit position="center" >
+            <p:layoutUnit position="center"  style="background-color: red;">
+                <p:layout fullPage="true"  style="background-color: red;">
                 <ui:insert name="content">
 
 
 
                 </ui:insert>
+                </p:layout>
             </p:layoutUnit>
-            <ui:insert name="bottom">
-                <h:form>
-                    <h:commandLink value="back" action="/login.xhtml"/>
+            
+       
 
-                </h:form>
-            </ui:insert>
-
-            <p:layoutUnit position="south">
+            <p:layoutUnit position="south" style="background-color: red;">
+                 <p:layout fullPage="true"  style="background-color: red;">
                 <ui:insert name="bottom">           
                     <h:outputText value="created by RFP"/>
                 </ui:insert>
+                 </p:layout>
             </p:layoutUnit>
 
 

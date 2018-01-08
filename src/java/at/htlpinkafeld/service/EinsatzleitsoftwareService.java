@@ -6,6 +6,7 @@
 package at.htlpinkafeld.service;
 
 import at.htlpinkafeld.pojo.Benutzer;
+import at.htlpinkafeld.pojo.Einsatz;
 import at.htlpinkafeld.pojo.Kontakt;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,7 @@ import javax.faces.bean.SessionScoped;
 public class EinsatzleitsoftwareService {
 private List<Kontakt> KontaktListe= new ArrayList<>();
 private List<Benutzer> BenutzerListe = new ArrayList<>();
+private List<Einsatz> ArchivierteEinsätze = new ArrayList();
 
 public EinsatzleitsoftwareService(){
 }  
@@ -54,6 +56,14 @@ public void deleteKontakt(Kontakt k){
 
     public void setBenutzerListe(List<Benutzer> BenutzerListe) {
         this.BenutzerListe = BenutzerListe;
+    }
+
+    public List<Einsatz> getArchivierteEinsätze() {
+        return ArchivierteEinsätze;
+    }
+
+    public void setArchivierteEinsätze(List<Einsatz> ArchivierteEinsätze) {
+        this.ArchivierteEinsätze = ArchivierteEinsätze;
     }
 
 
