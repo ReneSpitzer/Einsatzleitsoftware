@@ -24,28 +24,30 @@ public class FremdeinsatzJdbcDao extends BaseJdbcDao<Fremdeinsatz> implements Da
 
     @Override
     protected Fremdeinsatz getPojoFromResultSet(ResultSet result) throws SQLException {
-        Fremdeinsatz fe = new Fremdeinsatz(result.getString("absender"), result.getString("empfaenger"));
+        Fremdeinsatz fe = new Fremdeinsatz(result.getString("absender"), result.getString("empfaenger"), result.getInt("eid"));
         fe.setId(result.getInt(this.getPkName()));
         return fe;
     }
 
     @Override
     protected PreparedStatement getUpdateStatement(Connection c, Fremdeinsatz t) throws SQLException {
-        String s = "UPDATE " + getTablename() + " SET absender=?, empfaenger=? WHERE " + getPkName() + "=?";
+        String s = "UPDATE " + getTablename() + " SET absender=?, empfaenger=?, eid=? WHERE " + getPkName() + "=?";
         PreparedStatement stmt = c.prepareStatement(s);
         stmt.setString(1, t.getAbsender());
         stmt.setString(2, t.getEmpfaenger());
-        stmt.setInt(3, t.getId());
+        stmt.setInt(3, t.getEid());
+        stmt.setInt(4, t.getId());
         return stmt;
 
     }
 
     @Override
     protected PreparedStatement getInsertStatement(Connection c, Fremdeinsatz t) throws SQLException {
-        String s = "INSERT INTO " + getTablename() + " (absender, empfaenger) VALUES (?,?,?)";
+        String s = "INSERT INTO " + getTablename() + " (absender, empfaenger, eid) VALUES (?,?,?)";
         PreparedStatement stmt = c.prepareStatement(s, Statement.RETURN_GENERATED_KEYS);
         stmt.setString(1, t.getAbsender());
         stmt.setString(2, t.getEmpfaenger());
+        stmt.setInt(3, t.getEid());
         return stmt;
     }
 }

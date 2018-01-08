@@ -4,37 +4,5 @@
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
-    <navigation-rule>
-        <from-view-id>/index.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>Posteingang</from-outcome>
-            <to-view-id>/posteingang.xhtml></to-view-id>  
-        </navigation-case>
-    </navigation-rule>
-   
-    <navigation-rule>
-        <from-view-id>/index.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>Postausgang</from-outcome>
-            <to-view-id>/postausgang.xhtml></to-view-id>  
-        </navigation-case>
-      
-    </navigation-rule> 
-   
-    <navigation-rule>
-        <from-view-id>/index.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>Papierkorb</from-outcome>
-            <to-view-id>/papierkorb.xhtml></to-view-id>  
-        </navigation-case>
-    </navigation-rule> 
-   
-    <navigation-rule>
-        <from-view-id>/index.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>Archiv</from-outcome>
-            <to-view-id>/archiv.xhtml></to-view-id>  
-        </navigation-case>
-    </navigation-rule>
    
 </faces-config>

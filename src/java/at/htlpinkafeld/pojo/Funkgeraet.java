@@ -12,23 +12,31 @@ import java.util.Objects;
  * @author Bernhard
  */
 public class Funkgeraet implements Identifiable{
-    private int fid;
+    private int fuid;
     private String bez;
     private int nr;
+    private Fahrzeuge fahrzeuge;
+    private Kontakt kontakt;
+    private int fid;
+    private int kid;
     
     public Funkgeraet(){
         
     }
 
-    public Funkgeraet(String bez, int nr) {
+    public Funkgeraet(String bez, int nr, int fid, int kid) {
         this.bez = bez;
         this.nr = nr;
+        this.fid = fid;
+        this.kid = kid;
     }
     
-    public Funkgeraet(int fid, String bez, int nr) {
-        this.fid = fid;
+    public Funkgeraet(int fuid, String bez, int nr, int fid, int kid) {
+        this.fuid = fid;
         this.bez = bez;
         this.nr = nr;
+        this.fid = fid;
+        this.kid = kid;
     }
 
     @Override
@@ -57,6 +65,38 @@ public class Funkgeraet implements Identifiable{
         this.nr = nr;
     }
 
+    public Fahrzeuge getFahrzeuge() {
+        return fahrzeuge;
+    }
+
+    public void setFahrzeuge(Fahrzeuge fahrzeuge) {
+        this.fahrzeuge = fahrzeuge;
+    }
+
+    public Kontakt getKontakt() {
+        return kontakt;
+    }
+
+    public void setKontakt(Kontakt kontakt) {
+        this.kontakt = kontakt;
+    }
+
+    public int getFid() {
+        return fid;
+    }
+
+    public void setFid(int fid) {
+        this.fid = fid;
+    }
+
+    public int getKid() {
+        return kid;
+    }
+
+    public void setKid(int kid) {
+        this.kid = kid;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

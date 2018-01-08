@@ -24,25 +24,27 @@ public class FunkgeraetJdbcDao extends BaseJdbcDao<Funkgeraet> implements Dao<Fu
 
     @Override
     protected Funkgeraet getPojoFromResultSet(ResultSet result) throws SQLException {
-        Funkgeraet f = new Funkgeraet(result.getString("bez"), result.getInt("nr"));
+        Funkgeraet f = new Funkgeraet(result.getString("bez"), result.getInt("nr"), result.getInt("fid"), result.getInt("kid"));
         f.setId(result.getInt(this.getPkName()));
         return f;
     }
 
     @Override
     protected PreparedStatement getUpdateStatement(Connection c, Funkgeraet t) throws SQLException {
-        String s = "UPDATE " + getTablename() + " SET bez=?, nr=? WHERE " + getPkName() + "=?";
+        String s = "UPDATE " + getTablename() + " SET bez=?, nr=?, fid=?, kid=? WHERE " + getPkName() + "=?";
         PreparedStatement stmt = c.prepareStatement(s);
         stmt.setString(1, t.getBez());
         stmt.setInt(2, t.getNr());
-        stmt.setInt(3, t.getId());
+        stmt.setInt(3, t.getFid());
+        stmt.setInt(4, t.getKid());
+        stmt.setInt(5, t.getId());
         return stmt;
 
     }
 
     @Override
     protected PreparedStatement getInsertStatement(Connection c, Funkgeraet t) throws SQLException {
-        String s = "INSERT INTO " + getTablename() + " (bez, nr) VALUES (?,?)";
+        String s = "INSERT INTO " + getTablename() + " (bez, nr, fid, kid) VALUES (?,?,?,?)";
         PreparedStatement stmt = c.prepareStatement(s, Statement.RETURN_GENERATED_KEYS);
         stmt.setString(1, t.getBez());
         stmt.setInt(2, t.getNr());

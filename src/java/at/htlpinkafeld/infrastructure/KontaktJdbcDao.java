@@ -24,14 +24,14 @@ public class KontaktJdbcDao extends BaseJdbcDao<Kontakt> implements Dao<Kontakt>
 
     @Override
     protected Kontakt getPojoFromResultSet(ResultSet result) throws SQLException {
-        Kontakt k = new Kontakt(result.getString("kname"), result.getString("bez"), result.getLong("funknr"));
+        Kontakt k = new Kontakt(result.getString("kname"), result.getString("bez"), result.getLong("funknr"), result.getInt("eid"));
         k.setId(result.getInt(this.getPkName()));
         return k;
     }
 
     @Override
     protected PreparedStatement getUpdateStatement(Connection c, Kontakt t) throws SQLException {
-        String s = "UPDATE " + getTablename() + " SET kname=?, bez=?, funknr=? WHERE " + getPkName() + "=?";
+        String s = "UPDATE " + getTablename() + " SET kname=?, bez=?, funknr=?, eid=? WHERE " + getPkName() + "=?";
         PreparedStatement stmt = c.prepareStatement(s);
         stmt.setString(1, t.getKname());
         stmt.setString(2, t.getBez());
@@ -43,7 +43,7 @@ public class KontaktJdbcDao extends BaseJdbcDao<Kontakt> implements Dao<Kontakt>
 
     @Override
     protected PreparedStatement getInsertStatement(Connection c, Kontakt t) throws SQLException {
-        String s = "INSERT INTO " + getTablename() + " (kname, bez, funknr) VALUES (?,?,?)";
+        String s = "INSERT INTO " + getTablename() + " (kname, bez, funknr, eid) VALUES (?,?,?,?)";
         PreparedStatement stmt = c.prepareStatement(s, Statement.RETURN_GENERATED_KEYS);
         stmt.setString(1, t.getKname());
         stmt.setString(2, t.getBez());

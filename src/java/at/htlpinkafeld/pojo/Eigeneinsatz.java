@@ -16,21 +16,25 @@ public class Eigeneinsatz implements Identifiable{
     private String absender;
     private String empfaenger;
     private String zusatztext;
+    private int eid;
+    private Einsatz einsatz;
 
     public Eigeneinsatz() {
     }
 
-    public Eigeneinsatz(int eeid, String absender, String empfaenger, String zusatztext) {
+    public Eigeneinsatz(int eeid, String absender, String empfaenger, String zusatztext, int eid) {
         this.eeid = eeid;
         this.absender = absender;
         this.empfaenger = empfaenger;
         this.zusatztext = zusatztext;
+        this.eid = eid;
     }
     
-    public Eigeneinsatz(String absender, String empfaenger, String zusatztext) {
+    public Eigeneinsatz(String absender, String empfaenger, String zusatztext, int eid) {
         this.absender = absender;
         this.empfaenger = empfaenger;
         this.zusatztext = zusatztext;
+        this.eid = eid;
     }
 
     @Override
@@ -65,6 +69,22 @@ public class Eigeneinsatz implements Identifiable{
 
     public void setZusatztext(String zusatztext) {
         this.zusatztext = zusatztext;
+    }
+
+    public int getEid() {
+        return eid;
+    }
+
+    public void setEid(int eid) {
+        this.eid = eid;
+    }
+
+    public Einsatz getEinsatz() {
+        return einsatz;
+    }
+
+    public void setEinsatz(Einsatz einsatz) {
+        this.einsatz = einsatz;
     }
 
     @Override

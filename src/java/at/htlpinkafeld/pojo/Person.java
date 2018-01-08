@@ -22,12 +22,14 @@ public class Person implements Identifiable{
     private String grad;
     private String email;
     private int telnr;
+    private Kontakt kontakt;
+    private int kid;
     
     public Person(){
         
     }
 
-    public Person(String vorname, String nachname, Date gebDat, String str, String hausnr, String grad, String email, int telnr) {
+    public Person(String vorname, String nachname, Date gebDat, String str, String hausnr, String grad, String email, int telnr, int kid) {
         this.vorname = vorname;
         this.nachname = nachname;
         this.gebDat = gebDat;
@@ -36,9 +38,10 @@ public class Person implements Identifiable{
         this.grad = grad;
         this.email = email;
         this.telnr = telnr;
+        this.kid = kid;
     }
     
-    public Person(int pid, String vorname, String nachname, Date gebDat, String str, String hausnr, String grad, String email, int telnr) {
+    public Person(int pid, String vorname, String nachname, Date gebDat, String str, String hausnr, String grad, String email, int telnr, int kid) {
         this.pid = pid;
         this.vorname = vorname;
         this.nachname = nachname;
@@ -48,6 +51,7 @@ public class Person implements Identifiable{
         this.grad = grad;
         this.email = email;
         this.telnr = telnr;
+        this.kid = kid;
     }
 
     @Override
@@ -122,6 +126,22 @@ public class Person implements Identifiable{
 
     public void setTelnr(int telnr) {
         this.telnr = telnr;
+    }
+
+    public Kontakt getKontakt() {
+        return kontakt;
+    }
+
+    public void setKontakt(Kontakt kontakt) {
+        this.kontakt = kontakt;
+    }
+
+    public int getKid() {
+        return kid;
+    }
+
+    public void setKid(int kid) {
+        this.kid = kid;
     }
 
     @Override
