@@ -8,7 +8,9 @@
                 <p:layout fullPage="true">
                 <h:form>
                     <p:tabView id="tabView">
-                        <p:tab title="Einsätze">  
+                        <p:tab title="Einsätze"> 
+                          <p:panelGrid columns="2">
+                              
                             <p:dataTable var="einsatz" value="#{einsatzListBean.oelist}" resizableColumns="true" draggableRows="true" 
                                          tableStyle="table-layout: auto;">
                                 <f:facet name="header">
@@ -69,10 +71,21 @@
                                 
                                 <p:column width="250">
                                     <p:commandButton value="zu 'Einsätze in Arbeit' verschieben" action="#{einsatzListBean.changeToIA(einsatz)}" onclick="submit()" style="color:red"/>
-                                </p:column>
+                                </p:column>                                
                             </p:dataTable>
-                          
-
+                               
+                            <p:dataTable var="fahrzeug" value="#{einsatzListBean.flist}" draggableRows="true" tableStyle="table-layout: auto;">  
+                                <p:column>
+                                      <f:facet name="header">
+                                        <p:menuButton value="Fahrzeugfilter">
+                                          <p:menuitem value="Pinkafeld" />
+                                          <p:menuitem value="Alle" />
+                                        </p:menuButton>
+                                      </f:facet>
+                                    <p:outputLabel value="#{fahrzeug.name}" />
+                                  </p:column>
+                            </p:dataTable>
+                              
                             <p:dataTable var="einsatz" value="#{einsatzListBean.eialist}" resizableColumns="true" draggableRows="true" tableStyle="table-layout: auto;">
                                 <f:facet name="header">
                                     <p:outputLabel value="Einsätze in Arbeit" style="color:blue"/>
@@ -133,7 +146,8 @@
                                 <p:column width="250">
                                     <p:commandButton value="Einsatz abschließen" action="#{einsatzListBean.changeToAbgeschlossen(einsatz)}" onclick="submit()" style="color:blue"/>
                                 </p:column>
-                            </p:dataTable> 
+                            </p:dataTable>  
+                          </p:panelGrid>
                          </p:tab>
                         
                         

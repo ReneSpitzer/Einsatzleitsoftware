@@ -28,6 +28,7 @@ public class EinsatzListBean {
     private List<Einsatz> aelist = new ArrayList<>(); //Liste der abgeschlossenen Einsätzen
     private List<Einsatz> arelist = new ArrayList<>(); //Liste der archivierten Einsätzen
     private List<Fahrzeuge> flist = new LinkedList<>(); //Liste aller Fahrzeugen
+    private List<Fahrzeuge> fplist = new LinkedList<>(); //Liste aller Fahrzeugen von Pinkafeld
     private List<Ort> ortlist = new ArrayList();
     private List<Fahrzeuge> felist = new LinkedList<>(); //Liste mit den tatsächlich angezeigten Fahrzeugen
     private Fahrzeuge fahrzeug = new Fahrzeuge();
@@ -57,9 +58,10 @@ public class EinsatzListBean {
         fillAelist();
         fillEialist();
         fillARelist();
+        fillFPlist();
         
         flist.add(new Fahrzeuge(1, "", "Pinkafeld", "FZ1", 10, 0, "FZ1", 1));
-        flist.add(new Fahrzeuge(2, "", "Oberwart", "FZ2", 2, 0, "FZ2", 1));
+        flist.add(new Fahrzeuge(2, "", "Alle", "FZ2", 2, 0, "FZ2", 1));
         ortlist.add(new Ort(1,"Pinkafeld"));
         ortlist.add(new Ort(2,"Alle"));
         
@@ -132,21 +134,24 @@ public class EinsatzListBean {
         this.flist = flist;
     }
     
-    public List<Fahrzeuge> getFPlist() {
-        List<Fahrzeuge> fplist = new LinkedList<>();
-        
-        for(Fahrzeuge f: flist)
+    public void fillFPlist()
+    {
+        this.getFPlist().removeAll(fplist);
+        for(Fahrzeuge f: this.getFlist())
         {
             if(f.getOrt().equals("Pinkafeld")){
+                if(!this.getFPlist().contains(f))
                 fplist.add(f);
             }
         }
-        
-        return fplist;
     }
 
-    public void setFPlist(List<Fahrzeuge> flist) {
-        this.flist = flist;
+    public void setFPlist(List<Fahrzeuge> fplist) {
+        this.fplist = fplist;
+    }
+    
+    public List<Fahrzeuge> getFPlist() {
+        return this.fplist;
     }
 
     public List<Ort> getOrtlist() {
