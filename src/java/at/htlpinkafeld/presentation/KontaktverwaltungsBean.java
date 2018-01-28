@@ -7,6 +7,9 @@ package at.htlpinkafeld.presentation;
 
 import at.htlpinkafeld.pojo.Kontakt;
 import at.htlpinkafeld.service.EinsatzleitsoftwareService;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -18,12 +21,31 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class KontaktverwaltungsBean {
-    @ManagedProperty(value="#{EinsatzleitsoftwareService}")
-     EinsatzleitsoftwareService einsatzleitsoftwares;
+   // @ManagedProperty(value="#{EinsatzleitsoftwareService}")
+     //EinsatzleitsoftwareService einsatzleitsoftwares;
+    private List<Kontakt> Kontaktliste = new ArrayList();
      private Kontakt kontakt;
      private Kontakt selkon;
      private int id=1;
+     private int eid=1;
+     
 
+    public KontaktverwaltungsBean() {
+        kontakt= new Kontakt();
+        selkon = new Kontakt();
+        
+    }
+      @PostConstruct
+    public void setUp(){
+       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 1","KLF1",010101210));
+       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 2","KLF1",010101210));
+       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 3","KLF1",010101210));
+       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 4","KLF1",010101210));
+               
+       
+    }
+
+     
     public Kontakt getKontakt() {
         return kontakt;
     }
@@ -32,15 +54,30 @@ public class KontaktverwaltungsBean {
         this.kontakt = kontakt;
     }
     public void addKontakt(){
-        kontakt.setId(id);
-        einsatzleitsoftwares.addKontakt(kontakt);
-        id++;
-    }
-    public void deleteKontakt(){
-       this.einsatzleitsoftwares.deleteKontakt(selkon);
-        
+        kontakt.setKid(0);
+        kontakt.setId(0);
+        this.Kontaktliste.add(kontakt);
+        //einsatzleitsoftwares.addKontakt(kontakt);
+        //id++;
+        //eid++;
     }
 
+    public List<Kontakt> getKontaktliste() {
+        return Kontaktliste;
+    }
+
+    public void setKontaktliste(List<Kontakt> Kontaktliste) {
+        this.Kontaktliste = Kontaktliste;
+    }
+
+    
+    
+    public void deleteKontakt(Kontakt kon){
+        this.Kontaktliste.remove(kon);
+     //  this.einsatzleitsoftwares.deleteKontakt(selkon);
+       
+    }
+/*
     public EinsatzleitsoftwareService getEinsatzleitsoftwares() {
         return einsatzleitsoftwares;
     }
@@ -48,7 +85,7 @@ public class KontaktverwaltungsBean {
     public void setEinsatzleitsoftwares(EinsatzleitsoftwareService einsatzleitsoftwares) {
         this.einsatzleitsoftwares = einsatzleitsoftwares;
     }
-
+*/
     public Kontakt getSelkon() {
         return selkon;
     }
@@ -56,6 +93,5 @@ public class KontaktverwaltungsBean {
     public void setSelkon(Kontakt selkon) {
         this.selkon = selkon;
     }
-    
     
 }

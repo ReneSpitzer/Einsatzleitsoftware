@@ -22,12 +22,13 @@ public class Eigeneinsatz implements Identifiable{
     public Eigeneinsatz() {
     }
 
-    public Eigeneinsatz(int eeid, String absender, String empfaenger, String zusatztext, int eid) {
+    public Eigeneinsatz(int eeid, String absender, String empfaenger, String zusatztext,String gradn, String grads, String eort, String estraße, String hausnr, String aufgabe, String eleiter, int enr, String emittel, String uhrzeit, String datum, String e_status, int bid ,int eid) {
         this.eeid = eeid;
         this.absender = absender;
         this.empfaenger = empfaenger;
         this.zusatztext = zusatztext;
         this.eid = eid;
+        einsatz = new Einsatz( eid,  eort,  estraße,  hausnr,  aufgabe,  eleiter, enr,  emittel,  uhrzeit,  datum,  e_status, bid);
     }
     
     public Eigeneinsatz(String absender, String empfaenger, String zusatztext, int eid) {

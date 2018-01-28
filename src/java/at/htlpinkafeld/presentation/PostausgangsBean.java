@@ -5,6 +5,12 @@
  */
 package at.htlpinkafeld.presentation;
 
+import at.htlpinkafeld.pojo.Eigeneinsatz;
+import at.htlpinkafeld.pojo.Einsatz;
+import at.htlpinkafeld.pojo.Kontakt;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -16,6 +22,44 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class PostausgangsBean {
-   
+    private List<Kontakt> Kontaktliste = new ArrayList();
+    private Eigeneinsatz einsatz;
     
+    public PostausgangsBean() {
+    }
+    
+    
+    
+       @PostConstruct
+    public void setUp(){
+       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 1","KLF1",010101210));
+       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 1","KLF1",010101210));
+       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 1","KLF1",010101210));
+       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 1","KLF1",010101210));
+       einsatz = new Eigeneinsatz();
+       
+    }
+
+    public List<Kontakt> getKontaktliste() {
+        return Kontaktliste;
+    }
+
+    public void setKontaktliste(List<Kontakt> Kontaktliste) {
+        this.Kontaktliste = Kontaktliste;
+    }
+
+    public Eigeneinsatz getEinsatz() {
+        return einsatz;
+    }
+
+    public void setEinsatz(Eigeneinsatz einsatz) {
+        this.einsatz = einsatz;
+    }
+    
+    private String EinsatzSenden(){
+        
+        
+        
+        return "/kommPostausgang.xhtml";
+    }
 }

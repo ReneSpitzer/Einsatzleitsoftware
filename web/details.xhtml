@@ -1,0 +1,46 @@
+<ui:composition template="./WEB-INF/templatekomm.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<ui:define name="top">
+                <h:outputText value="Details" style="color:black; font-size:xx-large; position:relative;left:680px"/>
+            </ui:define>
+    
+    
+    <ui:define name="top">
+                <h:outputText value="Details" style="color:black; font-size:xx-large; position:relative;left:680px"/>
+            </ui:define>
+            <ui:define name="content">
+                <h:form>
+                    <p:panelGrid columns="2">
+                        <h:outputLabel for="SbNr" value="Absender"/> 
+                        <h:outputText id="SbNr" value="#{kommunikationsBean.fe.absender}"/>  
+                        <h:outputLabel for="SbTl" value="Empfänger"/> 
+                        <h:outputText id="SbTl" value="#{kommunikationsBean.fe.empfaenger}"/>   
+                        <h:outputLabel for="SbTk" value="Aufgabe"/>
+                        <h:outputText id="SbTk" value="#{kommunikationsBean.fe.einsatz.aufgabe}"/>
+                        <h:outputLabel  value="Datum"/>
+                        <h:outputText  value="#{kommunikationsBean.fe.einsatz.datum}"/>
+                        <h:outputLabel  value="Uhrzeit"/>
+                        <h:outputText value="#{kommunikationsBean.fe.einsatz.uhrzeit}"/>
+                        <h:outputLabel  value="Ort"/>
+                        <h:outputText  value="#{kommunikationsBean.fe.einsatz.eort}"/>
+                        <h:outputLabel  value="Straße"/>
+                        <h:outputText value="#{kommunikationsBean.fe.einsatz.estraße}"/>
+                        <h:outputLabel  value="Hausnummer"/>
+                        <h:outputText value="#{kommunikationsBean.fe.einsatz.hausnr}"/>
+                        <h:outputLabel  value="Text"/>
+                        <h:outputText value="#{kommunikationsBean.fe.text}"/>
+
+                                         
+                    </p:panelGrid>
+                    <p:commandButton value="Zurück" action="/kommPosteingang.xhtml"/>
+                  
+                   
+                </h:form>
+                    
+                     
+                
+            </ui:define>
+        </ui:composition>

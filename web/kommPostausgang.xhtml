@@ -1,29 +1,56 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Postausgang</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-   <ui:composition template="./WEB-INF/templatekomm.xhtml" xmlns="http://www.w3.org/1999/xhtml"
-                            xmlns:h="http://xmlns.jcp.org/jsf/html"
-                            xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-                <ui:define name="content">
-                     <h:form>
-                         <h:panelGrid columns="2">
+
+      <ui:composition template="./WEB-INF/templatekomm.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+            
+          <ui:define name="top">
+                <h:outputText value="Postausgang" style="color:black; font-size:xx-large; position:relative;left:680px"/>
+            </ui:define>
+          <ui:define name="content">
+                
+                     <p:growl id="growl" life="5000" autoUpdate="true" showDetail="true" escape="false"/>
+       
+           <h:form>  
+               <p:dialog  header="Einsatz versenden"  visible="true" closable="false" showEffect="clip" draggable="false" resizable="false" style="box-shadow: 7px 10px 5px #303050;" width="800px" height="500px"> 
+                 <p:panelGrid columns="2" style="margin: 0 auto;">
+                         <h:outputLabel for="Kontaktname" value="Empfänger"/>
+                         <h:selectOneMenu  id="Kon" value="#{postausgangsBean.einsatz.empfaenger}" >     
+                             <f:selectItems value="#{postausgangsBean.kontaktliste}" var="kontakt" 
+                                            itemValue="#{kontakt}" itemLabel="#{kontakt.kname}" />                           
+                        </h:selectOneMenu>
+                        <h:outputLabel for="Bez" value="Kontaktbezeichnung"/>
+                        <h:inputText id="Bez" value="#{kontaktverwaltungsBean.kontakt.bez}"/>   
+                        <h:outputLabel for="Funk" value="Funknummer"/>
+                        <h:inputText id="Funk" value="#{kontaktverwaltungsBean.kontakt.funknr}"/>
+                         <h:outputLabel for="SbNr" value="Absender"/> 
+                        <h:inputText id="SbNr" value="#{kommunikationsBean.fe.absender}"/>  
+                        <h:outputLabel for="SbTl" value="Empfänger"/> 
+                        <h:inputText  id="SbTl" value="#{kommunikationsBean.fe.empfaenger}"/>   
+                        <h:outputLabel for="SbTk" value="Aufgabe"/>
+                        <h:inputText  id="SbTk" value="#{kommunikationsBean.fe.einsatz.aufgabe}"/>
+                        <h:outputLabel  value="Datum"/>
+                        <h:inputText   value="#{kommunikationsBean.fe.einsatz.datum}"/>
+                        <h:outputLabel  value="Uhrzeit"/>
+                        <h:inputText  value="#{kommunikationsBean.fe.einsatz.uhrzeit}"/>
+                        <h:outputLabel  value="Ort"/>
+                        <h:inputText   value="#{kommunikationsBean.fe.einsatz.eort}"/>
+                        <h:outputLabel  value="Straße"/>
+                        <h:inputText  value="#{kommunikationsBean.fe.einsatz.estraße}"/>
+                        <h:outputLabel  value="Hausnummer"/>
+                        <h:inputText  value="#{kommunikationsBean.fe.einsatz.hausnr}"/>
+                        <h:outputLabel  value="Text"/>
+                        <h:inputText  value="#{kommunikationsBean.fe.text}"/>
+                           <h:commandButton action="#{kommunikationsBean.EinsatzSenden()}" value="Absenden" />
+                 </p:panelGrid>
+          
+                
+                </p:dialog>
+               </h:form>
                      
-                        <h:outputLabel for="Kontak" value="Kontakt"/>
-                        <h:inputText id="Kontakt" value="#{PostausgangsBean}"/>  
-                       
-                   
-                        </h:panelGrid>
-                        
-                </h:form>
-                   
 
 
-                </ui:define>   
-            </ui:composition>
-    </body>
-</html>
+            </ui:define>   
+        </ui:composition>
+

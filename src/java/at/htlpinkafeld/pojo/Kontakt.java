@@ -29,6 +29,13 @@ public class Kontakt implements Identifiable{
         this.funknr = funknr;
         this.eid = eid;
     }
+    public Kontakt (String kname,String bez, long funknr){
+         this.kid = 0;
+        this.kname = kname;
+        this.bez = bez;
+        this.funknr = funknr;
+        this.eid = 0;
+    }
     
     public Kontakt(int kid, String kname, String bez, long funknr, int eid) {
         this.kid = kid;

@@ -10,48 +10,43 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-    <h:body>
+    <h:body style="background-color:black;">
         <p:layout fullPage="true"> 
 
-            <p:layoutUnit position="north">
+            <p:layoutUnit position="north" style="background-color:red;" maxSize="400">
+                <p:layout fullPage="true"  style="background-color: red;">
                 <ui:insert name="top">
                     <h:panelGrid columns="1">
-                         <h:outputText value="Grundmodul"/>
+                         <h:outputText value="Grundmodul"  style="color:black; font-size:xx-large; position:relative;left:680px"/>
                     </h:panelGrid>
-                    <h:panelGrid columns="1">
-                         <h:outputText value="Grundmodul"/>
-                    </h:panelGrid>
+     
                     
                    
                 </ui:insert>
+                </p:layout>
+                
             </p:layoutUnit>
 
-            <p:layoutUnit position="west">
-                <ui:insert name="menu">
-                    <h:form>
-                  
-                    </h:form>
-                </ui:insert>
-            </p:layoutUnit>
+        
 
-            <p:layoutUnit position="center" >
+          <p:layoutUnit position="center" style="background-color:red;">
+                <p:layout fullPage="true"  style="background-color: red;">
                 <ui:insert name="content">
 
 
 
                 </ui:insert>
+                </p:layout>
             </p:layoutUnit>
-            <ui:insert name="bottom">
-                <h:form>
-                    <h:commandLink value="back" action="/login.xhtml"/>
+      
 
-                </h:form>
-            </ui:insert>
-
-            <p:layoutUnit position="south">
-                <ui:insert name="bottom">           
-                    <h:outputText value="created by RFP"/>
+            <p:layoutUnit position="south" style="background-color:red;">
+                <p:layout fullPage="true"  style="background-color: red;">
+                <ui:insert name="bottom">   
+              
+                    
                 </ui:insert>
+                </p:layout>
             </p:layoutUnit>
 
 

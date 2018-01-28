@@ -1,25 +1,62 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>Posteingang</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-      <ui:composition template="./WEB-INF/templatekomm.xhtml" xmlns="http://www.w3.org/1999/xhtml"
-                            xmlns:h="http://xmlns.jcp.org/jsf/html"
-                            xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-                <ui:define name="content">
-                    <h1>Liste mit Mails + Kurzinfo Mail </h1>
-                   
+
+<ui:composition template="./WEB-INF/templatekomm.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    
+    <ui:define name="top">
+                <h:outputText value="Posteingang" style="color:black; font-size:xx-large; position:relative;left:680px"/>
+            </ui:define>
+    <ui:define name="content">
+        <p:growl id="growl" life="5000" autoUpdate="true" showDetail="true" escape="false"/>
+
+        <h:form> 
+            <p:dataTable id="tab" var="einsatz" value="#{kommunikationsBean.posteingangEinsaetze}">
+                <f:facet name="header">
+                    <p:outputLabel value="Einsätze" />
+                </f:facet>
+                <p:column >
+                    <f:facet name="header">
+                        <p:outputLabel value="Einsatznummer" />
+                    </f:facet>
+                    <p:outputLabel value="#{einsatz.einsatz.enr}" />
+                </p:column>
+
+                <p:column >
+                    <f:facet name="header">
+                        <p:outputLabel value="Absender"/>
+                    </f:facet>
+                    <p:outputLabel value="#{einsatz.absender}" />
+                </p:column>                  
+
+                <p:column >
+                    <f:facet name="header">
+                        <p:outputLabel value="Status" />
+                    </f:facet>
+                    <p:outputLabel value="#{einsatz.status}" />
+                </p:column>
+                <p:column>
+                      <f:facet name="header">
+                    <p:outputLabel value="Detailansicht" />
+                </f:facet>
+                    <p:commandButton value="Details" action="#{kommunikationsBean.showDetail(einsatz)}" />
+                </p:column>
+                <p:column>
+                      <f:facet name="header">
+                    <p:outputLabel value="Archivieren" />
+                </f:facet>
+                    <p:commandButton value="Archivieren" action="#{kommunikationsBean.EinsatzArchivieren(einsatz)}" immediate="true" ajax="true" update="tab"/>
+                </p:column>
+                
+                
 
 
-                </ui:define>   
-            </ui:composition>
-    </body>
-</html>
+            </p:dataTable>
+        </h:form> 
+
+
+
+    </ui:define>   
+</ui:composition>
+

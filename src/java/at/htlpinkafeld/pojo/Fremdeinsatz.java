@@ -17,6 +17,44 @@ public class Fremdeinsatz implements Identifiable{
     private String empfaenger;
     private int eid;
     private Einsatz einsatz;
+    private String text;
+    private boolean Status;
+
+    public Fremdeinsatz(int frid, String absender, String empfaenger, int eid, Einsatz einsatz, String text) {
+        this.frid = frid;
+        this.absender = absender;
+        this.empfaenger = empfaenger;
+        this.eid = eid;
+        this.einsatz = einsatz;
+        this.text = text;
+        this.Status=false;
+    }
+
+    public boolean isStatus() {
+        return Status;
+    }
+
+    public void setStatus(boolean Status) {
+        this.Status = Status;
+    }
+
+    
+    
+    public int getFrid() {
+        return frid;
+    }
+
+    public void setFrid(int frid) {
+        this.frid = frid;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
     
     public Fremdeinsatz(){}
 

@@ -24,7 +24,7 @@ public class LoginBean {
     public String username;
     public String password;
     public boolean visibleB=true;
-    public boolean visibleL =false;
+    public boolean visibleLlogin =false;
 
     List<Benutzer> BList = new ArrayList<>();
 
@@ -56,7 +56,7 @@ public class LoginBean {
 */
     public Object doGastLogin(){
         this.visibleB=false;
-        this.visibleL=true;
+        this.visibleLlogin=true;
         return "/abgeschlosseneeinsätze.xhtml";
     }
     public LoginBean(String username, String password) {
@@ -82,7 +82,7 @@ public class LoginBean {
 
     public Object doLogin() {
         this.visibleB=true;
-        this.visibleL=false;
+        this.visibleLlogin=false;
         for (Benutzer b : BList) {
             if (b.getUsername().equals(username) && b.getPassword().equals(this.password)) {
                 return "/uebersichtauswahl.xhtml";
@@ -93,11 +93,12 @@ public class LoginBean {
     }
 
     public void setVisibleL(boolean visibleL) {
-        this.visibleL = visibleL;
+        this.visibleLlogin = visibleL;
     }
 
     public boolean isVisibleL() {
-        return visibleL;
+        return visibleLlogin;
     }
+    
     
 }
