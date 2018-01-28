@@ -10,30 +10,30 @@
             <p:dialog  header="Einsatz bearbeiten"   visible="true" closable="false" showEffect="clip" draggable="false" resizable="false" style="box-shadow: 7px 10px 5px #303050;"> 
                     <p:panelGrid columns="2" style="margin: 0 auto;">
                         <h:outputText value="Einsatznummer:" />            
-                        <h:inputText value="#{einsatzBean.einsatz.enr}"/>
+                        <h:outputText value="#{archivierteEinsatzBean.einsatz.enr}"/>
                         <h:outputText value="Einsatzort:" />            
-                        <h:inputText value="#{einsatzBean.einsatz.eort}" /> 
+                        <h:outputText value="#{archivierteEinsatzBean.einsatz.eort}" /> 
                         <h:outputText value="Einsatstraße:" />            
-                        <h:inputText value="#{einsatzBean.einsatz.estraße}" /> 
+                        <h:outputText value="#{archivierteEinsatzBean.einsatz.estraße}" /> 
                         <h:outputText value="Einsatzhausnummer:" />            
-                        <h:inputText value="#{einsatzBean.einsatz.hausnr}" />
+                        <h:outputText value="#{archivierteEinsatzBean.einsatz.hausnr}" />
                         <h:outputText value="Einsatzaufgabe:" />            
-                        <h:inputText value="#{einsatzBean.einsatz.aufgabe}" />  
+                        <h:outputText value="#{archivierteEinsatzBean.einsatz.aufgabe}" />  
                         <h:outputText value="Einsatzleiter:" />            
-                        <h:inputText value="#{einsatzBean.einsatz.eleiter}" /> 
+                        <h:outputText value="#{archivierteEinsatzBean.einsatz.eleiter}" /> 
                         <h:outputText value="Einsatzmittel:" />            
-                        <h:inputText value="#{einsatzBean.einsatz.emittel}" />
+                        <h:outputText value="#{archivierteEinsatzBean.einsatz.emittel}" />
                         <h:outputText value="Einsatzdatum:" />            
-                        <h:inputText value="#{einsatzBean.einsatz.datum}" />  
+                        <h:outputText value="#{archivierteEinsatzBean.einsatz.datum}" />  
                         <h:outputText value="Einsatzuhrzeit:" />            
-                        <h:inputText value="#{einsatzBean.einsatz.uhrzeit}" />  
+                        <h:outputText value="#{archivierteEinsatzBean.einsatz.uhrzeit}" />  
                         <h:outputText value="Status" />            
-                        <h:selectOneMenu value="#{einsatzBean.einsatz.e_status}" >
-                            <f:selectItems value="#{einsatzListBean.statuslist}" var="status" 
+                        <h:selectOneMenu value="#{archivierteEinsatzBean.einsatz.e_status}" >
+                            <f:selectItems value="#{einsatzListBean.stautslistarchiviert}" var="status" 
                                    itemValue="#{status}" itemLabel="#{status}" />                            
                         </h:selectOneMenu>                         
                     </p:panelGrid>
-                <p:commandButton  value="Sichern" action="#{einsatzListBean.save(einsatzBean.einsatz)}" style="float:left;" />
+                <p:commandButton  value="Sichern" action="#{einsatzListBean.save(archivierteEinsatzBean.einsatz)}" style="float:left;" />
                 <p:commandButton value="Cancel" action="grundmodul.xhtml" immediate="true" />
             </p:dialog>
         </h:form> 
