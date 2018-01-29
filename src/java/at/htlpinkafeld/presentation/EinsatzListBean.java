@@ -14,6 +14,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
+import javax.faces.model.SelectItem;
 
 /**
  *
@@ -28,11 +29,12 @@ public class EinsatzListBean {
     private List<Einsatz> aelist = new ArrayList<>(); //Liste der abgeschlossenen Einsätzen
     private List<Einsatz> arelist = new ArrayList<>(); //Liste der archivierten Einsätzen
     private List<Fahrzeuge> flist = new LinkedList<>(); //Liste aller Fahrzeugen
-    private List<Ort> ortlist = new ArrayList();
-    private List<Fahrzeuge> felist = new LinkedList<>(); //Liste mit den tatsächlich angezeigten Fahrzeugen
+    private List<Fahrzeuge> fplist = new LinkedList<>(); //Liste aller Fahrzeugen von Pinkafeld
+    private List<Fahrzeuge> felist = new LinkedList<>(); //Liste aller Fahrzeuge die tatsächlich angezeigt werden
     private Fahrzeuge fahrzeug = new Fahrzeuge();
-    private String selectedStatus;
     private List<String> statuslist = new ArrayList<>();
+    private List<String> stautslistarchiviert = new ArrayList<>();
+    private List<String> selectedortlist = new ArrayList<>();
     
     public EinsatzListBean() {
         einsatzlist.add(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
@@ -53,21 +55,68 @@ public class EinsatzListBean {
         einsatzlist.add(new Einsatz(6,"Oberloisdorf", "McStrasse", "15", "Brand löschen", 
                 "Spitzer", 6, "LFZ06", "15:03", "25.10.2017", "abgeschlossen", 1));
         
-        fillOelist();
-        fillAelist();
-        fillEialist();
-        fillARelist();
-        
-        flist.add(new Fahrzeuge(1, "", "Pinkafeld", "FZ1", 10, 0, "FZ1", 1));
-        flist.add(new Fahrzeuge(2, "", "Oberwart", "FZ2", 2, 0, "FZ2", 1));
-        ortlist.add(new Ort(1,"Pinkafeld"));
-        ortlist.add(new Ort(2,"Alle"));
+        flist.add(new Fahrzeuge(1, "", "Pinkafeld", "FZ1", 10, 0, "LFZPkfd", 1));
+        flist.add(new Fahrzeuge(2, "", "Test", "FZ2", 2, 0, "LFZHb", 1));
         
         statuslist.add("offen");
         statuslist.add("in Arbeit");
         statuslist.add("abgeschlossen");
+        
+        stautslistarchiviert.add("abgeschlossen");
+        stautslistarchiviert.add("archiviert");
+        
+        selectedortlist.add(new String("Pinkafeld"));
+        selectedortlist.add(new String("Alle"));
+        
+        fillOelist();
+        fillAelist();
+        fillEialist();
+        fillARelist();
+        fillFPlist();
+        
+        this.setFelist(this.fplist);
     }
 
+    public List<String> getStautslistarchiviert() {
+        return stautslistarchiviert;
+    }
+
+    public void setStautslistarchiviert(List<String> stautslistarchiviert) {
+        this.stautslistarchiviert = stautslistarchiviert;
+    }
+
+    public List<Fahrzeuge> getFelist() {
+        return felist;
+    }
+
+    public void setFelist(List<Fahrzeuge> felist) {
+        this.felist = felist;
+    }
+    
+    public List<Einsatz> getArelist() {
+        return arelist;
+    }
+
+    public void setArelist(List<Einsatz> arelist) {
+        this.arelist = arelist;
+    }
+
+    public List<Fahrzeuge> getFplist() {
+        return fplist;
+    }
+
+    public void setFplist(List<Fahrzeuge> fplist) {
+        this.fplist = fplist;
+    }
+
+    public List<String> getSelectedortlist() {
+        return selectedortlist;
+    }
+
+    public void setSelectedortlist(List<String> selectedortlist) {
+        this.selectedortlist = selectedortlist;
+    }
+    
     public List<Einsatz> getEinsatzlist() {
         return einsatzlist;
     }
@@ -82,14 +131,6 @@ public class EinsatzListBean {
 
     public void setARelist(List<Einsatz> arelist) {
         this.arelist = arelist;
-    }
-
-    public String getSelectedStatus() {
-        return selectedStatus;
-    }
-
-    public void setSelectedStatus(String selectedStatus) {
-        this.selectedStatus = selectedStatus;
     }
 
     public List<String> getStatuslist() {
@@ -131,40 +172,15 @@ public class EinsatzListBean {
     public void setFlist(List<Fahrzeuge> flist) {
         this.flist = flist;
     }
+
+    public void setFPlist(List<Fahrzeuge> fplist) {
+        this.fplist = fplist;
+    }
     
     public List<Fahrzeuge> getFPlist() {
-        List<Fahrzeuge> fplist = new LinkedList<>();
-        
-        for(Fahrzeuge f: flist)
-        {
-            if(f.getOrt().equals("Pinkafeld")){
-                fplist.add(f);
-            }
-        }
-        
-        return fplist;
+        return this.fplist;
     }
-
-    public void setFPlist(List<Fahrzeuge> flist) {
-        this.flist = flist;
-    }
-
-    public List<Ort> getOrtlist() {
-        return ortlist;
-    }
-
-    public void setOrtlist(List<Ort> ortlist) {
-        this.ortlist = ortlist;
-    }
-
-    public List<Fahrzeuge> getFelist() {
-        return felist;
-    }
-
-    public void setFelist(List<Fahrzeuge> felist) {
-        this.felist = felist;
-    }
-
+    
     public Fahrzeuge getFahrzeug() {
         return fahrzeug;
     }
@@ -173,18 +189,18 @@ public class EinsatzListBean {
         this.fahrzeug = fahrzeug;
     }
     
-    public Object changedSmth(ValueChangeEvent e){
-       String s = (String) e.getNewValue();
-        
-        if(s.equals("Pinkafeld")){
-            this.setFelist(this.getFPlist());
-        }else{
-            this.setFelist(this.getFlist());
-        } 
-        
-        return null;
-    }
     
+    public void fillFPlist()
+    {
+        this.getFPlist().removeAll(fplist);
+        for(Fahrzeuge f: this.getFlist())
+        {
+            if(f.getOrt().equals("Pinkafeld")){
+                fplist.add(f);
+            }
+        }
+    }
+
     private void fillOelist(){
         this.getOelist().removeAll(oelist);
         for(Einsatz e: this.getEinsatzlist())
@@ -275,6 +291,19 @@ public class EinsatzListBean {
     }
     
     public String save(Einsatz e){
+        if( !einsatzlist.contains(e) ){
+            einsatzlist.add(e);
+        
+        fillEialist();
+        fillOelist();
+        fillAelist();
+        fillARelist();
+        }
+        
+        return "grundmodul.xhtml";
+    }
+    /*
+     public String bearbeiten(Einsatz e){
         if( !einsatzlist.contains(e) )
             einsatzlist.add(e);
         
@@ -283,6 +312,21 @@ public class EinsatzListBean {
         fillAelist();
         fillARelist();
         
-        return "grundmodul.xhtml";
+        return "/ueberischtauswahl.xhtml";
+    }
+     */
+    public void changedSmth(ValueChangeEvent e)
+    {
+        String s = (String) e.getNewValue();
+        
+        if(s.equals("Pinkafeld"))
+        {
+            this.setFelist(this.fplist);
+        }
+        
+        if(s.equals("Alle"))
+        {
+            this.setFelist(this.flist);
+        }
     }
 }

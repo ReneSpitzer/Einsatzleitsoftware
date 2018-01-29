@@ -9,19 +9,19 @@ import at.htlpinkafeld.pojo.Einsatz;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-
 /**
  *
  * @author Bernhard
  */
 @ManagedBean
 @SessionScoped
-public class EinsatzBean {
+public class ArchivierteEinsatzBean {
+    
     private String header = "Einsatz";
     private Einsatz einsatz;
     private boolean editID=true;
     
-    public EinsatzBean() {
+    public ArchivierteEinsatzBean() {
     }
 
     public Einsatz getEinsatz() {
@@ -53,7 +53,7 @@ public class EinsatzBean {
         this.einsatz = e;
         editID=false;
    
-        return "/einsatzerstellen.xhtml";
+        return "einsatzbearbeitenArchivierteEinsätze.xhtml";
     }
     
     public String newEinsatz(){
@@ -61,7 +61,7 @@ public class EinsatzBean {
         this.einsatz = new Einsatz();
         editID=true;
         
-        return "einsatzerstellen.xhtml";
+        return "einsatzbearbeitenArchivierteEinsätze.xhtml";
     }
     
 }
