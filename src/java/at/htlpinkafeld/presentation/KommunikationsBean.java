@@ -54,7 +54,10 @@ public class KommunikationsBean {
     }
    @PostConstruct
     public void setUp(){
-
+        /*
+        this.PosteingangEinsaetze=this.einsatzleitsoftwares.getPosteingangEinsaetze();
+        this.ArchiviertePosteingangEinsaetze=this.einsatzleitsoftwares.getArchiviertePosteingangEinsaetze();
+        */
        //this.PosteingangEinsaetze.add(new Fremdeinsatz("Huber","Spitzer"))
     this.PosteingangEinsaetze.add(new Fremdeinsatz(1,"Hubert","FF-Pinkafeld",1,new Einsatz(1, "Pinkafeld", "Meierhofplatz", "1", "Brand löschen",
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen", 1),"Brand in der HTL"));

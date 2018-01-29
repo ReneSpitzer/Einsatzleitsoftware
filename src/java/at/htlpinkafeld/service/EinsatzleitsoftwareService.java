@@ -7,6 +7,7 @@ package at.htlpinkafeld.service;
 
 import at.htlpinkafeld.pojo.Benutzer;
 import at.htlpinkafeld.pojo.Einsatz;
+import at.htlpinkafeld.pojo.Fremdeinsatz;
 import at.htlpinkafeld.pojo.Kontakt;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +26,10 @@ public class EinsatzleitsoftwareService {
     private List<Kontakt> KontaktListe = new ArrayList<>();
     private List<Benutzer> BenutzerListe = new ArrayList<>();
     private List<Einsatz> ArchivierteEinsätze = new ArrayList();
+    private List<Fremdeinsatz> PosteingangEinsaetze = new ArrayList();
+    private List<Fremdeinsatz> ArchiviertePosteingangEinsaetze = new ArrayList();
 
     public EinsatzleitsoftwareService() {
-    }
-
-    @PostConstruct
-    public void set() {
         BenutzerListe.add(new Benutzer(1, "Herbert", false, "1234ABC", 1));
         KontaktListe.add(new Kontakt("H", "Huber", 112, 1));
         KontaktListe.add(new Kontakt("H", "Huber", 112, 2));
@@ -52,7 +51,50 @@ public class EinsatzleitsoftwareService {
 
         ArchivierteEinsätze.add(new Einsatz(6, "Oberloisdorf", "McStrasse", "15", "Brand löschen",
                 "Spitzer", 6, "LFZ06", "15:03", "25.10.2017", "abgeschlossen", 1));
+        PosteingangEinsaetze.add(new Fremdeinsatz(1, "Hubert", "FF-Pinkafeld", 1, new Einsatz(1, "Pinkafeld", "Meierhofplatz", "1", "Brand löschen",
+                "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen", 1), "Brand in der HTL"));
+        PosteingangEinsaetze.add(new Fremdeinsatz(2, "Bernd", "FF-Pinkafeld", 1, new Einsatz(1, "Pinkafeld", "Ulreich", "1", "Überschwemmung",
+                "Fuchs", 1, "LFZ01", "13:05", "25.11.2018", "offen", 1), "Brand in der HTL"));
+        PosteingangEinsaetze.add(new Fremdeinsatz(3, "Fuchs", "FF-Pinkafeld", 1, new Einsatz(1, "Pinkafeld", "Steinermanager", "1", "Keine Ahnung",
+                "Fuchs", 1, "LFZ01", "13:05", "25.11.2019", "offen", 1), "Brand in der HTL"));
+    }
 
+    
+    public List<Fremdeinsatz> getPosteingangEinsaetze() {
+        return PosteingangEinsaetze;
+    }
+
+    public void setPosteingangEinsaetze(List<Fremdeinsatz> PosteingangEinsaetze) {
+        this.PosteingangEinsaetze = PosteingangEinsaetze;
+    }
+
+    public List<Fremdeinsatz> getArchiviertePosteingangEinsaetze() {
+        return ArchiviertePosteingangEinsaetze;
+    }
+
+    /*
+    @PostConstruct
+    public void set() {
+    BenutzerListe.add(new Benutzer(1, "Herbert", false, "1234ABC", 1));
+    KontaktListe.add(new Kontakt("H", "Huber", 112, 1));
+    KontaktListe.add(new Kontakt("H", "Huber", 112, 2));
+    KontaktListe.add(new Kontakt("H", "Huber", 112, 3));
+    ArchivierteEinsätze.add(new Einsatz(1, "Pinkafeld", "Meierhofplatz", "1", "Brand löschen",
+    "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen", 1));
+    ArchivierteEinsätze.add(new Einsatz(2, "Oberwart", "Eo", "7", "Hochwasser",
+    "Prunner", 2, "LFZ02", "14:06", "20.11.2017", "offen", 1));
+    ArchivierteEinsätze.add(new Einsatz(3, "Hartberg", "Roseggergasse", "2", "Katze von Baum retten",
+    "Altmann", 3, "LFZ03", "12:06", "20.1.2018", "in Arbeit", 1));
+    ArchivierteEinsätze.add(new Einsatz(4, "Test", "Testgasse", "7", "Hochwasser",
+    "Maierhofer", 4, "LFZ04", "4:27", "2.11.2017", "in Arbeit", 1));
+    ArchivierteEinsätze.add(new Einsatz(5, "Güssing", "gu", "1a", "Lkw Unfall ",
+    "Fleck", 5, "LFZ05", "13:05", "27.8.2017", "abgeschlossen", 1));
+    ArchivierteEinsätze.add(new Einsatz(6, "Oberloisdorf", "McStrasse", "15", "Brand löschen",
+    "Spitzer", 6, "LFZ06", "15:03", "25.10.2017", "abgeschlossen", 1));
+    }
+     */
+    public void setArchiviertePosteingangEinsaetze(List<Fremdeinsatz> ArchiviertePosteingangEinsaetze) {    
+        this.ArchiviertePosteingangEinsaetze = ArchiviertePosteingangEinsaetze;
     }
 
     public void addKontakt(Kontakt k) {
