@@ -23,7 +23,7 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class KommunikationsBean {
-      @ManagedProperty(value="#{EinsatzleitsoftwareService}")
+      @ManagedProperty(value="#{einsatzleitsoftwareService}")
      EinsatzleitsoftwareService einsatzleitsoftwares;
       
     Fremdeinsatz fe; 
@@ -39,6 +39,10 @@ public class KommunikationsBean {
         
         
     }
+    public String EinsatzErstellen(Fremdeinsatz f){
+         fe.setStatus(true);
+        return"";
+    }
     public String EinsatzSenden(){
         
         return "/kommPostausgang.xhtml";
@@ -52,31 +56,18 @@ public class KommunikationsBean {
     public void addKontatk(){
         
     }
+    
    @PostConstruct
     public void setUp(){
-        /*
+        
         this.PosteingangEinsaetze=this.einsatzleitsoftwares.getPosteingangEinsaetze();
         this.ArchiviertePosteingangEinsaetze=this.einsatzleitsoftwares.getArchiviertePosteingangEinsaetze();
-        */
-       //this.PosteingangEinsaetze.add(new Fremdeinsatz("Huber","Spitzer"))
-    this.PosteingangEinsaetze.add(new Fremdeinsatz(1,"Hubert","FF-Pinkafeld",1,new Einsatz(1, "Pinkafeld", "Meierhofplatz", "1", "Brand löschen",
-                "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen", 1),"Brand in der HTL"));
-    this.PosteingangEinsaetze.add(new Fremdeinsatz(2,"Bernd","FF-Pinkafeld",1,new Einsatz(1, "Pinkafeld", "Ulreich", "1", "Überschwemmung",
-                "Fuchs", 1, "LFZ01", "13:05", "25.11.2018", "offen", 1),"Brand in der HTL"));
-    this.PosteingangEinsaetze.add(new Fremdeinsatz(3,"Fuchs","FF-Pinkafeld",1,new Einsatz(1, "Pinkafeld", "Steinermanager", "1", "Keine Ahnung",
-                "Fuchs", 1, "LFZ01", "13:05", "25.11.2019", "offen", 1),"Brand in der HTL"));
-      /* 
-    private int frid;
-    private String absender;
-    private String empfaenger;
-    private int eid;
-    private Einsatz einsatz;
-    private String text;
-*/
+     
     }
+
     public String showDetail(Fremdeinsatz e){
         fe=e;
-         fe.setStatus(true);
+
         return "/details.xhtml";
     }
     public void EinsatzArchivieren(Fremdeinsatz e){

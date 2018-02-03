@@ -18,7 +18,9 @@ public class Fremdeinsatz implements Identifiable{
     private int eid;
     private Einsatz einsatz;
     private String text;
-    private boolean Status;
+    private boolean status;
+    private String gradSüdKomm;
+    private String gradNordKomm;
 
     public Fremdeinsatz(int frid, String absender, String empfaenger, int eid, Einsatz einsatz, String text) {
         this.frid = frid;
@@ -27,15 +29,31 @@ public class Fremdeinsatz implements Identifiable{
         this.eid = eid;
         this.einsatz = einsatz;
         this.text = text;
-        this.Status=false;
+        this.status=false;
     }
 
     public boolean isStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(boolean Status) {
-        this.Status = Status;
+        this.status = Status;
+    }
+
+    public String getGradSüdKomm() {
+        return gradSüdKomm;
+    }
+
+    public void setGradSüdKomm(String gradSüdKomm) {
+        this.gradSüdKomm = gradSüdKomm;
+    }
+
+    public String getGradNordKomm() {
+        return gradNordKomm;
+    }
+
+    public void setGradNordKomm(String gradNordKomm) {
+        this.gradNordKomm = gradNordKomm;
     }
 
     

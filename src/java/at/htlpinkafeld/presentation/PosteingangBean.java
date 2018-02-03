@@ -6,10 +6,12 @@
 package at.htlpinkafeld.presentation;
 
 import at.htlpinkafeld.pojo.Kontakt;
+import at.htlpinkafeld.service.EinsatzleitsoftwareService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -19,6 +21,8 @@ import javax.faces.bean.SessionScoped;
  @ManagedBean
  @SessionScoped
 public class PosteingangBean {
+     @ManagedProperty(value="#{einsatzleitsoftwareService}")
+     EinsatzleitsoftwareService einsatzleitsoftwares;
 
     public PosteingangBean() {
     }

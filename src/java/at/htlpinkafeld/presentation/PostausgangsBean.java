@@ -8,10 +8,12 @@ package at.htlpinkafeld.presentation;
 import at.htlpinkafeld.pojo.Eigeneinsatz;
 import at.htlpinkafeld.pojo.Einsatz;
 import at.htlpinkafeld.pojo.Kontakt;
+import at.htlpinkafeld.service.EinsatzleitsoftwareService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 
@@ -22,6 +24,8 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class PostausgangsBean {
+    @ManagedProperty(value="#{einsatzleitsoftwareService}")
+     EinsatzleitsoftwareService einsatzleitsoftwares;
     private List<Kontakt> Kontaktliste = new ArrayList();
     private Eigeneinsatz einsatz;
     
@@ -32,10 +36,7 @@ public class PostausgangsBean {
     
        @PostConstruct
     public void setUp(){
-       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 1","KLF1",010101210));
-       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 1","KLF1",010101210));
-       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 1","KLF1",010101210));
-       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 1","KLF1",010101210));
+            this.Kontaktliste=this.einsatzleitsoftwares.getKontaktListe();
        einsatz = new Eigeneinsatz();
        
     }
@@ -62,4 +63,13 @@ public class PostausgangsBean {
         
         return "/kommPostausgang.xhtml";
     }
+
+    public EinsatzleitsoftwareService getEinsatzleitsoftwares() {
+        return einsatzleitsoftwares;
+    }
+
+    public void setEinsatzleitsoftwares(EinsatzleitsoftwareService einsatzleitsoftwares) {
+        this.einsatzleitsoftwares = einsatzleitsoftwares;
+    }
+    
 }

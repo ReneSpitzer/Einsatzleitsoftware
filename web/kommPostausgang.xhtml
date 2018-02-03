@@ -42,6 +42,10 @@
                         <h:inputText  value="#{kommunikationsBean.fe.einsatz.hausnr}"/>
                         <h:outputLabel  value="Text"/>
                         <h:inputText  value="#{kommunikationsBean.fe.text}"/>
+                         <h:outputLabel  value="KoordinatenSüd + KommMin"/>
+                         <h:inputText  value="#{kommunikationsBean.fe.gradSüdKomm}"/>
+                         <h:outputLabel  value="KoordinatenNord + KommMin"/>
+                         <h:inputText  value="#{kommunikationsBean.fe.gradNordKomm}"/>
                            <h:commandButton action="#{kommunikationsBean.EinsatzSenden()}" value="Absenden" />
                  </p:panelGrid>
           

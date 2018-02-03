@@ -6,9 +6,12 @@
 package at.htlpinkafeld.presentation;
 
 import at.htlpinkafeld.pojo.Benutzer;
+import at.htlpinkafeld.service.EinsatzleitsoftwareService;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -18,19 +21,25 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class LoginBean {
+@ManagedProperty(value="#{einsatzleitsoftwareService}")
+     EinsatzleitsoftwareService einsatzleitsoftwares;
 
-   // @ManagedProperty(value = "#{einsatzleitsoftwareService}")
-   // private EinsatzleitsoftwareService service;
     public String username;
     public String password;
     public boolean visibleB=true;
     public boolean visibleLlogin =false;
 
-    List<Benutzer> BList = new ArrayList<>();
+    List<Benutzer> benutzerliste = new ArrayList<>();
 
     public LoginBean() {
-        BList.add(new Benutzer(1,"Herbert",false,"1234ABC",1));
     }
+     @PostConstruct
+    public void setUp(){
+            this.benutzerliste=this.einsatzleitsoftwares.getBenutzerListe();
+  
+     
+    }
+    
 
     public boolean isVisibleB() {
         return visibleB;
@@ -40,24 +49,35 @@ public class LoginBean {
         this.visibleB = visibleB;
     }
 
-    public List<Benutzer> getBList() {
-        return BList;
+    public EinsatzleitsoftwareService getEinsatzleitsoftwares() {
+        return einsatzleitsoftwares;
     }
 
-    public void setBList(List<Benutzer> BList) {
-        this.BList = BList;
+    public void setEinsatzleitsoftwares(EinsatzleitsoftwareService einsatzleitsoftwares) {
+        this.einsatzleitsoftwares = einsatzleitsoftwares;
     }
-/*
-    @PostConstruct
-    public void set() {
-        BList = service.getBenutzerListe();
+
+    public boolean isVisibleLlogin() {
+        return visibleLlogin;
     }
-    
-*/
+
+    public void setVisibleLlogin(boolean visibleLlogin) {
+        this.visibleLlogin = visibleLlogin;
+    }
+
+    public List<Benutzer> getBenutzerliste() {
+        return benutzerliste;
+    }
+
+    public void setBenutzerliste(List<Benutzer> benutzerliste) {
+        this.benutzerliste = benutzerliste;
+    }
+
+ 
     public Object doGastLogin(){
         this.visibleB=false;
         this.visibleLlogin=true;
-        return "/abgeschlosseneeinsätze.xhtml";
+        return "/gastAbgeschlosseneE.xhtml";
     }
     public LoginBean(String username, String password) {
         this.username = username;
@@ -83,7 +103,7 @@ public class LoginBean {
     public Object doLogin() {
         this.visibleB=true;
         this.visibleLlogin=false;
-        for (Benutzer b : BList) {
+        for (Benutzer b : benutzerliste) {
             if (b.getUsername().equals(username) && b.getPassword().equals(this.password)) {
                 return "/uebersichtauswahl.xhtml";
             }

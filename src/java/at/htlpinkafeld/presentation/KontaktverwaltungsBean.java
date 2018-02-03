@@ -21,9 +21,9 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class KontaktverwaltungsBean {
-   // @ManagedProperty(value="#{EinsatzleitsoftwareService}")
-     //EinsatzleitsoftwareService einsatzleitsoftwares;
-    private List<Kontakt> Kontaktliste = new ArrayList();
+    @ManagedProperty(value="#{einsatzleitsoftwareService}")
+     EinsatzleitsoftwareService einsatzleitsoftwares;
+    private List<Kontakt> kontaktliste = new ArrayList();
      private Kontakt kontakt;
      private Kontakt selkon;
      private int id=1;
@@ -37,12 +37,8 @@ public class KontaktverwaltungsBean {
     }
       @PostConstruct
     public void setUp(){
-       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 1","KLF1",010101210));
-       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 2","KLF1",010101210));
-       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 3","KLF1",010101210));
-       Kontaktliste.add(new Kontakt("Kommandolöschfahrzeug 4","KLF1",010101210));
-               
-       
+        
+        this.kontaktliste=this.einsatzleitsoftwares.getKontaktListe(); 
     }
 
      
@@ -56,42 +52,40 @@ public class KontaktverwaltungsBean {
     public void addKontakt(){
         kontakt.setKid(0);
         kontakt.setId(0);
-        this.Kontaktliste.add(kontakt);
+        this.kontaktliste.add(kontakt);
         //einsatzleitsoftwares.addKontakt(kontakt);
         //id++;
         //eid++;
     }
 
     public List<Kontakt> getKontaktliste() {
-        return Kontaktliste;
+        return kontaktliste;
     }
 
     public void setKontaktliste(List<Kontakt> Kontaktliste) {
-        this.Kontaktliste = Kontaktliste;
+        this.kontaktliste = Kontaktliste;
     }
 
     
     
     public void deleteKontakt(Kontakt kon){
-        this.Kontaktliste.remove(kon);
+        this.kontaktliste.remove(kon);
      //  this.einsatzleitsoftwares.deleteKontakt(selkon);
-       
     }
-/*
-    public EinsatzleitsoftwareService getEinsatzleitsoftwares() {
-        return einsatzleitsoftwares;
-    }
-
-    public void setEinsatzleitsoftwares(EinsatzleitsoftwareService einsatzleitsoftwares) {
-        this.einsatzleitsoftwares = einsatzleitsoftwares;
-    }
-*/
     public Kontakt getSelkon() {
         return selkon;
     }
 
     public void setSelkon(Kontakt selkon) {
         this.selkon = selkon;
+    }
+
+    public EinsatzleitsoftwareService getEinsatzleitsoftwares() {
+        return einsatzleitsoftwares;
+    }
+
+    public void setEinsatzleitsoftwares(EinsatzleitsoftwareService einsatzleitsoftwares) {
+        this.einsatzleitsoftwares = einsatzleitsoftwares;
     }
     
 }

@@ -12,7 +12,7 @@
         <p:growl id="growl" life="5000" autoUpdate="true" showDetail="true" escape="false"/>
 
         <h:form> 
-            <p:dataTable id="tab" var="einsatz" value="#{kommunikationsBean.posteingangEinsaetze}">
+            <p:dataTable id="tab" var="fremde" value="#{kommunikationsBean.posteingangEinsaetze}">
                 <f:facet name="header">
                     <p:outputLabel value="Einsätze" />
                 </f:facet>
@@ -20,21 +20,63 @@
                     <f:facet name="header">
                         <p:outputLabel value="Einsatznummer" />
                     </f:facet>
-                    <p:outputLabel value="#{einsatz.einsatz.enr}" />
+                    <p:outputLabel value="#{fremde.einsatz.enr}" />
                 </p:column>
 
                 <p:column >
                     <f:facet name="header">
-                        <p:outputLabel value="Absender"/>
+                        <p:outputLabel value="Datum"/>
                     </f:facet>
-                    <p:outputLabel value="#{einsatz.absender}" />
+                    <p:outputLabel value="#{fremde.einsatz.datum}" />
                 </p:column>                  
 
                 <p:column >
                     <f:facet name="header">
-                        <p:outputLabel value="Status" />
+                        <p:outputLabel value="Uhrzeit" />
                     </f:facet>
-                    <p:outputLabel value="#{einsatz.status}" />
+                    <p:outputLabel value="#{fremde.einsatz.uhrzeit}" />
+                </p:column>
+                  <p:column >
+                    <f:facet name="header">
+                        <p:outputLabel value="Ort" />
+                    </f:facet>
+                      <p:outputLabel value="#{fremde.einsatz.eort}" />
+                </p:column>
+                  <p:column >
+                    <f:facet name="header">
+                        <p:outputLabel value="Straße" />
+                    </f:facet>
+                      <p:outputLabel value="#{fremde.einsatz.estraße}" />
+                </p:column>
+                  <p:column >
+                    <f:facet name="header">
+                        <p:outputLabel value="Hausnummer" />
+                    </f:facet>
+                      <p:outputLabel value="#{fremde.einsatz.hausnr}" />
+                </p:column>
+                  <p:column >
+                    <f:facet name="header">
+                        <p:outputLabel value="Aufgabe" />
+                    </f:facet>
+                      <p:outputLabel value="#{fremde.einsatz.aufgabe}" />
+                </p:column>
+                  <p:column >
+                    <f:facet name="header">
+                        <p:outputLabel value="Koordinaten Nord" />
+                    </f:facet>
+                      <p:outputLabel value="#{fremde.gradNordKomm}" />
+                </p:column>
+                 <p:column >
+                    <f:facet name="header">
+                        <p:outputLabel value="Koordinaten Süd" />
+                    </f:facet>
+                     <p:outputLabel value="#{fremde.gradSüdKomm}" />
+                </p:column>
+                 <p:column >
+                    <f:facet name="header">
+                        <p:outputLabel value="Text" />
+                    </f:facet>
+                     <p:outputLabel value="#{fremde.text}" />
                 </p:column>
                 <p:column>
                       <f:facet name="header">
@@ -47,6 +89,12 @@
                     <p:outputLabel value="Archivieren" />
                 </f:facet>
                     <p:commandButton value="Archivieren" action="#{kommunikationsBean.EinsatzArchivieren(einsatz)}" immediate="true" ajax="true" update="tab"/>
+                </p:column>
+                 <p:column>
+                      <f:facet name="header">
+                    <p:outputLabel value="Archivieren" />
+                </f:facet>
+                     <p:commandButton value="Einsatz übernhemen" action="#{kommunikationsBean.einsatzErstellen(fremde)}" immediate="true" ajax="true" update="tab"/>
                 </p:column>
                 
                 

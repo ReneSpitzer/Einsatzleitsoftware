@@ -8,10 +8,13 @@ package at.htlpinkafeld.presentation;
 import at.htlpinkafeld.pojo.Einsatz;
 import at.htlpinkafeld.pojo.Fahrzeuge;
 import at.htlpinkafeld.pojo.Ort;
+import at.htlpinkafeld.service.EinsatzleitsoftwareService;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
@@ -23,6 +26,9 @@ import javax.faces.model.SelectItem;
 @ManagedBean
 @SessionScoped
 public class EinsatzListBean {
+      @ManagedProperty(value="#{einsatzleitsoftwareService}")
+     EinsatzleitsoftwareService einsatzleitsoftwares;
+      
     private List<Einsatz> einsatzlist = new ArrayList<>(); //Liste von allen Einsätzen
     private List<Einsatz> oelist = new ArrayList<>(); //Liste der offenen Einsätzen
     private List<Einsatz> eialist = new ArrayList<>(); //Liste der Einsätzen in Arbeit
@@ -37,38 +43,26 @@ public class EinsatzListBean {
     private List<String> selectedortlist = new ArrayList<>();
     
     public EinsatzListBean() {
-        einsatzlist.add(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
-                "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen",1));
-        
-        einsatzlist.add(new Einsatz(2,"Oberwart", "Eo", "7", "Hochwasser", 
-                "Prunner", 2, "LFZ02", "14:06", "20.11.2017", "offen", 1));
-        
-        einsatzlist.add(new Einsatz(3,"Hartberg", "Roseggergasse", "2", "Katze von Baum retten", 
-                "Altmann", 3, "LFZ03", "12:06", "20.1.2018", "in Arbeit", 1));
-        
-        einsatzlist.add(new Einsatz(4,"Test", "Testgasse", "7", "Hochwasser", 
-                "Maierhofer", 4, "LFZ04", "4:27", "2.11.2017", "in Arbeit", 1));
-        
-        einsatzlist.add(new Einsatz(5,"Güssing", "gu", "1a", "Lkw Unfall ", 
-                "Fleck", 5, "LFZ05", "13:05", "27.8.2017", "abgeschlossen", 1));
-        
-        einsatzlist.add(new Einsatz(6,"Oberloisdorf", "McStrasse", "15", "Brand löschen", 
-                "Spitzer", 6, "LFZ06", "15:03", "25.10.2017", "abgeschlossen", 1));
-        
-        flist.add(new Fahrzeuge(1, "", "Pinkafeld", "FZ1", 10, 0, "LFZPkfd", 1));
-        flist.add(new Fahrzeuge(2, "", "Test", "FZ2", 2, 0, "LFZHb", 1));
-        
-        statuslist.add("offen");
-        statuslist.add("in Arbeit");
-        statuslist.add("abgeschlossen");
-        
-        stautslistarchiviert.add("abgeschlossen");
-        stautslistarchiviert.add("archiviert");
-        
-        selectedortlist.add(new String("Pinkafeld"));
-        selectedortlist.add(new String("Alle"));
-        
-        fillOelist();
+     
+  
+         
+    }
+    
+    @PostConstruct
+    public void SetUp(){
+      this.einsatzlist=this.einsatzleitsoftwares.getEinsatzlist();
+      this.oelist=this.einsatzleitsoftwares.getOelist();
+      this.eialist=this.einsatzleitsoftwares.getEialist();
+      this.aelist=this.einsatzleitsoftwares.getAelist();
+      this.arelist=this.einsatzleitsoftwares.getArelist();
+      this.flist=this.einsatzleitsoftwares.getFlist();
+      this.fplist=this.einsatzleitsoftwares.getFplist();
+      this.felist=this.einsatzleitsoftwares.getFelist();
+      this.statuslist=this.einsatzleitsoftwares.getStatuslist();
+      this.stautslistarchiviert=this.einsatzleitsoftwares.getStautslistarchiviert();
+      this.selectedortlist=this.einsatzleitsoftwares.getSelectedortlist();
+      
+           fillOelist();
         fillAelist();
         fillEialist();
         fillARelist();
@@ -329,4 +323,13 @@ public class EinsatzListBean {
             this.setFelist(this.flist);
         }
     }
+
+    public EinsatzleitsoftwareService getEinsatzleitsoftwares() {
+        return einsatzleitsoftwares;
+    }
+
+    public void setEinsatzleitsoftwares(EinsatzleitsoftwareService einsatzleitsoftwares) {
+        this.einsatzleitsoftwares = einsatzleitsoftwares;
+    }
+    
 }

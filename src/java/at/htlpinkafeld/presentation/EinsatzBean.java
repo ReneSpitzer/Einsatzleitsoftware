@@ -55,6 +55,13 @@ public class EinsatzBean {
    
         return "/einsatzerstellen.xhtml";
     }
+     public String gastDetail(Einsatz e){
+        this.header = "Einsatz anzeigen";
+        this.einsatz = e;
+        editID=false;
+   
+        return "/gastDetailA.xhtml";
+    }
     
     public String newEinsatz(){
         this.header = "Neuer Einsatz";
