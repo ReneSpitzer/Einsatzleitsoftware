@@ -37,6 +37,10 @@ public class Nüssler implements Identifiable{
         this.radius_außen = radius_außen;
         this.info = info;
     }
+
+    public Nüssler() {
+        this(0,"",0,0,0,"");
+    }
     
     @Override
     public int getId() {
