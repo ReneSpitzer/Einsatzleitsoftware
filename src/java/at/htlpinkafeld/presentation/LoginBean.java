@@ -77,7 +77,7 @@ public class LoginBean {
     public Object doGastLogin(){
         this.visibleB=false;
         this.visibleLlogin=true;
-        return "/gastAbgeschlosseneE.xhtml";
+        return "/abgeschlosseneeinsätze.xhtml";
     }
     public LoginBean(String username, String password) {
         this.username = username;

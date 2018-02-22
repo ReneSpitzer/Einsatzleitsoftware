@@ -1,2 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/Einsatzleitsoftware"/>
+<Context antiJARLocking="true" path="/Einsatzleitsoftware">
+    <Resource name="jdbc/EinsatzleitSW"
+     auth="Container"
+     type="javax.sql.DataSource"
+     username="h26u287"
+     password="fidelio!@"
+     driverClassName="com.mysql.jdbc.Driver"
+     url="jdbc:mysql://mysql57b.ssl-net.net:3306/h26u287_EinsatzleitSW"
+     maxWaitMillis="10000"
+     maxTotal="8"
+     maxIdle="4" />
+</Context>

@@ -5,11 +5,36 @@
  */
 package at.htlpinkafeld.service;
 
+import at.htlpinkafeld.infrastructure.BenutzerDao;
+import at.htlpinkafeld.infrastructure.BenutzerJdbcDao;
+import at.htlpinkafeld.infrastructure.EigeneinsatzDao;
+import at.htlpinkafeld.infrastructure.EigeneinsatzJdbcDao;
+import at.htlpinkafeld.infrastructure.EinsatzDao;
+import at.htlpinkafeld.infrastructure.EinsatzJdbcDao;
+import at.htlpinkafeld.infrastructure.FahrzeugeDao;
+import at.htlpinkafeld.infrastructure.FahrzeugeJdbcDao;
+import at.htlpinkafeld.infrastructure.FremdeinsatzDao;
+import at.htlpinkafeld.infrastructure.FremdeinsatzJdbcDao;
+import at.htlpinkafeld.infrastructure.FunkgeraetDao;
+import at.htlpinkafeld.infrastructure.FunkgeraetJdbcDao;
+import at.htlpinkafeld.infrastructure.KontaktDao;
+import at.htlpinkafeld.infrastructure.KontaktJdbcDao;
+import at.htlpinkafeld.infrastructure.NüsslerDao;
+import at.htlpinkafeld.infrastructure.NüsslerJdbcDao;
+import at.htlpinkafeld.infrastructure.PersonDao;
+import at.htlpinkafeld.infrastructure.PersonJdbcDao;
+import at.htlpinkafeld.infrastructure.ZeitaufzeichnungDao;
+import at.htlpinkafeld.infrastructure.ZeitaufzeichnungJdbcDao;
 import at.htlpinkafeld.pojo.Benutzer;
+import at.htlpinkafeld.pojo.Eigeneinsatz;
 import at.htlpinkafeld.pojo.Einsatz;
 import at.htlpinkafeld.pojo.Fahrzeuge;
 import at.htlpinkafeld.pojo.Fremdeinsatz;
+import at.htlpinkafeld.pojo.Funkgeraet;
 import at.htlpinkafeld.pojo.Kontakt;
+import at.htlpinkafeld.pojo.Nüssler;
+import at.htlpinkafeld.pojo.Person;
+import at.htlpinkafeld.pojo.Zeitaufzeichnung;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,8 +55,9 @@ public class EinsatzleitsoftwareService {
     private List<Einsatz> archivierteEinsätze = new ArrayList();
     private List<Fremdeinsatz> posteingangEinsaetze = new ArrayList();
     private List<Fremdeinsatz> archiviertePosteingangEinsaetze = new ArrayList();
-    //Berni-Listen
-        private List<Einsatz> einsatzlist = new ArrayList<>(); //Liste von allen Einsätzen
+    
+//Berni-Listen
+    //private List<Einsatz> einsatzlist = new ArrayList<>(); //Liste von allen Einsätzen
     private List<Einsatz> oelist = new ArrayList<>(); //Liste der offenen Einsätzen
     private List<Einsatz> eialist = new ArrayList<>(); //Liste der Einsätzen in Arbeit
     private List<Einsatz> aelist = new ArrayList<>(); //Liste der abgeschlossenen Einsätzen
@@ -44,29 +70,48 @@ public class EinsatzleitsoftwareService {
     private List<String> stautslistarchiviert = new ArrayList<>();
     private List<String> selectedortlist = new ArrayList<>();
     
+    private BenutzerDao benutzerDao = new BenutzerJdbcDao("benutzer", "bid");
+    private List<Benutzer> benutzerList = benutzerDao.list();  
+    private EigeneinsatzDao eigeneinsatzDao = new EigeneinsatzJdbcDao("eingeneinsatz", "eeid");
+    private List<Eigeneinsatz> eigeneinsatzList = eigeneinsatzDao.list();   
+    private EinsatzDao einsatzDao = new EinsatzJdbcDao("einsatz", "eid"); 
+    private List<Einsatz> einsatzlist = einsatzDao.list();    
+    private FahrzeugeDao fahrzeugeDao = new FahrzeugeJdbcDao("fahrzeuge", "fid");
+    private List<Fahrzeuge> fahrzeugeList = fahrzeugeDao.list();   
+    private FremdeinsatzDao fremdeinsatzDao = new FremdeinsatzJdbcDao("fremdeinsatz", "frid");
+    private List<Fremdeinsatz> fremdeinsatzList = fremdeinsatzDao.list();   
+    private FunkgeraetDao funkgeraetDao = new FunkgeraetJdbcDao("funkgeraet","fuid");
+    private List<Funkgeraet> funkgeraetList = funkgeraetDao.list();   
+    private KontaktDao kontaktDao = new KontaktJdbcDao("kontakt", "kid");
+    private List<Kontakt> kontaktList = kontaktDao.list();   
+    private NüsslerDao nüsslerDao = new NüsslerJdbcDao("nüssler","nid");
+    private List<Nüssler> nüsslerList = nüsslerDao.list();   
+    private PersonDao personDao = new PersonJdbcDao("person","pid");
+    private List<Person> personList = personDao.list();    
+    private ZeitaufzeichnungDao zeitaufzeichnungDao = new ZeitaufzeichnungJdbcDao("zeitaufzeichnung","zid");
+    private List<Zeitaufzeichnung> zeitaufzeichnungList = zeitaufzeichnungDao.list();
 
+    private List<Einsatz> einsatzbenutzerList;
+    
     public EinsatzleitsoftwareService() {
         //Test-Daten-Benutzer
         benutzerListe.add(new Benutzer(1, "Herbert", false, "1234ABC", 1));
         benutzerListe.add(new Benutzer(2, "Rene", false, "renespitzer", 2));
+        
         //Test-Daten-ArchivierteEinsätze
         archivierteEinsätze.add(new Einsatz(1, "Pinkafeld", "Meierhofplatz", "1", "Brand löschen",
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen", 1));
-
         archivierteEinsätze.add(new Einsatz(2, "Oberwart", "Eo", "7", "Hochwasser",
                 "Prunner", 2, "LFZ02", "14:06", "20.11.2017", "offen", 1));
-
         archivierteEinsätze.add(new Einsatz(3, "Hartberg", "Roseggergasse", "2", "Katze von Baum retten",
                 "Altmann", 3, "LFZ03", "12:06", "20.1.2018", "in Arbeit", 1));
-
         archivierteEinsätze.add(new Einsatz(4, "Test", "Testgasse", "7", "Hochwasser",
                 "Maierhofer", 4, "LFZ04", "4:27", "2.11.2017", "in Arbeit", 1));
-
         archivierteEinsätze.add(new Einsatz(5, "Güssing", "gu", "1a", "Lkw Unfall ",
                 "Fleck", 5, "LFZ05", "13:05", "27.8.2017", "abgeschlossen", 1));
-
         archivierteEinsätze.add(new Einsatz(6, "Oberloisdorf", "McStrasse", "15", "Brand löschen",
                 "Spitzer", 6, "LFZ06", "15:03", "25.10.2017", "abgeschlossen", 1));
+        
         //Posteingang-Test-Datensätze
         posteingangEinsaetze.add(new Fremdeinsatz(1, "Hubert", "FF-Pinkafeld", 1, new Einsatz(1, "Pinkafeld", "Meierhofplatz", "1", "Brand löschen",
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen", 1), "Brand in der HTL"));
@@ -74,7 +119,8 @@ public class EinsatzleitsoftwareService {
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2018", "offen", 1), "Brand in der HTL"));
         posteingangEinsaetze.add(new Fremdeinsatz(3, "Fuchs", "FF-Pinkafeld", 1, new Einsatz(1, "Pinkafeld", "Steinermanager", "1", "Keine Ahnung",
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2019", "offen", 1), "Brand in der HTL"));
-        //Test-Daten-Kontakte
+        
+       //Test-Daten-Kontakte
        kontaktliste.add(new Kontakt("Hauptlöschfahrzeug","HLF1",010101210));
        kontaktliste.add(new Kontakt("Transportfahrzeug","TLF1",01017));
        kontaktliste.add(new Kontakt("Löschfahrzeug","LLF1",0101332110));
@@ -82,20 +128,15 @@ public class EinsatzleitsoftwareService {
        
        //Berni-Code
         einsatzlist.add(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
-                "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen",1));
-        
+                "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen",1));        
         einsatzlist.add(new Einsatz(2,"Oberwart", "Eo", "7", "Hochwasser", 
-                "Prunner", 2, "LFZ02", "14:06", "20.11.2017", "offen", 1));
-        
+                "Prunner", 2, "LFZ02", "14:06", "20.11.2017", "offen", 1));        
         einsatzlist.add(new Einsatz(3,"Hartberg", "Roseggergasse", "2", "Katze von Baum retten", 
-                "Altmann", 3, "LFZ03", "12:06", "20.1.2018", "in Arbeit", 1));
-        
+                "Altmann", 3, "LFZ03", "12:06", "20.1.2018", "in Arbeit", 1));       
         einsatzlist.add(new Einsatz(4,"Test", "Testgasse", "7", "Hochwasser", 
-                "Maierhofer", 4, "LFZ04", "4:27", "2.11.2017", "in Arbeit", 1));
-        
+                "Maierhofer", 4, "LFZ04", "4:27", "2.11.2017", "in Arbeit", 1));       
         einsatzlist.add(new Einsatz(5,"Güssing", "gu", "1a", "Lkw Unfall ", 
-                "Fleck", 5, "LFZ05", "13:05", "27.8.2017", "abgeschlossen", 1));
-        
+                "Fleck", 5, "LFZ05", "13:05", "27.8.2017", "abgeschlossen", 1));        
         einsatzlist.add(new Einsatz(6,"Oberloisdorf", "McStrasse", "15", "Brand löschen", 
                 "Spitzer", 6, "LFZ06", "15:03", "25.10.2017", "abgeschlossen", 1));
         
@@ -111,6 +152,7 @@ public class EinsatzleitsoftwareService {
         
         selectedortlist.add(new String("Pinkafeld"));
         selectedortlist.add(new String("Alle"));
+        
         
     }
 
@@ -266,5 +308,257 @@ public class EinsatzleitsoftwareService {
 
     public void setArchivierteEinsätze(List<Einsatz> ArchivierteEinsätze) {
         this.archivierteEinsätze = ArchivierteEinsätze;
+    }
+
+    public List<Benutzer> getBenutzerList() {
+        return benutzerList;
+    }
+
+    public void setBenutzerList(List<Benutzer> benutzerList) {
+        this.benutzerList = benutzerList;
+    }
+    
+    public Benutzer findBenutzerById(int id)
+    {
+        return benutzerDao.read(id);
+    }
+    
+    public void create(Benutzer b)
+    {
+        benutzerDao.create(b);
+    }
+    
+    public void update(Benutzer b)
+    {
+        benutzerDao.update(b);
+    }
+    
+    public void delete(Benutzer b)
+    {
+        benutzerDao.delete(b);
+    }
+    
+    public List<Eigeneinsatz> getEigeneinsatzList() {
+        return eigeneinsatzList;
+    }
+
+    public void setEigeneinsatzList(List<Eigeneinsatz> eigeneinsatzList) {
+        this.eigeneinsatzList = eigeneinsatzList;
+    }
+    
+    public Eigeneinsatz findEigeneinsatzById(int id)
+    {
+        return eigeneinsatzDao.read(id);
+    }
+    
+    public void create(Eigeneinsatz ee)
+    {
+        eigeneinsatzDao.create(ee);
+    }
+    
+    public void update(Eigeneinsatz ee)
+    {
+        eigeneinsatzDao.update(ee);
+    }
+    
+    public void delete(Eigeneinsatz ee)
+    {
+        eigeneinsatzDao.delete(ee);
+    }
+
+    public List<Fahrzeuge> getFahrzeugeList() {
+        return fahrzeugeList;
+    }
+
+    public void setFahrzeugeList(List<Fahrzeuge> fahrzeugeList) {
+        this.fahrzeugeList = fahrzeugeList;
+    }
+    
+    public Fahrzeuge findFahrzeugeById(int id)
+    {
+        return fahrzeugeDao.read(id);
+    }
+    
+    public void create(Fahrzeuge f)
+    {
+        fahrzeugeDao.create(f);
+    }
+    
+    public void update(Fahrzeuge f)
+    {
+        fahrzeugeDao.update(f);
+    }
+    
+    public void delete(Fahrzeuge f)
+    {
+        fahrzeugeDao.delete(f);
+    }
+
+    public List<Fremdeinsatz> getFremdeinsatzList() {
+        return fremdeinsatzList;
+    }
+
+    public void setFremdeinsatzList(List<Fremdeinsatz> fremdeinsatzList) {
+        this.fremdeinsatzList = fremdeinsatzList;
+    }
+    
+    public Fremdeinsatz findFremdeinsatzById(int id)
+    {
+        return fremdeinsatzDao.read(id);
+    }
+    
+    public void create(Fremdeinsatz fe)
+    {
+        fremdeinsatzDao.create(fe);
+    }
+    
+    public void update(Fremdeinsatz fe)
+    {
+        fremdeinsatzDao.update(fe);
+    }
+    
+    public void delete(Fremdeinsatz fe)
+    {
+        fremdeinsatzDao.delete(fe);
+    }
+
+    public List<Funkgeraet> getFunkgeraetList() {
+        return funkgeraetList;
+    }
+
+    public void setFunkgeraetList(List<Funkgeraet> funkgeraetList) {
+        this.funkgeraetList = funkgeraetList;
+    }
+    
+    public Funkgeraet findFunkgeraetById(int id)
+    {
+        return funkgeraetDao.read(id);
+    }
+    
+    public void create(Funkgeraet fu)
+    {
+        funkgeraetDao.create(fu);
+    }
+    
+    public void update(Funkgeraet fu)
+    {
+        funkgeraetDao.update(fu);
+    }
+    
+    public void delete(Funkgeraet fu)
+    {
+        funkgeraetDao.delete(fu);
+    }
+
+    public List<Kontakt> getKontaktList() {
+        return kontaktList;
+    }
+
+    public void setKontaktList(List<Kontakt> kontaktList) {
+        this.kontaktList = kontaktList;
+    }
+    
+    public Kontakt findKontaktById(int id)
+    {
+        return kontaktDao.read(id);
+    }
+    
+    public void create(Kontakt k)
+    {
+        kontaktDao.create(k);
+    }
+    
+    public void update(Kontakt k)
+    {
+        kontaktDao.update(k);
+    }
+    
+    public void delete(Kontakt k)
+    {
+        kontaktDao.delete(k);
+    }
+
+    public List<Nüssler> getNüsslerList() {
+        return nüsslerList;
+    }
+
+    public void setNüsslerList(List<Nüssler> nüsslerList) {
+        this.nüsslerList = nüsslerList;
+    }
+    
+    public Nüssler findNüsslerById(int id)
+    {
+        return nüsslerDao.read(id);
+    }
+    
+    public void create(Nüssler n)
+    {
+        nüsslerDao.create(n);
+    }
+    
+    public void update(Nüssler n)
+    {
+        nüsslerDao.update(n);
+    }
+    
+    public void delete(Nüssler n)
+    {
+        nüsslerDao.delete(n);
+    }
+
+    public List<Person> getPersonList() {
+        return personList;
+    }
+
+    public void setPersonList(List<Person> personList) {
+        this.personList = personList;
+    }
+    
+    public Person findPersonById(int id)
+    {
+        return personDao.read(id);
+    }
+    
+    public void create(Person n)
+    {
+        personDao.create(n);
+    }
+    
+    public void update(Person n)
+    {
+        personDao.update(n);
+    }
+    
+    public void delete(Person n)
+    {
+        personDao.delete(n);
+    }
+
+    public List<Zeitaufzeichnung> getZeitaufzeichnungList() {
+        return zeitaufzeichnungList;
+    }
+
+    public void setZeitaufzeichnungList(List<Zeitaufzeichnung> zeitaufzeichnungList) {
+        this.zeitaufzeichnungList = zeitaufzeichnungList;
+    }
+    
+     public Zeitaufzeichnung findZeitaufzeichnungById(int id)
+    {
+        return zeitaufzeichnungDao.read(id);
+    }
+    
+    public void create(Zeitaufzeichnung z)
+    {
+        zeitaufzeichnungDao.create(z);
+    }
+    
+    public void update(Zeitaufzeichnung z)
+    {
+        zeitaufzeichnungDao.update(z);
+    }
+    
+    public void delete(Zeitaufzeichnung z)
+    {
+        zeitaufzeichnungDao.delete(z);
     }
 }

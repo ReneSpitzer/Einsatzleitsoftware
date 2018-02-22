@@ -16,7 +16,7 @@ import java.sql.Statement;
  *
  * @author Bernhard
  */
-public class FremdeinsatzJdbcDao extends BaseJdbcDao<Fremdeinsatz> implements Dao<Fremdeinsatz> {
+public class FremdeinsatzJdbcDao extends BaseJdbcDao<Fremdeinsatz> implements FremdeinsatzDao {
 
     public FremdeinsatzJdbcDao(String tablename, String pKey) {
         super(tablename, pKey);
