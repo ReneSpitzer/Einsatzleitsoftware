@@ -7,5 +7,19 @@
         <converter-id>KontaktConverter</converter-id>
         <converter-class>at.htlpinkafeld.presentation.KontaktConverter</converter-class>     
     </converter>
-   
+    <managed-bean>
+        <managed-bean-name>adminBenutzerBean</managed-bean-name>
+        <managed-bean-class>at.htlpinkafeld.presentation.adminBenutzerBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>adminFahrzeugeBean</managed-bean-name>
+        <managed-bean-class>at.htlpinkafeld.presentation.adminFahrzeugeBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>adminNuesslerBean</managed-bean-name>
+        <managed-bean-class>at.htlpinkafeld.presentation.adminNuesslerBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 </faces-config>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Bearbeitungsmodus</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <ui:composition template="./WEB-INF/templatestart.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+                <p:layout fullPage="true">
+             
+                        <p:growl id="msgs" showDetail="true" />
+ 
+                        <h3 style="margin-top:0">Basic</h3>
+                        <p:tabView>
+                            <p:tab title="Fahrzeuge">
+                                <h:form id="reg1Form">
+                                    <h:panelGrid id="regGrid" columns ="2"> 
+                                        <h:outputLabel for="inpOrg" value="Organisation" />
+                                            <h:inputText id="inpOrg" value="#{adminFahrzeugeBean.fahrzeug.organisation}" required="true"/> 
+                                        <h:outputLabel for="inpOrt" value="Ort" />
+                                            <h:inputText id="inpOrt" value="#{adminFahrzeugeBean.fahrzeug.ort}" required="true"/> 
+                                        <h:outputLabel for="inpType" value="Typ"/>
+                                            <h:inputText id="inpType" value="#{adminFahrzeugeBean.fahrzeug.type}" required="true"/>          
+                                        <h:outputLabel for="inpAPers" value="Anzahl der Personen"/>
+                                        <h:inputText id="inpAPers" value="#{adminFahrzeugeBean.fahrzeug.anzPers}"/> 
+                                        <h:outputLabel for="inpStat" value="Status"/>
+                                            <h:inputText id="inpStat" value="#{adminFahrzeugeBean.fahrzeug.status}" required="true"/>          
+                                        <h:outputLabel for="inpName" value="Name des Fahrzeugs"/>
+                                            <h:inputText id="inpName" value="#{adminFahrzeugeBean.fahrzeug.name}" required="true"/> 
+                                            
+                                        <h:commandButton value="New" action="#{adminFahrzeugeBean.add()}"/>
+                                        <h:commandButton value="Save" action="#{adminFahrzeugeBean.save()}"/>
+                                    </h:panelGrid> 
+            
+                                    <h:dataTable var="pup" value="#{adminFahrzeugeBean.fahrzeugeService.fahrzeugList}" cellspacing="5">
+                                        <f:facet name="header">
+                                            <h:outputText value="Fahrzeugliste"/>
+                                        </f:facet>
+                
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Organisation"/>
+                                            </f:facet>
+                                                <h:outputText value="#{pup.organisation}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                 <h:outputText value="Ort"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pup.ort}"/>
+                                        </h:column>
+                
+                                        <h:column>
+                                            <f:facet name="header">
+                                                 <h:outputText value="Typ"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pup.type}"/>
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">
+                                                 <h:outputText value="Mannschaft"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pup.anzPers}"/>
+                                        </h:column>
+                                        
+                                        <h:column>
+                                            <f:facet name="header">
+                                                 <h:outputText value="Name"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pup.name}"/>
+                                        </h:column>
+
+                                         <h:column>
+                                               <h:commandLink value="edit" action="#{adminFahrzeugeBean.edit(pup)}"/>
+                                        </h:column>
+
+                                        <h:column>
+                                               <h:commandLink value="remove" action="#{adminFahrzeugeBean.remove(pup)}"/>
+                                        </h:column>
+
+                                    </h:dataTable>
+                                </h:form>
+                            </p:tab>
+        
+                            <p:tab title="Benutzer">
+                                <h:form id="reg2Form">
+                                    <h:panelGrid id="regGrid" columns ="2"> 
+                                        <h:outputLabel for="inpId" value="Id" />
+                                        <h:inputText id="inpId" value="#{adminBenutzerBean.benutzer.id}" required="true"/> 
+                                        <h:outputLabel for="inpUsern" value="Username" />
+                                            <h:inputText id="inpUsern" value="#{adminBenutzerBean.benutzer.username}" required="true"/> 
+                                        <h:outputLabel for="inpadmin" value="Admin (true/false)"/>
+                                            <h:inputText id="inpadmin" value="#{adminBenutzerBean.benutzer.admin}" required="true"/> 
+                                        <h:outputLabel for="inpPasw" value="Passwort"/>
+                                            <h:inputText id="inpPasw" value="#{adminBenutzerBean.benutzer.password}" required="true"/>    
+                                        <h:outputLabel for="inppid" value="pId"/>
+                                            <h:inputText id="inppid" value="#{adminBenutzerBean.benutzer.pid}"/> 
+                                                  
+                                                                                   
+                                        <h:commandButton value="New" action="#{adminBenutzerBean.add()}"/>
+                                        <h:commandButton value="Save" action="#{adminBenutzerBean.save()}"/>
+                                    </h:panelGrid> 
+            
+                                    <h:dataTable var="pup" value="#{adminBenutzerBean.benutzerService.benutzerList}" cellspacing="5">
+                                        <f:facet name="header">
+                                            <h:outputText value="Benutzerliste"/>
+                                        </f:facet>
+                
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="Id"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pup.id}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                 <h:outputText value="Username"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pup.username}"/>
+                                        </h:column>
+                
+                                        <h:column>
+                                            <f:facet name="header">
+                                                 <h:outputText value="Admin"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pup.admin}"/>
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">
+                                                 <h:outputText value="password"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pup.password}"/>
+                                        </h:column>
+                                        
+                                        <h:column>
+                                            <f:facet name="header">
+                                                 <h:outputText value="pId"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pup.pid}"/>
+                                        </h:column>
+
+                                         <h:column>
+                                               <h:commandLink value="edit" action="#{adminFahrzeugeBean.edit(pup)}"/>
+                                        </h:column>
+
+                                        <h:column>
+                                               <h:commandLink value="remove" action="#{adminFahrzeugeBean.remove(pup)}"/>
+                                        </h:column>
+
+                                    </h:dataTable>
+                                </h:form>
+                            </p:tab>
+        
+                            <p:tab title="Nüssler">
+                                <h:form id="reg3Form">
+                                    <h:panelGrid id="regGrid" columns ="2"> 
+                                        <h:outputLabel for="inpUnr" value="UN Nummer" />
+                                        <h:inputText id="inpUnr" value="#{adminNuesslerBean.nüssler.UNnr}" required="true"/> 
+                                        <h:outputLabel for="inpStoffname" value="Stoffname" />
+                                            <h:inputText id="inpStoffname" value="#{adminNuesslerBean.nüssler.stoffname}" required="true"/> 
+                                        <h:outputLabel for="inpmerkblattnr" value="Merkblattnummer"/>
+                                            <h:inputText id="inpmerkblattnr" value="#{adminNuesslerBean.nüssler.merkblattnr}" required="true"/> 
+                                        <h:outputLabel for="inpradius_innen" value="Radius Innen"/>
+                                            <h:inputText id="inpradius_innen" value="#{adminNuesslerBean.nüssler.radius_innen}" required="true"/>    
+                                        <h:outputLabel for="inpradius_außen" value="Radius Außen"/>
+                                            <h:inputText id="inpradius_außen" value="#{adminNuesslerBean.nüssler.radius_außen}" required="true"/> 
+                                        <h:outputLabel for="inpinfo" value="Info"/>
+                                            <h:inputText id="inpinfo" value="#{adminNuesslerBean.nüssler.info}"/>     
+                                                  
+                                                                                   
+                                        <h:commandButton value="New" action="#{adminNüsslerBean.add()}"/>
+                                        <h:commandButton value="Save" action="#{adminNüsslerBean.save()}"/>
+                                    </h:panelGrid> 
+            
+                                    <h:dataTable var="pup" value="#{adminNuesslerBean.nüsslerService.nüsslerList}" cellspacing="5">
+                                        <f:facet name="header">
+                                            <h:outputText value="Nüsslermodel"/>
+                                        </f:facet>
+                
+                                        <h:column>
+                                            <f:facet name="header">
+                                                <h:outputText value="UN Nr"/>
+                                            </f:facet>
+                                                <h:outputText value="#{pup.UNnr}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                 <h:outputText value="Stoffname"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pup.stoffname}"/>
+                                        </h:column>
+                
+                                        <h:column>
+                                            <f:facet name="header">
+                                                 <h:outputText value="Merkblattnr"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pup.merkblattnr}"/>
+                                        </h:column>
+
+                                        <h:column>
+                                            <f:facet name="header">
+                                                 <h:outputText value="Radius Innen"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pup.radius_innen}"/>
+                                        </h:column>
+                                        
+                                        <h:column>
+                                            <f:facet name="header">
+                                                 <h:outputText value="Radius Außen"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pup.radius_außen}"/>
+                                        </h:column>
+                                        
+                                        <h:column>
+                                            <f:facet name="header">
+                                                 <h:outputText value="Info"/>
+                                            </f:facet>
+                                            <h:outputText value="#{pup.info}"/>
+                                        </h:column>
+
+                                         <h:column>
+                                               <h:commandLink value="edit" action="#{adminNuesslerBean.edit(pup)}"/>
+                                        </h:column>
+
+                                        <h:column>
+                                               <h:commandLink value="remove" action="#{adminNuesslerBean.remove(pup)}"/>
+                                        </h:column>
+
+                                    </h:dataTable>
+                                </h:form>
+                            </p:tab>
+                            
+                            <p:tab title="Module">
+                                <h:panelGrid columns="2" cellpadding="10">
+                
+            
+                                </h:panelGrid>
+                            </p:tab>
+                        </p:tabView>
+                  
+                </p:layout>
+    </ui:define>
+    <ui:define name="bottom">
+        <h:form>
+            <p:commandButton value="Zurück zur Übersicht" action="/grundmodul.xhtml"/>     
+        </h:form>
+    </ui:define>
+</ui:composition>
+    </body>
+</html>
