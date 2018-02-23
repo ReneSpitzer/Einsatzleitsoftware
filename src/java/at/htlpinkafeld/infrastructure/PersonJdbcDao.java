@@ -17,7 +17,7 @@ import java.sql.Statement;
  *
  * @author Bernhard
  */
-public class PersonJdbcDao extends BaseJdbcDao<Person> implements PersonDao {
+public class PersonJdbcDao extends BaseJdbcDao<Person> implements Dao<Person> {
 
     public PersonJdbcDao(String tablename, String pKey) {
         super(tablename, pKey);

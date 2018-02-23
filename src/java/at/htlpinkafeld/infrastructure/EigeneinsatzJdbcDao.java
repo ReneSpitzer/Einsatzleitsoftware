@@ -16,7 +16,7 @@ import java.sql.Statement;
  *
  * @author Bernhard
  */
-public class EigeneinsatzJdbcDao extends BaseJdbcDao<Eigeneinsatz> implements EigeneinsatzDao {
+public class EigeneinsatzJdbcDao extends BaseJdbcDao<Eigeneinsatz> implements Dao<Eigeneinsatz> {
 
     public EigeneinsatzJdbcDao(String tablename, String pKey) {
         super(tablename, pKey);

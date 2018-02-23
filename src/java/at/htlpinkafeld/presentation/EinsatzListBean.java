@@ -7,6 +7,7 @@ package at.htlpinkafeld.presentation;
 
 import at.htlpinkafeld.pojo.Einsatz;
 import at.htlpinkafeld.pojo.Fahrzeuge;
+import at.htlpinkafeld.pojo.Ort;
 import at.htlpinkafeld.service.EinsatzleitsoftwareService;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -42,6 +43,9 @@ public class EinsatzListBean {
     private List<String> selectedortlist = new ArrayList<>();
     
     public EinsatzListBean() {
+     
+  
+         
     }
     
     @PostConstruct
@@ -58,7 +62,7 @@ public class EinsatzListBean {
       this.stautslistarchiviert=this.einsatzleitsoftwares.getStautslistarchiviert();
       this.selectedortlist=this.einsatzleitsoftwares.getSelectedortlist();
       
-        fillOelist();
+           fillOelist();
         fillAelist();
         fillEialist();
         fillARelist();
@@ -242,8 +246,8 @@ public class EinsatzListBean {
         help.setE_status("in Arbeit");
         this.getEinsatzlist().add(help);
         
-        fillOelist();
         fillEialist();
+        fillOelist();
         fillAelist();
         fillARelist();
         
@@ -283,27 +287,28 @@ public class EinsatzListBean {
     public String save(Einsatz e){
         if( !einsatzlist.contains(e) ){
             einsatzlist.add(e);
-        }
-    
-        fillOelist();
-        fillEialist();
-        fillAelist();
-        fillARelist();
-           
-        return "grundmodul.xhtml";
-    }
-    
-    public String delete(Einsatz e){
-        einsatzlist.remove(e);
         
-        fillOelist();
         fillEialist();
+        fillOelist();
         fillAelist();
         fillARelist();
-           
+        }
+        
         return "grundmodul.xhtml";
     }
-  
+    /*
+     public String bearbeiten(Einsatz e){
+        if( !einsatzlist.contains(e) )
+            einsatzlist.add(e);
+        
+        fillEialist();
+        fillOelist();
+        fillAelist();
+        fillARelist();
+        
+        return "/ueberischtauswahl.xhtml";
+    }
+     */
     public void changedSmth(ValueChangeEvent e)
     {
         String s = (String) e.getNewValue();

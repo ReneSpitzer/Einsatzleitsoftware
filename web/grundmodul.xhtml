@@ -16,14 +16,14 @@
                                 <p:outputLabel value="Offene Einsätze" style="color:red"/>
                             </f:facet>
 
-                            <p:column style="color:red" sortBy="#{einsatz.id}">
+                            <p:column style="color:red">
                                 <f:facet name="header">
                                     <p:outputLabel value="Einsatznummer" />
                                 </f:facet>
-                                <p:outputLabel value="#{einsatz.id}" />
+                                <p:outputLabel value="#{einsatz.enr}" />
                             </p:column>
 
-                                <p:column style="color:red" sortBy="#{einsatz.eort}">
+                                <p:column style="color:red">
                                     <f:facet name="header">
                                         <p:outputLabel value="Ort" />
                                     </f:facet>
@@ -34,35 +34,28 @@
                                     <p:outputLabel value="#{einsatz.hausnr}" />
                                 </p:column>
 
-                                <p:column style="color:red" sortBy="#{einsatz.aufgabe}">
+                                <p:column style="color:red">
                                     <f:facet name="header">
                                         <p:outputLabel value="Aufgabe" />
                                     </f:facet>
                                     <p:outputLabel value="#{einsatz.aufgabe}" />
                                 </p:column>
 
-                                <p:column style="color:red" sortBy="#{einsatz.eleiter}">
+                                <p:column style="color:red">
                                     <f:facet name="header">
                                         <p:outputLabel value="Leiter" />
                                     </f:facet>
                                     <p:outputLabel value="#{einsatz.eleiter}" />
                                 </p:column>
 
-                                <p:column style="color:red" sortBy="#{einsatz.emittel}">
+                                <p:column style="color:red">
                                     <f:facet name="header">
                                         <p:outputLabel value="Einsatzmittel" />
                                     </f:facet>
                                     <p:outputLabel value="#{einsatz.emittel}" />
                                 </p:column>
-                            
-                            <p:column style="color:red" sortBy="#{einsatz.e_status}">
-                                    <f:facet name="header">
-                                        <p:outputLabel value="Status" />
-                                    </f:facet>
-                                    <p:outputLabel value="#{einsatz.e_status}" />
-                                </p:column>
 
-                                <p:column width="180" style="color:red" sortBy="#{einsatz.datum}">
+                                <p:column width="180" style="color:red">
                                     <f:facet name="header">
                                         <p:outputLabel value="Datum" />
                                     </f:facet>
@@ -99,14 +92,14 @@
                                     <p:outputLabel value="Einsätze in Arbeit" style="color:blue"/>
                                 </f:facet>
 
-                                <p:column style="color:blue" sortBy="#{einsatz.id}">
+                                <p:column style="color:blue">
                                     <f:facet name="header">
                                         <p:outputLabel value="Einsatznummer" />
                                     </f:facet>
-                                    <p:outputLabel value="#{einsatz.id}" />
+                                    <p:outputLabel value="#{einsatz.enr}" />
                                 </p:column>
 
-                                <p:column style="color:blue" sortBy="#{einsatz.eort}">
+                                <p:column style="color:blue">
                                     <f:facet name="header">
                                         <p:outputLabel value="Ort" />
                                     </f:facet>
@@ -117,28 +110,28 @@
                                     <p:outputLabel value="#{einsatz.hausnr}" />
                                 </p:column>
 
-                                <p:column style="color:blue" sortBy="#{einsatz.aufgabe}">
+                                <p:column style="color:blue">
                                     <f:facet name="header">
                                         <p:outputLabel value="Aufgabe" />
                                     </f:facet>
                                     <p:outputLabel value="#{einsatz.aufgabe}" />
                                 </p:column>
 
-                                <p:column style="color:blue" sortBy="#{einsatz.eleiter}">
+                                <p:column style="color:blue">
                                     <f:facet name="header">
                                         <p:outputLabel value="Leiter" />
                                     </f:facet>
                                     <p:outputLabel value="#{einsatz.eleiter}" />
                                 </p:column>
 
-                                <p:column style="color:blue" sortBy="#{einsatz.emittel}">
+                                <p:column style="color:blue">
                                     <f:facet name="header">
                                         <p:outputLabel value="Einsatzmittel" />
                                     </f:facet>
                                     <p:outputLabel value="#{einsatz.emittel}" />
                                 </p:column>
 
-                                <p:column width="180" style="color:blue" sortBy="#{einsatz.datum}">
+                                <p:column width="180" style="color:blue">
                                     <f:facet name="header" >
                                         <p:outputLabel value="Datum" />
                                     </f:facet>
@@ -165,14 +158,14 @@
                                 <p:outputLabel value="Abgeschlossene Einsätze" style="color:green"/>
                             </f:facet>
 
-                            <p:column style="color:green" sortBy="#{einsatz.id}">
+                            <p:column style="color:green">
                                 <f:facet name="header">
                                     <p:outputLabel value="Einsatznummer" />
                                 </f:facet>
-                                <p:outputLabel value="#{einsatz.id}" />
+                                <p:outputLabel value="#{einsatz.enr}" />
                             </p:column>
 
-                            <p:column style="color:green" sortBy="#{einsatz.eort}">
+                            <p:column style="color:green">
                                 <f:facet name="header">
                                     <p:outputLabel value="Ort" />
                                 </f:facet>
@@ -183,28 +176,28 @@
                                 <p:outputLabel value="#{einsatz.hausnr}" />
                             </p:column>
 
-                            <p:column style="color:green" sortBy="#{einsatz.aufgabe}">
+                            <p:column style="color:green">
                                 <f:facet name="header">
                                     <p:outputLabel value="Aufgabe" />
                                 </f:facet>
                                 <p:outputLabel value="#{einsatz.aufgabe}" />
                             </p:column>
 
-                            <p:column style="color:green" sortBy="#{einsatz.eleiter}">
+                            <p:column style="color:green">
                                 <f:facet name="header">
                                     <p:outputLabel value="Leiter" />
                                 </f:facet>
                                 <p:outputLabel value="#{einsatz.eleiter}" />
                             </p:column>
 
-                            <p:column style="color:green" sortBy="#{einsatz.emittel}">
+                            <p:column style="color:green">
                                 <f:facet name="header">
                                     <p:outputLabel value="Einsatzmittel" />
                                 </f:facet>
                                 <p:outputLabel value="#{einsatz.emittel}" />
                             </p:column>
 
-                            <p:column width="180" style="color:green" sortBy="#{einsatz.datum}">
+                            <p:column width="180" style="color:green">
                                 <f:facet name="header">
                                     <p:outputLabel value="Datum" />
                                 </f:facet>
@@ -229,14 +222,14 @@
                                 <p:outputLabel value="Archivierte Einsätze" style="color:green"/>
                             </f:facet>
 
-                            <p:column style="color:green" sortBy="#{einsatz.id}">
+                            <p:column style="color:green">
                                 <f:facet name="header">
                                     <p:outputLabel value="Einsatznummer" />
                                 </f:facet>
-                                <p:outputLabel value="#{einsatz.id}" />
+                                <p:outputLabel value="#{einsatz.enr}" />
                             </p:column>
 
-                            <p:column style="color:green" sortBy="#{einsatz.eort}">
+                            <p:column style="color:green">
                                 <f:facet name="header">
                                     <p:outputLabel value="Ort" />
                                 </f:facet>
@@ -247,28 +240,28 @@
                                 <p:outputLabel value="#{einsatz.hausnr}" />
                             </p:column>
 
-                            <p:column style="color:green" sortBy="#{einsatz.aufgabe}">
+                            <p:column style="color:green">
                                 <f:facet name="header">
                                     <p:outputLabel value="Aufgabe" />
                                 </f:facet>
                                 <p:outputLabel value="#{einsatz.aufgabe}" />
                             </p:column>
 
-                            <p:column style="color:green" sortBy="#{einsatz.eleiter}">
+                            <p:column style="color:green">
                                 <f:facet name="header">
                                     <p:outputLabel value="Leiter" />
                                 </f:facet>
                                 <p:outputLabel value="#{einsatz.eleiter}" />
                             </p:column>
 
-                            <p:column style="color:green" sortBy="#{einsatz.emittel}">
+                            <p:column style="color:green">
                                 <f:facet name="header">
                                     <p:outputLabel value="Einsatzmittel" />
                                 </f:facet>
                                 <p:outputLabel value="#{einsatz.emittel}" />
                             </p:column>
 
-                            <p:column width="180" style="color:green" sortBy="#{einsatz.datum}">
+                            <p:column width="180" style="color:green">
                                 <f:facet name="header">
                                     <p:outputLabel value="Datum" />
                                 </f:facet>
@@ -309,7 +302,7 @@
 
         <h:form>
 
-            <p:commandButton value="Zurück zur Übersicht" action="/uebersichtauswahl.xhtml" onclick="uebersichtauswahl.xhtml"/>
+            <p:commandButton value="Zurück zur Übersicht" action="/uebersichtauswahl.xhtml"/>
         </h:form>
 
     </ui:define>

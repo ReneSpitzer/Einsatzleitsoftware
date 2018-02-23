@@ -9,16 +9,16 @@
            <h:form>  
             <p:dialog  header="Übersicht"  visible="true" closable="false" showEffect="clip" draggable="false" resizable="false" style="box-shadow: 7px 10px 5px #303050;"> 
                  <p:panelGrid columns="1" style="margin: 0 auto;">
-                     <p:commandButton   value="Neuen Einsatz erstellen" action="#{einsatzBean.newEinsatz()}" onclick="einsatzanlegen.xhtml" style="width: 200px;"/> 
-                <p:commandButton   value="Grundmodul" action="/grundmodul.xhtml" onclick="grundmodul.xhtml" style="width: 200px;"/>
-                <p:commandButton   value="Abgeschlossene Einsätze" action="/abgeschlosseneeinsätze.xhtml" onclick="abgeschlosseneeinsätze.xhtml" style="width: 200px;"/>
+                <p:commandButton   value="Neuen Einsatz erstellen" action="/einsatzerstellen.xhtml" style="width: 200px;"/> 
+                <p:commandButton   value="Grundmodul" action="/grundmodul.xhtml" style="width: 200px;"/>
+                <p:commandButton   value="Abgeschlossene Einsätze" action="/abgeschlosseneeinsätze.xhtml" style="width: 200px;"/>
                  </p:panelGrid>
             </p:dialog>
            </h:form> 
     </ui:define>
     <ui:define name="bottom">
         <h:form>
-            <p:commandButton value="Zurück zum Login" action="/login.xhtml" onclick="login.xhtml"/>     
+            <p:commandButton value="Zurück zum Login" action="/login.xhtml" />     
         </h:form>
     </ui:define>
 

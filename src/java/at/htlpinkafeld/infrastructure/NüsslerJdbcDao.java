@@ -16,7 +16,7 @@ import java.sql.Statement;
  *
  * @author Bernhard
  */
-public class NüsslerJdbcDao extends BaseJdbcDao<Nüssler> implements NüsslerDao {
+public class NüsslerJdbcDao extends BaseJdbcDao<Nüssler> implements Dao<Nüssler> {
 
     public NüsslerJdbcDao(String tablename, String pKey) {
         super(tablename, pKey);

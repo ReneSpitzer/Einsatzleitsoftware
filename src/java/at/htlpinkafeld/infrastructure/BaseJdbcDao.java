@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  *
  * @author Bernhard
  */
-public abstract class BaseJdbcDao<T extends Identifiable> implements Dao<T>{
+public abstract class BaseJdbcDao<T extends Identifiable> {
 
     private final String TABLENAME;
     private final String PKNAME;

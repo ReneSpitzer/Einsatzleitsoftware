@@ -16,7 +16,7 @@ import java.sql.Statement;
  *
  * @author Bernhard
  */
-public class FunkgeraetJdbcDao extends BaseJdbcDao<Funkgeraet> implements FunkgeraetDao {
+public class FunkgeraetJdbcDao extends BaseJdbcDao<Funkgeraet> implements Dao<Funkgeraet> {
 
     public FunkgeraetJdbcDao(String tablename, String pKey) {
         super(tablename, pKey);
