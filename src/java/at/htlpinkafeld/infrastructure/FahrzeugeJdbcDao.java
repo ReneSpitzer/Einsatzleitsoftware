@@ -16,7 +16,7 @@ import java.sql.Statement;
  *
  * @author Bernhard
  */
-public class FahrzeugeJdbcDao extends BaseJdbcDao<Fahrzeuge> implements Dao<Fahrzeuge> {
+public class FahrzeugeJdbcDao extends BaseJdbcDao<Fahrzeuge> implements FahrzeugeDao {
 
     public FahrzeugeJdbcDao(String tablename, String pKey) {
         super(tablename, pKey);

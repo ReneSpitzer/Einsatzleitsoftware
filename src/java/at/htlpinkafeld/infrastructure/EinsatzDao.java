@@ -5,10 +5,12 @@
  */
 package at.htlpinkafeld.infrastructure;
 
+import at.htlpinkafeld.pojo.Einsatz;
+
 /**
  *
  * @author Bernhard
  */
-public interface EinsatzDao extends Dao<EinsatzDao>{
+public interface EinsatzDao extends Dao<Einsatz>{
     
 }

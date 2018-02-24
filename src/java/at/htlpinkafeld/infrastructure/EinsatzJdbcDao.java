@@ -16,7 +16,7 @@ import java.sql.Statement;
  *
  * @author Bernhard
  */
-public class EinsatzJdbcDao extends BaseJdbcDao<Einsatz> implements Dao<Einsatz> {
+public class EinsatzJdbcDao extends BaseJdbcDao<Einsatz> implements EinsatzDao {
 
     public EinsatzJdbcDao(String tablename, String pKey) {
         super(tablename, pKey);

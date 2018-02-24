@@ -16,7 +16,7 @@ import java.sql.Statement;
  *
  * @author Bernhard
  */
-public class KontaktJdbcDao extends BaseJdbcDao<Kontakt> implements Dao<Kontakt> {
+public class KontaktJdbcDao extends BaseJdbcDao<Kontakt> implements KontaktDao {
 
     public KontaktJdbcDao(String tablename, String pKey) {
         super(tablename, pKey);

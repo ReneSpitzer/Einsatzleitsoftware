@@ -5,11 +5,33 @@
  */
 package at.htlpinkafeld.service;
 
+import at.htlpinkafeld.infrastructure.BenutzerDao;
+import at.htlpinkafeld.infrastructure.BenutzerJdbcDao;
+import at.htlpinkafeld.infrastructure.EigeneinsatzDao;
+import at.htlpinkafeld.infrastructure.EigeneinsatzJdbcDao;
+import at.htlpinkafeld.infrastructure.EinsatzDao;
+import at.htlpinkafeld.infrastructure.EinsatzJdbcDao;
+import at.htlpinkafeld.infrastructure.FahrzeugeDao;
+import at.htlpinkafeld.infrastructure.FahrzeugeJdbcDao;
+import at.htlpinkafeld.infrastructure.FremdeinsatzDao;
+import at.htlpinkafeld.infrastructure.FremdeinsatzJdbcDao;
+import at.htlpinkafeld.infrastructure.FunkgeraetDao;
+import at.htlpinkafeld.infrastructure.FunkgeraetJdbcDao;
+import at.htlpinkafeld.infrastructure.KontaktDao;
+import at.htlpinkafeld.infrastructure.KontaktJdbcDao;
+import at.htlpinkafeld.infrastructure.NüsslerDao;
+import at.htlpinkafeld.infrastructure.NüsslerJdbcDao;
+import at.htlpinkafeld.infrastructure.PersonDao;
+import at.htlpinkafeld.infrastructure.PersonJdbcDao;
 import at.htlpinkafeld.pojo.Benutzer;
+import at.htlpinkafeld.pojo.Eigeneinsatz;
 import at.htlpinkafeld.pojo.Einsatz;
 import at.htlpinkafeld.pojo.Fahrzeuge;
 import at.htlpinkafeld.pojo.Fremdeinsatz;
+import at.htlpinkafeld.pojo.Funkgeraet;
 import at.htlpinkafeld.pojo.Kontakt;
+import at.htlpinkafeld.pojo.Nüssler;
+import at.htlpinkafeld.pojo.Person;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,7 +53,7 @@ public class EinsatzleitsoftwareService {
     private List<Fremdeinsatz> posteingangEinsaetze = new ArrayList();
     private List<Fremdeinsatz> archiviertePosteingangEinsaetze = new ArrayList();
     //Berni-Listen
-        private List<Einsatz> einsatzlist = new ArrayList<>(); //Liste von allen Einsätzen
+    //private List<Einsatz> einsatzlist = new ArrayList<>(); //Liste von allen Einsätzen
     private List<Einsatz> oelist = new ArrayList<>(); //Liste der offenen Einsätzen
     private List<Einsatz> eialist = new ArrayList<>(); //Liste der Einsätzen in Arbeit
     private List<Einsatz> aelist = new ArrayList<>(); //Liste der abgeschlossenen Einsätzen
@@ -44,6 +66,32 @@ public class EinsatzleitsoftwareService {
     private List<String> stautslistarchiviert = new ArrayList<>();
     private List<String> selectedortlist = new ArrayList<>();
     
+    private BenutzerDao benutzerDao = new BenutzerJdbcDao("benutzer", "bid");
+    private List<Benutzer> benutzerList = benutzerDao.list();
+    
+    private EigeneinsatzDao eigeneinsatzDao = new EigeneinsatzJdbcDao("eigeneinsatz", "eeid");
+    private List<Eigeneinsatz> eigeneinsatzList = eigeneinsatzDao.list();
+    
+    private EinsatzDao einsatzDao = new EinsatzJdbcDao("einsatz", "eid");
+    private List<Einsatz> einsatzlist = einsatzDao.list();
+    
+    private FahrzeugeDao fahrzeugeDao = new FahrzeugeJdbcDao("fahrzeuge", "fid");
+    private List<Fahrzeuge> fahrzeugeList = fahrzeugeDao.list();
+    
+    private FremdeinsatzDao fremdeinsatzDao = new FremdeinsatzJdbcDao("fremdeinsatz", "frid");
+    private List<Fremdeinsatz> fremdeinsatzList = fremdeinsatzDao.list();
+    
+    private FunkgeraetDao funkgeraetDao = new FunkgeraetJdbcDao("funkgeraet", "fuid");
+    private List<Funkgeraet> funkgeraetList = funkgeraetDao.list();
+    
+    private KontaktDao kontaktDao = new KontaktJdbcDao("kontakt", "kid");
+    private List<Kontakt> kontaktList = kontaktDao.list();
+    
+    private NüsslerDao nüsslerDao = new NüsslerJdbcDao("nüssler", "nid");
+    private List<Nüssler> nüsslerList = nüsslerDao.list();
+    
+    private PersonDao personDao = new PersonJdbcDao("person", "pid");
+    private List<Person> personList = personDao.list();
 
     public EinsatzleitsoftwareService() {
         //Test-Daten-Benutzer
@@ -266,5 +314,303 @@ public class EinsatzleitsoftwareService {
 
     public void setArchivierteEinsätze(List<Einsatz> ArchivierteEinsätze) {
         this.archivierteEinsätze = ArchivierteEinsätze;
+    }
+
+    public BenutzerDao getBenutzerDao() {
+        return benutzerDao;
+    }
+
+    public void setBenutzerDao(BenutzerDao benutzerDao) {
+        this.benutzerDao = benutzerDao;
+    }
+
+    public EigeneinsatzDao getEigeneinsatzDao() {
+        return eigeneinsatzDao;
+    }
+
+    public void setEigeneinsatzDao(EigeneinsatzDao eigeneinsatzDao) {
+        this.eigeneinsatzDao = eigeneinsatzDao;
+    }
+
+    public EinsatzDao getEinsatzDao() {
+        return einsatzDao;
+    }
+
+    public void setEinsatzDao(EinsatzDao einsatzDao) {
+        this.einsatzDao = einsatzDao;
+    }
+
+    public FahrzeugeDao getFahrzeugeDao() {
+        return fahrzeugeDao;
+    }
+
+    public void setFahrzeugeDao(FahrzeugeDao fahrzeugeDao) {
+        this.fahrzeugeDao = fahrzeugeDao;
+    }
+
+    public FremdeinsatzDao getFremdeinsatzDao() {
+        return fremdeinsatzDao;
+    }
+
+    public void setFremdeinsatzDao(FremdeinsatzDao fremdeinsatzDao) {
+        this.fremdeinsatzDao = fremdeinsatzDao;
+    }
+
+    public FunkgeraetDao getFunkgeraetDao() {
+        return funkgeraetDao;
+    }
+
+    public void setFunkgeraetDao(FunkgeraetDao funkgeraetDao) {
+        this.funkgeraetDao = funkgeraetDao;
+    }
+
+    public KontaktDao getKontaktDao() {
+        return kontaktDao;
+    }
+
+    public void setKontaktDao(KontaktDao kontaktDao) {
+        this.kontaktDao = kontaktDao;
+    }
+
+    public NüsslerDao getNüsslerDao() {
+        return nüsslerDao;
+    }
+
+    public void setNüsslerDao(NüsslerDao nüsslerDao) {
+        this.nüsslerDao = nüsslerDao;
+    }
+
+    public PersonDao getPersonDao() {
+        return personDao;
+    }
+
+    public void setPersonDao(PersonDao personDao) {
+        this.personDao = personDao;
+    }
+    
+    public List<Benutzer> getBenutzerList() {
+        return benutzerList;
+    }
+
+    public void setBenutzerList(List<Benutzer> benutzerList) {
+        this.benutzerList = benutzerList;
+    }
+    
+    public void createBenutzer(Benutzer b){
+        this.benutzerDao.create(b);
+    }
+    
+    public Benutzer findBenutzerById(int id){
+        return benutzerDao.read(id);
+    }
+    
+    public void updateBenutzer(Benutzer b)
+    {
+        this.benutzerDao.update(b);
+    }
+    
+    public void deleteBenutzer(Benutzer b)
+    {
+        this.benutzerDao.delete(b);
+    }
+
+    public List<Eigeneinsatz> getEigeneinsatzList() {
+        return eigeneinsatzList;
+    }
+
+    public void setEigeneinsatzList(List<Eigeneinsatz> eigeneinsatzList) {
+        this.eigeneinsatzList = eigeneinsatzList;
+    }
+    
+    public void createEigeneinsatz(Eigeneinsatz ee){
+        this.eigeneinsatzDao.create(ee);
+    }
+    
+    public Eigeneinsatz findEigeneinsatzById(int id){
+        return eigeneinsatzDao.read(id);
+    }
+    
+    public void updateEigeneinsatz(Eigeneinsatz ee)
+    {
+        this.eigeneinsatzDao.update(ee);
+    }
+    
+    public void deleteEigeneinsatz(Eigeneinsatz ee)
+    {
+        this.eigeneinsatzDao.delete(ee);
+    }
+
+    public List<Fahrzeuge> getFahrzeugeList() {
+        return fahrzeugeList;
+    }
+
+    public void setFahrzeugeList(List<Fahrzeuge> fahrzeugeList) {
+        this.fahrzeugeList = fahrzeugeList;
+    }
+    
+    public void createFahrzeuge(Fahrzeuge f){
+        this.fahrzeugeDao.create(f);
+    }
+    
+    public Fahrzeuge findFahrzeugeById(int id){
+        return fahrzeugeDao.read(id);
+    }
+    
+    public void updateFahrzeuge(Fahrzeuge f)
+    {
+        this.fahrzeugeDao.update(f);
+    }
+    
+    public void deleteFahrzeuge(Fahrzeuge f)
+    {
+        this.fahrzeugeDao.delete(f);
+    }
+
+    public List<Fremdeinsatz> getFremdeinsatzList() {
+        return fremdeinsatzList;
+    }
+
+    public void setFremdeinsatzList(List<Fremdeinsatz> fremdeinsatzList) {
+        this.fremdeinsatzList = fremdeinsatzList;
+    }
+    
+    public void createFremdeinsatz(Fremdeinsatz fe){
+        this.fremdeinsatzDao.create(fe);
+    }
+    
+    public Fremdeinsatz findFremdeinsatzById(int id){
+        return fremdeinsatzDao.read(id);
+    }
+    
+    public void updateFremdeinsatz(Fremdeinsatz fe)
+    {
+        this.fremdeinsatzDao.update(fe);
+    }
+    
+    public void deleteFremdeinsatz(Fremdeinsatz fe)
+    {
+        this.fremdeinsatzDao.delete(fe);
+    }
+
+    public List<Funkgeraet> getFunkgeraetList() {
+        return funkgeraetList;
+    }
+
+    public void setFunkgeraetList(List<Funkgeraet> funkgeraetList) {
+        this.funkgeraetList = funkgeraetList;
+    }
+    
+    public void createFunkgeraet(Funkgeraet f){
+        this.funkgeraetDao.create(f);
+    }
+    
+    public Funkgeraet findFunkgeraetById(int id){
+        return funkgeraetDao.read(id);
+    }
+    
+    public void updateFunkgeraet(Funkgeraet f)
+    {
+        this.funkgeraetDao.update(f);
+    }
+    
+    public void deleteFunkgeraet(Funkgeraet f)
+    {
+        this.funkgeraetDao.delete(f);
+    }
+
+    public List<Kontakt> getKontaktList() {
+        return kontaktList;
+    }
+
+    public void setKontaktList(List<Kontakt> kontaktList) {
+        this.kontaktList = kontaktList;
+    }
+    
+    public void createFunkgeraet(Kontakt k){
+        this.kontaktDao.create(k);
+    }
+    
+    public Kontakt findKontaktById(int id){
+        return kontaktDao.read(id);
+    }
+    
+    public void updateFunkgeraet(Kontakt k)
+    {
+        this.kontaktDao.update(k);
+    }
+    
+    public void deleteFunkgeraet(Kontakt k)
+    {
+        this.kontaktDao.delete(k);
+    }
+
+    public List<Nüssler> getNüsslerList() {
+        return nüsslerList;
+    }
+
+    public void setNüsslerList(List<Nüssler> nüsslerList) {
+        this.nüsslerList = nüsslerList;
+    }
+
+    public void createNüssler(Nüssler n){
+        this.nüsslerDao.create(n);
+    }
+    
+    public Nüssler findNüsslerById(int id){
+        return nüsslerDao.read(id);
+    }
+    
+    public void updateNüssler(Nüssler n)
+    {
+        this.nüsslerDao.update(n);
+    }
+    
+    public void deleteNüssler(Nüssler n)
+    {
+        this.nüsslerDao.delete(n);
+    }
+    
+    public List<Person> getPersonList() {
+        return personList;
+    }
+
+    public void setPersonList(List<Person> personList) {
+        this.personList = personList;
+    }
+    
+    public void createPerson(Person p){
+        this.personDao.create(p);
+    }
+    
+    public Person findPersonById(int id){
+        return personDao.read(id);
+    }
+    
+    public void updatePerson(Person p)
+    {
+        this.personDao.update(p);
+    }
+    
+    public void deletePerson(Person p)
+    {
+        this.personDao.delete(p);
+    }
+    
+    public void createEinsatz(Einsatz e){
+        this.einsatzDao.create(e);
+    }
+    
+    public Einsatz findEinsatzById(int id){
+        return einsatzDao.read(id);
+    }
+    
+    public void updateEinsatz(Einsatz e)
+    {
+        this.einsatzDao.update(e);
+    }
+    
+    public void deleteEinsatz(Einsatz e)
+    {
+        this.einsatzDao.delete(e);
     }
 }

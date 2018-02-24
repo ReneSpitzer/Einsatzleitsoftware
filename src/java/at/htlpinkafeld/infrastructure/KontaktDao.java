@@ -9,7 +9,7 @@ import at.htlpinkafeld.pojo.Kontakt;
 
 /**
  *
- * @author Bernhard
+ * @author Bernhard Fuchs
  */
 public interface KontaktDao extends Dao<Kontakt>{
     

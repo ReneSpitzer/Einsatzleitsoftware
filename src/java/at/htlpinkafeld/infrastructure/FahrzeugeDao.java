@@ -5,10 +5,12 @@
  */
 package at.htlpinkafeld.infrastructure;
 
+import at.htlpinkafeld.pojo.Fahrzeuge;
+
 /**
  *
- * @author Bernhard
+ * @author Bernhard Fuchs
  */
-public interface FahrzeugeDao extends Dao<FahrzeugeDao>{
+public interface FahrzeugeDao extends Dao<Fahrzeuge>{
     
 }
