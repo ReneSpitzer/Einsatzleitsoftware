@@ -95,10 +95,6 @@ public abstract class BaseJdbcDao<T extends Identifiable> {
     }
 
     public void update(T t) {
-        if (t.getId() < 0) {
-            return;
-        }
-
         try (Connection wCon = ConnectionManager.getInstance().getConnection();
                 PreparedStatement st = getUpdateStatement(wCon, t)) {
             st.executeUpdate();
@@ -108,10 +104,6 @@ public abstract class BaseJdbcDao<T extends Identifiable> {
     }
 
     public void create(T t) {
-        if (t.getId() >= 0) {
-            return;
-        }
-
         try (Connection wCon = ConnectionManager.getInstance().getConnection();
                 PreparedStatement st = getInsertStatement(wCon, t);
                 ResultSet genKeys = (st.executeUpdate() == 1) ? st.getGeneratedKeys() : null) {
@@ -120,7 +112,7 @@ public abstract class BaseJdbcDao<T extends Identifiable> {
                 t.setId(genKeys.getInt(1));
             }
         } catch (SQLException ex) {
-            Logger.getLogger(BaseJdbcDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error Inserting Base");
         }
     }
 }

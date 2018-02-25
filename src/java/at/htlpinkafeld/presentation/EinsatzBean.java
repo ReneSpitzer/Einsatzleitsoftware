@@ -6,7 +6,10 @@
 package at.htlpinkafeld.presentation;
 
 import at.htlpinkafeld.pojo.Einsatz;
+import at.htlpinkafeld.service.EinsatzleitsoftwareService;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 
@@ -17,32 +20,51 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class EinsatzBean {
+    @ManagedProperty(value="#{einsatzleitsoftwareService}")
+     EinsatzleitsoftwareService einsatzleitsoftwares;
+    
     private Einsatz einsatz;
     
     public EinsatzBean() {
     }
 
+    @PostConstruct
+    public void setUp(){
+        
+        this.einsatz=this.einsatzleitsoftwares.getEinsatz(); 
+    }
+    
+    public EinsatzleitsoftwareService getEinsatzleitsoftwares() {
+        return einsatzleitsoftwares;
+    }
+
+    public void setEinsatzleitsoftwares(EinsatzleitsoftwareService einsatzleitsoftwares) {
+        this.einsatzleitsoftwares = einsatzleitsoftwares;
+    }
+    
     public Einsatz getEinsatz() {
         return einsatz;
     }
 
     public void setEinsatz(Einsatz einsatz) {
         this.einsatz = einsatz;
-    }
-    
-    public String edit(Einsatz e){
-        this.einsatz = e;
+    } 
    
-        return "/einsatzerstellen.xhtml";
-    }
-     public String gastDetail(Einsatz e){
+    public String gastDetail(Einsatz e){
         this.einsatz = e;
    
         return "/gastDetailA.xhtml";
     }
+     
+    public String edit(Einsatz e){
+        this.einsatz = e;
+    
+        return "/einsatzerstellen.xhtml";
+    }
     
     public Object newEinsatz(){
         this.einsatz = new Einsatz();
+        this.einsatz.setId(this.einsatzleitsoftwares.getEinsatzlist().size() + 1);
         
         return "einsatzanlegen.xhtml";
     }

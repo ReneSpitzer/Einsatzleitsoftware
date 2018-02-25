@@ -61,7 +61,7 @@ public class EinsatzListBean {
       this.stautslistarchiviert=this.einsatzleitsoftwares.getStautslistarchiviert();
       this.selectedortlist=this.einsatzleitsoftwares.getSelectedortlist();
       
-           fillOelist();
+        fillOelist();
         fillAelist();
         fillEialist();
         fillARelist();
@@ -283,15 +283,42 @@ public class EinsatzListBean {
         return null;
     }
     
-    public String save(Einsatz e){
-        if( !einsatzlist.contains(e) ){
-            einsatzlist.add(e);
-        }
-        
-        fillEialist();
+    public String saveNewEinsatz(Einsatz e){
+ 
+        this.einsatzleitsoftwares.createEinsatz(e);
+        this.einsatzleitsoftwares.fillEinsatzList();
+        //einsatzlist.add(e);
+                      
         fillOelist();
+        fillEialist();
         fillAelist();
         fillARelist();       
+        
+        return "grundmodul.xhtml";
+    }
+    
+    public String saveEditEinsatz(Einsatz e){
+        this.einsatzleitsoftwares.updateEinsatz(e);
+        this.einsatzleitsoftwares.fillEinsatzList();
+                           
+        fillOelist();
+        fillEialist();
+        fillAelist();
+        fillARelist();       
+        
+        return "grundmodul.xhtml";
+    }
+    
+    public Object delete(Einsatz e)
+    {
+        this.einsatzleitsoftwares.deleteEinsatz(e);
+        this.einsatzleitsoftwares.fillEinsatzList();
+        this.einsatzlist.remove(e);
+        
+        fillOelist();
+        fillEialist();
+        fillAelist();
+        fillARelist();     
         
         return "grundmodul.xhtml";
     }
@@ -317,6 +344,5 @@ public class EinsatzListBean {
 
     public void setEinsatzleitsoftwares(EinsatzleitsoftwareService einsatzleitsoftwares) {
         this.einsatzleitsoftwares = einsatzleitsoftwares;
-    }
-    
+    }  
 }

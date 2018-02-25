@@ -27,8 +27,8 @@ public class KommunikationsBean {
      EinsatzleitsoftwareService einsatzleitsoftwares;
       
     Fremdeinsatz fe; 
-            List<Fremdeinsatz> PosteingangEinsaetze = new ArrayList();
-            List<Fremdeinsatz> ArchiviertePosteingangEinsaetze = new ArrayList();
+            List<Fremdeinsatz> posteingangEinsaetze = new ArrayList();
+            List<Fremdeinsatz> archiviertePosteingangEinsaetze = new ArrayList();
 
  
       
@@ -60,8 +60,8 @@ public class KommunikationsBean {
    @PostConstruct
     public void setUp(){
         
-        this.PosteingangEinsaetze=this.einsatzleitsoftwares.getPosteingangEinsaetze();
-        this.ArchiviertePosteingangEinsaetze=this.einsatzleitsoftwares.getArchiviertePosteingangEinsaetze();
+        this.posteingangEinsaetze=this.einsatzleitsoftwares.getPosteingangEinsaetze();
+        this.archiviertePosteingangEinsaetze=this.einsatzleitsoftwares.getArchiviertePosteingangEinsaetze();
      
     }
 
@@ -71,17 +71,17 @@ public class KommunikationsBean {
         return "/details.xhtml";
     }
     public void EinsatzArchivieren(Fremdeinsatz e){
-        this.ArchiviertePosteingangEinsaetze.add(e);
-        this.PosteingangEinsaetze.remove(e);
+        this.archiviertePosteingangEinsaetze.add(e);
+        this.posteingangEinsaetze.remove(e);
         
     }
 
     public List<Fremdeinsatz> getArchiviertePosteingangEinsaetze() {
-        return ArchiviertePosteingangEinsaetze;
+        return archiviertePosteingangEinsaetze;
     }
 
-    public void setArchiviertePosteingangEinsaetze(List<Fremdeinsatz> ArchiviertePosteingangEinsaetze) {
-        this.ArchiviertePosteingangEinsaetze = ArchiviertePosteingangEinsaetze;
+    public void setArchiviertePosteingangEinsaetze(List<Fremdeinsatz> archiviertePosteingangEinsaetze) {
+        this.archiviertePosteingangEinsaetze = archiviertePosteingangEinsaetze;
     }
 
 
@@ -93,11 +93,11 @@ public class KommunikationsBean {
         this.einsatzleitsoftwares = einsatzleitsoftwares;
     }
        public List<Fremdeinsatz> getPosteingangEinsaetze() {
-        return PosteingangEinsaetze;
+        return posteingangEinsaetze;
     }
 
-    public void setPosteingangEinsaetze(List<Fremdeinsatz> PosteingangEinsaetze) {
-        this.PosteingangEinsaetze = PosteingangEinsaetze;
+    public void setPosteingangEinsaetze(List<Fremdeinsatz> posteingangEinsaetze) {
+        this.posteingangEinsaetze = posteingangEinsaetze;
     }
 
     public Fremdeinsatz getFe() {
