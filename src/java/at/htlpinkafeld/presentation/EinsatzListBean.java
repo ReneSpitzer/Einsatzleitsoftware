@@ -243,12 +243,16 @@ public class EinsatzListBean {
         Einsatz help = e;
         this.getEinsatzlist().remove(e);
         help.setE_status("in Arbeit");
-        this.getEinsatzlist().add(help);
+        Einsatz dao = help;
+        this.getEinsatzlist().add(help);      
         
         fillEialist();
         fillOelist();
         fillAelist();
         fillARelist();
+        
+        this.einsatzleitsoftwares.updateEinsatz(help);
+        this.einsatzleitsoftwares.fillEinsatzList();
         
         return null;
     }
@@ -258,12 +262,16 @@ public class EinsatzListBean {
         Einsatz help = e;
         this.getEinsatzlist().remove(e);
         help.setE_status("abgeschlossen");
-        this.getEinsatzlist().add(help);
+        Einsatz dao = help;
+        this.getEinsatzlist().add(help);     
         
         fillOelist();
         fillEialist();
         fillAelist();
         fillARelist();
+        
+        this.einsatzleitsoftwares.updateEinsatz(dao);
+        this.einsatzleitsoftwares.fillEinsatzList();
         
         return null;
     } 
@@ -273,12 +281,16 @@ public class EinsatzListBean {
         Einsatz help = e;
         this.getEinsatzlist().remove(e);
         help.setE_status("archiviert");
+        Einsatz dao = help;
         this.getEinsatzlist().add(help);
         
         fillOelist();
         fillEialist();
         fillAelist();
         fillARelist();
+        
+        this.einsatzleitsoftwares.updateEinsatz(dao);
+        this.einsatzleitsoftwares.fillEinsatzList();
         
         return null;
     }
