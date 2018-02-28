@@ -148,22 +148,22 @@ public class EinsatzleitsoftwareService {
        kontaktliste.add(new Kontakt("Truppentransport","TTL",01513110));
        
        //Berni-Code
-       createEinsatz(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
+       createEinsatz(new Einsatz("Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen",1));
-        
-        createEinsatz(new Einsatz(2,"Oberwart", "Eo", "7", "Hochwasser", 
+        this.fillEinsatzList();
+        createEinsatz(new Einsatz("Oberwart", "Eo", "7", "Hochwasser", 
                 "Prunner", 2, "LFZ02", "14:06", "20.11.2017", "offen", 1));
-        
-        createEinsatz(new Einsatz(3,"Hartberg", "Roseggergasse", "2", "Katze von Baum retten", 
+        this.fillEinsatzList();
+        createEinsatz(new Einsatz("Hartberg", "Roseggergasse", "2", "Katze von Baum retten", 
                 "Altmann", 3, "LFZ03", "12:06", "20.1.2018", "in Arbeit", 1));
-        
-        createEinsatz(new Einsatz(4,"Test", "Testgasse", "7", "Hochwasser", 
+        this.fillEinsatzList();
+        createEinsatz(new Einsatz("Test", "Testgasse", "7", "Hochwasser", 
                 "Maierhofer", 4, "LFZ04", "4:27", "2.11.2017", "in Arbeit", 1));
-        
-        createEinsatz(new Einsatz(5,"Güssing", "gu", "1a", "Lkw Unfall ", 
+        this.fillEinsatzList();
+        createEinsatz(new Einsatz("Güssing", "gu", "1a", "Lkw Unfall ", 
                 "Fleck", 5, "LFZ05", "13:05", "27.8.2017", "abgeschlossen", 1));
-        
-        createEinsatz(new Einsatz(6,"Oberloisdorf", "McStrasse", "15", "Brand löschen", 
+        this.fillEinsatzList();
+        createEinsatz(new Einsatz("Oberloisdorf", "McStrasse", "15", "Brand löschen", 
                 "Spitzer", 6, "LFZ06", "15:03", "25.10.2017", "abgeschlossen", 1));
         
         this.fillEinsatzList();

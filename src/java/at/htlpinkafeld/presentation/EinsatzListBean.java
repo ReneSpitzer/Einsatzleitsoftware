@@ -299,7 +299,7 @@ public class EinsatzListBean {
  
         this.einsatzleitsoftwares.createEinsatz(e);
         this.einsatzleitsoftwares.fillEinsatzList();
-        //einsatzlist.add(e);
+        einsatzlist.add(e);
                       
         fillOelist();
         fillEialist();

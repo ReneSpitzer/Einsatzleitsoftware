@@ -104,15 +104,19 @@ public abstract class BaseJdbcDao<T extends Identifiable> {
     }
 
     public void create(T t) {
-        try (Connection wCon = ConnectionManager.getInstance().getConnection();
-                PreparedStatement st = getInsertStatement(wCon, t);
-                ResultSet genKeys = (st.executeUpdate() == 1) ? st.getGeneratedKeys() : null) {
-
-            if (genKeys != null && genKeys.next()) {
+        if (t.getId() >= 0) {
+            return;
+        }
+        try (Connection con = ConnectionManager.getInstance().getConnection();
+                PreparedStatement stmt = getInsertStatement(con, t);
+                ResultSet genKeys = (stmt.executeUpdate() == 1) ? stmt.getGeneratedKeys() : null) {
+                System.out.println("genkeys: " + genKeys);
+             if (genKeys != null && genKeys.next()) {
                 t.setId(genKeys.getInt(1));
             }
         } catch (SQLException ex) {
-            System.out.println("Error Inserting Base");
+            System.out.println("Error catched here -------------------------");
+            ex.printStackTrace();
         }
     }
 }
