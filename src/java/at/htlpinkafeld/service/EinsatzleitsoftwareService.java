@@ -42,10 +42,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-/**
- *
- * @author rene-_000
- */
+
 @ManagedBean
 @SessionScoped
 public class EinsatzleitsoftwareService {
@@ -707,5 +704,37 @@ public class EinsatzleitsoftwareService {
 
     public void setEinsatz(Einsatz einsatz) {
         this.einsatz = einsatz;
+    }
+
+    public void removeBenutzer(Benutzer p) {
+       this.benutzerListe.remove(p);
+    }
+
+    public Object getBenutzerList() {
+        return this.benutzerListe;
+    }
+
+    public void addBenutzer(Benutzer ben) {
+        this.benutzerListe.add(ben);
+    }
+
+    public void addFahrzeug(Fahrzeuge kfz) {
+        this.fahrzeugeList.add(kfz);
+    }
+
+    public void removeFahrzeug(Fahrzeuge p) {
+        this.fahrzeugeList.remove(p);
+    }
+
+    public Object getNuesslerList() {
+        return this.nüsslerList;
+    }
+
+    public void addNuessler(Nüssler nus) {
+        this.nüsslerList.add(nus);
+    }
+
+    public void removeNuessler(Nüssler p) {
+        this.nüsslerList.remove(p);
     }
 }

@@ -12,6 +12,7 @@
                      <p:commandButton   value="Neuen Einsatz erstellen" action="#{einsatzBean.newEinsatz()}" onclick="einsatzanlegen.xhtml" style="width: 200px;"/> 
                 <p:commandButton   value="Grundmodul" action="/grundmodul.xhtml" onclick="grundmodul.xhtml" style="width: 200px;"/>
                 <p:commandButton   value="Abgeschlossene Einsätze" action="/abgeschlosseneeinsätze.xhtml" onclick="abgeschlosseneeinsätze.xhtml" style="width: 200px;"/>
+                <p:commandButton   value="Bearbeitungsmodus" action="/adminBearbeitungsmodus.xhtml"  style="width: 200px;" rendered="#{loginBean.admin}"/> 
                  </p:panelGrid>
             </p:dialog>
            </h:form> 
@@ -22,4 +23,4 @@
         </h:form>
     </ui:define>
 
-</ui:composition>
+</ui:composition> 

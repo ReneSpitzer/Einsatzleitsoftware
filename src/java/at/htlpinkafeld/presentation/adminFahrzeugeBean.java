@@ -6,40 +6,48 @@
 package at.htlpinkafeld.presentation;
 
 import at.htlpinkafeld.pojo.Fahrzeuge;
-import at.htlpinkafeld.service.adminFahrzeugeService;
+import at.htlpinkafeld.service.EinsatzleitsoftwareService;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
  *
- * @author alexa
+ * @author alex
  */
+
 @ManagedBean
 @SessionScoped
 public class adminFahrzeugeBean {
      
-    private adminFahrzeugeService afs;
+    @ManagedProperty(value="#{einsatzleitsoftwareService}")
+    private EinsatzleitsoftwareService afs;
     
     public Fahrzeuge kfz;
     
-    public adminFahrzeugeService getFahrzeugeService(){
+    @PostConstruct
+    public void SetUp(){
+        
+    }
+    
+    public EinsatzleitsoftwareService getFahrzeugeService(){
         return afs;
     }
 
     public adminFahrzeugeBean() {
         this.kfz = new Fahrzeuge();
-        this.afs = new adminFahrzeugeService();
+        this.afs = new EinsatzleitsoftwareService();
     }
     
     
     
-    public void setPupilManagerService(adminFahrzeugeService pms){
+    public void setEinsatzleitsoftwareService(EinsatzleitsoftwareService pms){
         this.afs = pms;
     }
            
     public Object add(){
-        kfz.setId(this.afs.getFahrzeugList().indexOf(kfz));
+        kfz.setId(this.afs.getFlist().indexOf(kfz));
         
         this.afs.addFahrzeug(kfz);
         
@@ -49,7 +57,7 @@ public class adminFahrzeugeBean {
     
     public Object save(){
         Fahrzeuge help = null;
-        for(Fahrzeuge p: this.afs.getFahrzeugList()){
+        for(Fahrzeuge p: this.afs.getFlist()){
             if(p.getId() == kfz.getId())
                     help = p;
         }

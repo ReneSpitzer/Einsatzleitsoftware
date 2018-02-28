@@ -6,52 +6,56 @@
 package at.htlpinkafeld.presentation;
 
 import at.htlpinkafeld.pojo.Benutzer;
-import at.htlpinkafeld.service.adminBenutzerService;
+import at.htlpinkafeld.service.EinsatzleitsoftwareService;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
  *
- * @author alexa
+ * @author alex
  */
 @ManagedBean
 @SessionScoped
 public class adminBenutzerBean {
 
-    private adminBenutzerService abs;
+    @ManagedProperty(value="#{einsatzleitsoftwareService}")
+    private EinsatzleitsoftwareService abs = new EinsatzleitsoftwareService();
     
     private Benutzer ben;
     /**
      * Creates a new instance of adminBenutzerBean
      */
-    public adminBenutzerBean() {
-        this.ben = new Benutzer();
-        this.abs = new adminBenutzerService();
+    
+    @PostConstruct
+    public void SetUp(){
+        
     }
     
-    
-    public adminBenutzerService getBenutzerService(){
+    public adminBenutzerBean() {
+        this.ben = new Benutzer();
+        //this.abs = new EinsatzleitsoftwareService();
+    }
+        
+    public EinsatzleitsoftwareService getBenutzerService(){
         return abs;
     }
     
-    public void setPupilManagerService(adminBenutzerService pms){
+    public void setPupilManagerService(EinsatzleitsoftwareService pms){
         this.abs = pms;
     }
            
     public Object add(){
-        ben.setId(this.abs.getBenutzerList().indexOf(ben));
+        ben.setId(this.abs.getBenutzerListe().indexOf(ben));
           
-        this.abs.addBenutzer(ben);
-      
-       
-        
+        this.abs.addBenutzer(ben);           
         return null;
     }
     
     public Object save(){
         Benutzer help = null;
-        for(Benutzer p: this.abs.getBenutzerList()){
+        for(Benutzer p: this.abs.getBenutzerListe()){
             if(p.getId() == ben.getId())
                     help = p;
         }
@@ -64,7 +68,7 @@ public class adminBenutzerBean {
             help.setPid(ben.getPid());
         }
         return null;
-    }
+    } 
     
     public Object remove(Benutzer p){
         this.abs.removeBenutzer(p);

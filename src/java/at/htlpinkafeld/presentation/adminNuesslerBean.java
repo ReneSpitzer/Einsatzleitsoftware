@@ -5,46 +5,54 @@
  */
 package at.htlpinkafeld.presentation;
 
-import at.htlpinkafeld.pojo.Benutzer;
+
 import at.htlpinkafeld.pojo.Nüssler;
-import at.htlpinkafeld.service.adminBenutzerService;
-import at.htlpinkafeld.service.adminNuesslerService;
+import at.htlpinkafeld.service.EinsatzleitsoftwareService;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
  *
- * @author alexa
+ * @author alex
  */
 
 @ManagedBean
 @SessionScoped
 public class adminNuesslerBean {
 
-    private adminNuesslerService ans;
+    @ManagedProperty(value="#{einsatzleitsoftwareService}")
+    private EinsatzleitsoftwareService ans;
     
     private Nüssler nus;
+    
     /**
      * Creates a new instance of adminBenutzerBean
      */
+    
+    @PostConstruct
+    public void SetUp(){
+        
+    }
+    
     public adminNuesslerBean() {
            this.nus = new Nüssler();
-           this.ans = new adminNuesslerService();
+           this.ans = new EinsatzleitsoftwareService();
     }
     
     
-    public adminNuesslerService getNüsslerService(){
+    public EinsatzleitsoftwareService getNuesslerService(){
         return ans;
     }
     
-    public void setNuesslerService(adminNuesslerService pms){
+    public void setNuesslerService(EinsatzleitsoftwareService pms){
         this.ans = pms;
     }
            
     public Object add(){
         nus.setId(this.ans.getNüsslerList().indexOf(nus));
-        this.ans.addNüssler(nus);
+        this.ans.addNuessler(nus);
     
         
         return null;
@@ -70,15 +78,15 @@ public class adminNuesslerBean {
     }
     
     public Object remove(Nüssler p){
-        this.ans.removeNüssler(p);
+        this.ans.removeNuessler(p);
         return null;
     }
     
-    public Nüssler getNüssler() {
+    public Nüssler getNuessler() {
         return nus;
     }
 
-    public void setNüssler(Nüssler fz) {
+    public void setNuessler(Nüssler fz) {
         this.nus = fz;
     }
     
