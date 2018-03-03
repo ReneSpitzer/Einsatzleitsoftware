@@ -15,7 +15,7 @@
                         <h:inputText value="#{loginBean.username}" id="username"/>            
                         <h:outputText value="Passwort:"/>            
                         <h:inputSecret value="#{loginBean.password}" id="password"/>
-                        
+                         
                     </p:panelGrid>
                 <p:commandButton   value="Login" action="#{loginBean.doLogin()}" onclick="uebersichtauswahl.xhtml" style="float:left;"/>
                 <p:commandButton  value="Gast-Login" action="#{loginBean.doGastLogin()}" onclick="abgeschlosseneeinsätze.xhtml" style="float:right;"/> 

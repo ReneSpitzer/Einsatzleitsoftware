@@ -28,6 +28,7 @@ public class LoginBean {
     public String password;
     public boolean visibleB=true;
     public boolean visibleLlogin =false;
+    private boolean admin = false;
 
     List<Benutzer> benutzerliste = new ArrayList<>();
 
@@ -40,7 +41,14 @@ public class LoginBean {
      
     }
     
+    public boolean isAdmin() {
+        return admin;
+    }
 
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+    
     public boolean isVisibleB() {
         return visibleB;
     }
