@@ -97,7 +97,7 @@ public abstract class BaseJdbcDao<T extends Identifiable> {
     public void update(T t) {
         try (Connection wCon = ConnectionManager.getInstance().getConnection();
                 PreparedStatement st = getUpdateStatement(wCon, t)) {
-            st.executeUpdate();
+                st.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BaseJdbcDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -108,15 +108,10 @@ public abstract class BaseJdbcDao<T extends Identifiable> {
             return;
         }
         try (Connection con = ConnectionManager.getInstance().getConnection();
-                PreparedStatement stmt = getInsertStatement(con, t);
-                ResultSet genKeys = (stmt.executeUpdate() == 1) ? stmt.getGeneratedKeys() : null) {
-                System.out.println("genkeys: " + genKeys);
-             if (genKeys != null && genKeys.next()) {
-                t.setId(genKeys.getInt(1));
-            }
+                PreparedStatement stmt = getInsertStatement(con, t)){
+                stmt.executeUpdate();
         } catch (SQLException ex) {
-            System.out.println("Error catched here -------------------------");
-            ex.printStackTrace();
+            Logger.getLogger(BaseJdbcDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

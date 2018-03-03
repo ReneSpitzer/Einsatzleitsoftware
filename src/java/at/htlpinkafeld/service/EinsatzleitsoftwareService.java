@@ -7,6 +7,8 @@ package at.htlpinkafeld.service;
 
 import at.htlpinkafeld.infrastructure.BenutzerDao;
 import at.htlpinkafeld.infrastructure.BenutzerJdbcDao;
+import at.htlpinkafeld.infrastructure.CounterDao;
+import at.htlpinkafeld.infrastructure.CounterJdbcDao;
 import at.htlpinkafeld.infrastructure.EigeneinsatzDao;
 import at.htlpinkafeld.infrastructure.EigeneinsatzJdbcDao;
 import at.htlpinkafeld.infrastructure.EinsatzDao;
@@ -26,6 +28,7 @@ import at.htlpinkafeld.infrastructure.PersonJdbcDao;
 import at.htlpinkafeld.infrastructure.ZeitaufzeichnungDao;
 import at.htlpinkafeld.infrastructure.ZeitaufzeichnungJdbcDao;
 import at.htlpinkafeld.pojo.Benutzer;
+import at.htlpinkafeld.pojo.Counter;
 import at.htlpinkafeld.pojo.Eigeneinsatz;
 import at.htlpinkafeld.pojo.Einsatz;
 import at.htlpinkafeld.pojo.Fahrzeuge;
@@ -99,6 +102,9 @@ public class EinsatzleitsoftwareService {
     private ZeitaufzeichnungDao zeitaufzeichnungDao = new ZeitaufzeichnungJdbcDao("zeitaufzeichnung", "zid");
     private List<Zeitaufzeichnung> zeitaufzeichnungList;
     
+    private CounterDao counterDao = new CounterJdbcDao("counter","cid");
+    private List<Counter> counterList;
+    
     public EinsatzleitsoftwareService() {
     //Berni-Code
         fillBenutzerList();
@@ -111,13 +117,14 @@ public class EinsatzleitsoftwareService {
         fillNüsslerList();
         fillPersonList();
         fillZeitaufzeichnungList();
+        fillCounterList();
 
     //Test-Daten-Benutzer
         benutzerListe.add(new Benutzer(1, "Herbert", false, "1234ABC", 1));
         benutzerListe.add(new Benutzer(2, "Rene", false, "renespitzer", 2));
         benutzerListe.add(new Benutzer(2, "f", false, "f", 3));
         //Test-Daten-ArchivierteEinsätze
-        archivierteEinsätze.add(new Einsatz(1, "Pinkafeld", "Meierhofplatz", "1", "Brand löschen",
+        /*archivierteEinsätze.add(new Einsatz(1, "Pinkafeld", "Meierhofplatz", "1", "Brand löschen",
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen", 1));
 
         archivierteEinsätze.add(new Einsatz(2, "Oberwart", "Eo", "7", "Hochwasser",
@@ -141,14 +148,14 @@ public class EinsatzleitsoftwareService {
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2018", "offen", 1), "Brand in der HTL"));
         posteingangEinsaetze.add(new Fremdeinsatz(3, "Fuchs", "FF-Pinkafeld", 1, new Einsatz(1, "Pinkafeld", "Steinermanager", "1", "Keine Ahnung",
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2019", "offen", 1), "Brand in der HTL"));
-        //Test-Daten-Kontakte
+       */ //Test-Daten-Kontakte
        kontaktliste.add(new Kontakt("Hauptlöschfahrzeug","HLF1",010101210));
        kontaktliste.add(new Kontakt("Transportfahrzeug","TLF1",01017));
        kontaktliste.add(new Kontakt("Löschfahrzeug","LLF1",0101332110));
        kontaktliste.add(new Kontakt("Truppentransport","TTL",01513110));
        
        //Berni-Code
-       createEinsatz(new Einsatz("Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
+       /*createEinsatz(new Einsatz("Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen",1));
         this.fillEinsatzList();
         createEinsatz(new Einsatz("Oberwart", "Eo", "7", "Hochwasser", 
@@ -164,9 +171,9 @@ public class EinsatzleitsoftwareService {
                 "Fleck", 5, "LFZ05", "13:05", "27.8.2017", "abgeschlossen", 1));
         this.fillEinsatzList();
         createEinsatz(new Einsatz("Oberloisdorf", "McStrasse", "15", "Brand löschen", 
-                "Spitzer", 6, "LFZ06", "15:03", "25.10.2017", "abgeschlossen", 1));
+                "Spitzer", 6, "LFZ06", "15:03", "25.10.2017", "abgeschlossen", 1));*/
         
-        this.fillEinsatzList();
+       // this.fillEinsatzList();
         
         flist.add(new Fahrzeuge(1, "", "Pinkafeld", "FZ1", 10, 0, "LFZPkfd", 1));
         flist.add(new Fahrzeuge(2, "", "Test", "FZ2", 2, 0, "LFZHb", 1));
@@ -700,6 +707,10 @@ public class EinsatzleitsoftwareService {
     public void fillZeitaufzeichnungList() {
         this.zeitaufzeichnungList = this.zeitaufzeichnungDao.list();
     }
+    
+    public void fillCounterList() {
+        this.counterList = counterDao.list();
+    }
 
     public Einsatz getEinsatz() {
         return einsatz;
@@ -707,5 +718,39 @@ public class EinsatzleitsoftwareService {
 
     public void setEinsatz(Einsatz einsatz) {
         this.einsatz = einsatz;
+    }
+
+    public CounterDao getCounterDao() {
+        return counterDao;
+    }
+
+    public void setCounterDao(CounterDao counterDao) {
+        this.counterDao = counterDao;
+    }
+
+    public List<Counter> getCounterList() {
+        return counterList;
+    }
+
+    public void setCounterList(List<Counter> counterList) {
+        this.counterList = counterList;
+    }
+
+    public void createCounter(Counter c){
+        this.counterDao.create(c);
+    }
+    
+    public Counter findCounterById(int id){
+        return counterDao.read(id);
+    }
+    
+    public void updateCounter(Counter c)
+    {
+        this.counterDao.update(c);
+    }
+    
+    public void deleteCounter(Counter c)
+    {
+        this.counterDao.delete(c);
     }
 }

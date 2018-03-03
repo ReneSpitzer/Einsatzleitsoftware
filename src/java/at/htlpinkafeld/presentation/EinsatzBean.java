@@ -64,7 +64,6 @@ public class EinsatzBean {
     
     public Object newEinsatz(){
         this.einsatz = new Einsatz();
-        this.einsatz.setId(this.einsatzleitsoftwares.getEinsatzlist().size() + 1);
         
         return "einsatzanlegen.xhtml";
     }

@@ -56,12 +56,7 @@ public class Einsatz implements Identifiable{
         this.uhrzeit = uhrzeit;
         this.datum = datum;
         this.e_status = e_status;
-       //this.bid = bid;
-    }
-
-    @Override
-    public int getId() {
-        return eid;
+        this.bid = bid;
     }
 
     @Override
@@ -69,6 +64,11 @@ public class Einsatz implements Identifiable{
         this.eid = id;
     }
 
+    @Override
+    public int getId() {
+        return this.eid;
+    }    
+    
     public String getEort() {
         return eort;
     }
@@ -168,7 +168,7 @@ public class Einsatz implements Identifiable{
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 59 * hash + this.eid;
+        //hash = 59 * hash + this.eid;
         hash = 59 * hash + Objects.hashCode(this.eort);
         hash = 59 * hash + Objects.hashCode(this.estraße);
         hash = 59 * hash + Objects.hashCode(this.hausnr);
@@ -225,6 +225,4 @@ public class Einsatz implements Identifiable{
         }
         return true;
     }
-    
-    
 }

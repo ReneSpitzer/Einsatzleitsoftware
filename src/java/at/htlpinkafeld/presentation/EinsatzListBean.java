@@ -5,6 +5,7 @@
  */
 package at.htlpinkafeld.presentation;
 
+import at.htlpinkafeld.pojo.Counter;
 import at.htlpinkafeld.pojo.Einsatz;
 import at.htlpinkafeld.pojo.Fahrzeuge;
 import at.htlpinkafeld.service.EinsatzleitsoftwareService;
@@ -297,6 +298,12 @@ public class EinsatzListBean {
     
     public String saveNewEinsatz(Einsatz e){
  
+        Counter c = this.einsatzleitsoftwares.findCounterById(1);
+        int newCnt = c.getCnt() + 1;
+        c.setCnt(newCnt);
+        this.einsatzleitsoftwares.updateCounter(c);
+        e.setId(newCnt);
+        
         this.einsatzleitsoftwares.createEinsatz(e);
         this.einsatzleitsoftwares.fillEinsatzList();
         einsatzlist.add(e);
