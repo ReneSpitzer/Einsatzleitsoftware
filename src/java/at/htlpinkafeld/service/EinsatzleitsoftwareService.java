@@ -783,3 +783,4 @@ public class EinsatzleitsoftwareService {
         this.nüsslerList.remove(p);
     }
 }
+
