@@ -45,11 +45,12 @@ public class BenutzerJdbcDao extends BaseJdbcDao<Benutzer> implements BenutzerDa
 
     @Override
     protected PreparedStatement getInsertStatement(Connection c, Benutzer t) throws SQLException {
-        String s = "INSERT INTO " + getTablename() + " (username, admin, password) VALUES (?,?,?)";
+        String s = "INSERT INTO " + getTablename() + " (bid, username, admin, password) VALUES (?,?,?,?)";
         PreparedStatement stmt = c.prepareStatement(s, Statement.RETURN_GENERATED_KEYS);
-        stmt.setString(1, t.getUsername());
-        stmt.setBoolean(2, t.isAdmin());
-        stmt.setString(3, t.getPassword());
+        stmt.setInt(1, t.getId());
+        stmt.setString(2, t.getUsername());
+        stmt.setBoolean(3, t.isAdmin());
+        stmt.setString(4, t.getPassword());
         return stmt;
     }
 }

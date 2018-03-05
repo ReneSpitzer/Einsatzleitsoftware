@@ -17,29 +17,29 @@ public class Fahrzeuge implements Identifiable{
     private String ort;
     private String type;
     private int anzPers;
-    private int status; //0->verfügbar, 1->nicht verfügbar
+    private boolean verfuegbar;
     private String name;
     private Benutzer benutzer;
     private int bid;
 
     public Fahrzeuge(){}
     
-    public Fahrzeuge(String organisation, String ort, String type, int anzPers, int status, String name, int bid) {
+    public Fahrzeuge(String organisation, String ort, String type, int anzPers, boolean verfuegbar, String name, int bid) {
         this.organisation = organisation;
         this.ort = ort;
         this.type = type;
         this.anzPers = anzPers;
-        this.status = status;
+        this.verfuegbar = verfuegbar;
         this.name = name;
     }
     
-    public Fahrzeuge(int fid, String organisation, String ort, String type, int anzPers, int status, String name, int bid) {
+    public Fahrzeuge(int fid, String organisation, String ort, String type, int anzPers, boolean verfuegbar, String name, int bid) {
         this.fid = fid;
         this.organisation = organisation;
         this.ort = ort;
         this.type = type;
         this.anzPers = anzPers;
-        this.status = status;
+        this.verfuegbar = verfuegbar;
         this.name = name;
     }
 
@@ -85,12 +85,12 @@ public class Fahrzeuge implements Identifiable{
         this.anzPers = anzPers;
     }
 
-    public int getStatus() {
-        return status;
+    public boolean isVerfuegbar() {
+        return verfuegbar;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setVerfuegbar(boolean verfuegbar) {
+        this.verfuegbar = verfuegbar;
     }
 
     public String getName() {
@@ -125,7 +125,7 @@ public class Fahrzeuge implements Identifiable{
         hash = 97 * hash + Objects.hashCode(this.ort);
         hash = 97 * hash + Objects.hashCode(this.type);
         hash = 97 * hash + this.anzPers;
-        hash = 97 * hash + this.status;
+        hash = 97 * hash + Objects.hashCode(this.verfuegbar);
         hash = 97 * hash + Objects.hashCode(this.name);
         return hash;
     }
@@ -148,7 +148,7 @@ public class Fahrzeuge implements Identifiable{
         if (this.anzPers != other.anzPers) {
             return false;
         }
-        if (this.status != other.status) {
+        if (this.verfuegbar != other.verfuegbar) {
             return false;
         }
         if (!Objects.equals(this.organisation, other.organisation)) {
@@ -168,6 +168,6 @@ public class Fahrzeuge implements Identifiable{
 
     @Override
     public String toString() {
-        return "Fahrzeug{" + "fid=" + fid + ", organisation=" + organisation + ", ort=" + ort + ", type=" + type + ", anzPers=" + anzPers + ", status=" + status + ", name=" + name + '}';
+        return "Fahrzeug{" + "fid=" + fid + ", organisation=" + organisation + ", ort=" + ort + ", type=" + type + ", anzPers=" + anzPers + ", status=" + verfuegbar + ", name=" + name + '}';
     }
 }

@@ -45,12 +45,13 @@ public class EigeneinsatzJdbcDao extends BaseJdbcDao<Eigeneinsatz> implements Ei
 
     @Override
     protected PreparedStatement getInsertStatement(Connection c, Eigeneinsatz t) throws SQLException {
-        String s = "INSERT INTO " + getTablename() + " (absender, empfaenger, zusatztext, eid) VALUES (?,?,?,?)";
+        String s = "INSERT INTO " + getTablename() + " (eeid, absender, empfaenger, zusatztext, eid) VALUES (?,?,?,?,?)";
         PreparedStatement stmt = c.prepareStatement(s, Statement.RETURN_GENERATED_KEYS);
-        stmt.setString(1, t.getAbsender());
-        stmt.setString(2, t.getEmpfaenger());
-        stmt.setString(3, t.getZusatztext());
-        stmt.setInt(4, t.getEid());
+        stmt.setInt(1, t.getId());
+        stmt.setString(2, t.getAbsender());
+        stmt.setString(3, t.getEmpfaenger());
+        stmt.setString(4, t.getZusatztext());
+        stmt.setInt(5, t.getEid());
         return stmt;
     }
 }

@@ -87,6 +87,14 @@ public class Kontakt implements Identifiable{
         this.kid = kid;
     }
 
+    public int getEid() {
+        return eid;
+    }
+
+    public void setEid(int eid) {
+        this.eid = eid;
+    }
+
     public Einsatz getEinsatz() {
         return einsatz;
     }

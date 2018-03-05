@@ -6,7 +6,7 @@
 package at.htlpinkafeld.presentation;
 
 
-import at.htlpinkafeld.pojo.Nüssler;
+import at.htlpinkafeld.pojo.Nuessler;
 import at.htlpinkafeld.service.EinsatzleitsoftwareService;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -25,7 +25,7 @@ public class adminNuesslerBean {
     @ManagedProperty(value="#{einsatzleitsoftwareService}")
     private EinsatzleitsoftwareService ans;
     
-    private Nüssler nus;
+    private Nuessler nus;
     
     /**
      * Creates a new instance of adminBenutzerBean
@@ -37,7 +37,7 @@ public class adminNuesslerBean {
     }
     
     public adminNuesslerBean() {
-           this.nus = new Nüssler();
+           this.nus = new Nuessler();
            this.ans = new EinsatzleitsoftwareService();
     }
     
@@ -59,43 +59,39 @@ public class adminNuesslerBean {
     }
     
     public Object save(){
-        Nüssler help = null;
-        for(Nüssler p: this.ans.getNüsslerList()){
-            if(p.getId() == nus.getId() && p.getUNnr() == nus.getUNnr())
+        Nuessler help = null;
+        for(Nuessler p: this.ans.getNüsslerList()){
+            if(p.getId() == nus.getId() && p.getUnnr() == nus.getUnnr())
                     help = p;
         }
         
         if(help != null){
             help.setId(nus.getId());
-            help.setUNnr(nus.getUNnr());
+            help.setUnnr(nus.getUnnr());
             help.setMerkblattnr(nus.getMerkblattnr());
             help.setStoffname(nus.getStoffname());
-            help.setRadius_innen(nus.getRadius_innen());
-            help.setRadius_außen(nus.getRadius_außen());
             help.setInfo(nus.getInfo());
         }
         return null;
     }
     
-    public Object remove(Nüssler p){
+    public Object remove(Nuessler p){
         this.ans.removeNuessler(p);
         return null;
     }
     
-    public Nüssler getNuessler() {
+    public Nuessler getNuessler() {
         return nus;
     }
 
-    public void setNuessler(Nüssler fz) {
+    public void setNuessler(Nuessler fz) {
         this.nus = fz;
     }
     
-    public Object edit(Nüssler p){
+    public Object edit(Nuessler p){
         nus.setId(p.getId());
-        nus.setUNnr(p.getUNnr());
+        nus.setUnnr(p.getUnnr());
         nus.setStoffname(p.getStoffname());
-        nus.setRadius_innen(p.getRadius_innen());
-        nus.setRadius_außen(p.getRadius_außen());
         nus.setMerkblattnr(p.getMerkblattnr());
         nus.setInfo(p.getInfo());
         return null;

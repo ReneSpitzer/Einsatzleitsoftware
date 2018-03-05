@@ -67,7 +67,7 @@ public class adminFahrzeugeBean {
             help.setOrt(kfz.getOrt());
             help.setType(kfz.getType());
             help.setAnzPers(kfz.getAnzPers());
-            help.setStatus(kfz.getStatus());
+            help.setVerfuegbar(kfz.isVerfuegbar());
             help.setName(kfz.getName());
         }
         return null;
@@ -91,7 +91,7 @@ public class adminFahrzeugeBean {
         kfz.setOrt(p.getOrt());
         kfz.setType(p.getType());
         kfz.setAnzPers(p.getAnzPers());
-        kfz.setStatus(p.getStatus());
+        kfz.setVerfuegbar(p.isVerfuegbar());
         kfz.setName(p.getName());
         return null;
     }

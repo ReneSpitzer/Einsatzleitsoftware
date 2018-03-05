@@ -35,7 +35,7 @@ import at.htlpinkafeld.pojo.Fahrzeuge;
 import at.htlpinkafeld.pojo.Fremdeinsatz;
 import at.htlpinkafeld.pojo.Funkgeraet;
 import at.htlpinkafeld.pojo.Kontakt;
-import at.htlpinkafeld.pojo.Nüssler;
+import at.htlpinkafeld.pojo.Nuessler;
 import at.htlpinkafeld.pojo.Person;
 import at.htlpinkafeld.pojo.Zeitaufzeichnung;
 import java.util.ArrayList;
@@ -91,7 +91,7 @@ public class EinsatzleitsoftwareService {
     private List<Kontakt> kontaktList;
     
     private NüsslerDao nüsslerDao = new NüsslerJdbcDao("nüssler", "nid");
-    private List<Nüssler> nüsslerList;
+    private List<Nuessler> nüsslerList;
     
     private PersonDao personDao = new PersonJdbcDao("person", "pid");
     private List<Person> personList;
@@ -121,7 +121,7 @@ public class EinsatzleitsoftwareService {
         benutzerListe.add(new Benutzer(2, "Rene", false, "renespitzer", 2));
         benutzerListe.add(new Benutzer(2, "f", false, "f", 3));
         //Test-Daten-ArchivierteEinsätze
-        /*archivierteEinsätze.add(new Einsatz(1, "Pinkafeld", "Meierhofplatz", "1", "Brand löschen",
+        archivierteEinsätze.add(new Einsatz(1, "Pinkafeld", "Meierhofplatz", "1", "Brand löschen",
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen", 1));
 
         archivierteEinsätze.add(new Einsatz(2, "Oberwart", "Eo", "7", "Hochwasser",
@@ -145,35 +145,40 @@ public class EinsatzleitsoftwareService {
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2018", "offen", 1), "Brand in der HTL"));
         posteingangEinsaetze.add(new Fremdeinsatz(3, "Fuchs", "FF-Pinkafeld", 1, new Einsatz(1, "Pinkafeld", "Steinermanager", "1", "Keine Ahnung",
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2019", "offen", 1), "Brand in der HTL"));
-       */ //Test-Daten-Kontakte
+        //Test-Daten-Kontakte
        kontaktliste.add(new Kontakt("Hauptlöschfahrzeug","HLF1",010101210));
        kontaktliste.add(new Kontakt("Transportfahrzeug","TLF1",01017));
        kontaktliste.add(new Kontakt("Löschfahrzeug","LLF1",0101332110));
        kontaktliste.add(new Kontakt("Truppentransport","TTL",01513110));
        
        //Berni-Code
-       /*createEinsatz(new Einsatz("Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
+       einsatzlist.add(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen",1));
-        this.fillEinsatzList();
-        createEinsatz(new Einsatz("Oberwart", "Eo", "7", "Hochwasser", 
+        //this.fillEinsatzList();
+        einsatzlist.add(new Einsatz(2,"Oberwart", "Eo", "7", "Hochwasser", 
                 "Prunner", 2, "LFZ02", "14:06", "20.11.2017", "offen", 1));
-        this.fillEinsatzList();
-        createEinsatz(new Einsatz("Hartberg", "Roseggergasse", "2", "Katze von Baum retten", 
+        //this.fillEinsatzList();
+        einsatzlist.add(new Einsatz(3,"Hartberg", "Roseggergasse", "2", "Katze von Baum retten", 
                 "Altmann", 3, "LFZ03", "12:06", "20.1.2018", "in Arbeit", 1));
-        this.fillEinsatzList();
-        createEinsatz(new Einsatz("Test", "Testgasse", "7", "Hochwasser", 
+        //this.fillEinsatzList();
+        einsatzlist.add(new Einsatz(4,"Test", "Testgasse", "7", "Hochwasser", 
                 "Maierhofer", 4, "LFZ04", "4:27", "2.11.2017", "in Arbeit", 1));
-        this.fillEinsatzList();
-        createEinsatz(new Einsatz("Güssing", "gu", "1a", "Lkw Unfall ", 
+        //this.fillEinsatzList();
+        einsatzlist.add(new Einsatz(5,"Güssing", "gu", "1a", "Lkw Unfall ", 
                 "Fleck", 5, "LFZ05", "13:05", "27.8.2017", "abgeschlossen", 1));
-        this.fillEinsatzList();
-        createEinsatz(new Einsatz("Oberloisdorf", "McStrasse", "15", "Brand löschen", 
-                "Spitzer", 6, "LFZ06", "15:03", "25.10.2017", "abgeschlossen", 1));*/
+        //this.fillEinsatzList();
+        einsatzlist.add(new Einsatz(6,"Oberloisdorf", "McStrasse", "15", "Brand löschen", 
+                "Spitzer", 6, "LFZ06", "15:03", "25.10.2017", "abgeschlossen", 1));
         
        // this.fillEinsatzList();
         
-        flist.add(new Fahrzeuge(1, "", "Pinkafeld", "FZ1", 10, 0, "LFZPkfd", 1));
-        flist.add(new Fahrzeuge(2, "", "Test", "FZ2", 2, 0, "LFZHb", 1));
+        flist.add(new Fahrzeuge(1, "", "Pinkafeld", "FZ1", 10, true, "LFZPkfd", 1));
+        flist.add(new Fahrzeuge(2, "", "Pinkafeld", "FZ2", 2, true, "LFZPkfd", 1));
+        flist.add(new Fahrzeuge(3, "", "Test", "FZ3", 2, false, "LFZHb", 1));
+        flist.add(new Fahrzeuge(4, "", "Güssing", "FZ4", 2, false, "LFZHb", 1));
+        flist.add(new Fahrzeuge(5, "", "Hartberg", "FZ5", 2, true, "LFZHb", 1));
+        
+        
         
         statuslist.add("offen");
         statuslist.add("in Arbeit");
@@ -569,28 +574,28 @@ public class EinsatzleitsoftwareService {
         this.kontaktDao.delete(k);
     }
 
-    public List<Nüssler> getNüsslerList() {
+    public List<Nuessler> getNüsslerList() {
         return nüsslerList;
     }
 
-    public void setNüsslerList(List<Nüssler> nüsslerList) {
+    public void setNüsslerList(List<Nuessler> nüsslerList) {
         this.nüsslerList = nüsslerList;
     }
 
-    public void createNüssler(Nüssler n){
+    public void createNüssler(Nuessler n){
         this.nüsslerDao.create(n);
     }
     
-    public Nüssler findNüsslerById(int id){
+    public Nuessler findNüsslerById(int id){
         return nüsslerDao.read(id);
     }
     
-    public void updateNüssler(Nüssler n)
+    public void updateNüssler(Nuessler n)
     {
         this.nüsslerDao.update(n);
     }
     
-    public void deleteNüssler(Nüssler n)
+    public void deleteNüssler(Nuessler n)
     {
         this.nüsslerDao.delete(n);
     }
@@ -775,11 +780,11 @@ public class EinsatzleitsoftwareService {
         return this.nüsslerList;
     }
 
-    public void addNuessler(Nüssler nus) {
+    public void addNuessler(Nuessler nus) {
         this.nüsslerList.add(nus);
     }
 
-    public void removeNuessler(Nüssler p) {
+    public void removeNuessler(Nuessler p) {
         this.nüsslerList.remove(p);
     }
 }

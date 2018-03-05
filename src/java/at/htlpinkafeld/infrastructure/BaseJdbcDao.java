@@ -104,9 +104,6 @@ public abstract class BaseJdbcDao<T extends Identifiable> {
     }
 
     public void create(T t) {
-        if (t.getId() >= 0) {
-            return;
-        }
         try (Connection con = ConnectionManager.getInstance().getConnection();
                 PreparedStatement stmt = getInsertStatement(con, t)){
                 stmt.executeUpdate();

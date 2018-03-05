@@ -44,10 +44,13 @@ public class FunkgeraetJdbcDao extends BaseJdbcDao<Funkgeraet> implements Funkge
 
     @Override
     protected PreparedStatement getInsertStatement(Connection c, Funkgeraet t) throws SQLException {
-        String s = "INSERT INTO " + getTablename() + " (bez, nr, fid, kid) VALUES (?,?,?,?)";
+        String s = "INSERT INTO " + getTablename() + " (fuid, bez, nr, fid, kid) VALUES (?,?,?,?,?)";
         PreparedStatement stmt = c.prepareStatement(s, Statement.RETURN_GENERATED_KEYS);
-        stmt.setString(1, t.getBez());
-        stmt.setInt(2, t.getNr());
+        stmt.setInt(1, t.getId());
+        stmt.setString(2, t.getBez());
+        stmt.setInt(3, t.getNr());
+        stmt.setInt(4, t.getFid());
+        stmt.setInt(5, t.getKid());
         return stmt;
     }
 }

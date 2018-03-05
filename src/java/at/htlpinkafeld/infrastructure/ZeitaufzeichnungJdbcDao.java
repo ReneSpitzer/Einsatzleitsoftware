@@ -45,12 +45,13 @@ public class ZeitaufzeichnungJdbcDao extends BaseJdbcDao<Zeitaufzeichnung> imple
 
     @Override
     protected PreparedStatement getInsertStatement(Connection c, Zeitaufzeichnung t) throws SQLException {
-        String s = "INSERT INTO " + getTablename() + " (aenderungszeitpunkt, aenderung, eid, bid) VALUES (?,?,?,?)";
+        String s = "INSERT INTO " + getTablename() + " (zid, aenderungszeitpunkt, aenderung, eid, bid) VALUES (?,?,?,?,?)";
         PreparedStatement stmt = c.prepareStatement(s, Statement.RETURN_GENERATED_KEYS);
-        stmt.setDate(1, t.getAenderungszeitpunkt());
-        stmt.setString(2, t.getAenderung());
-        stmt.setInt(3, t.getEid());
-        stmt.setInt(4, t.getBid());
+        stmt.setInt(1, t.getId());
+        stmt.setDate(2, t.getAenderungszeitpunkt());
+        stmt.setString(3, t.getAenderung());
+        stmt.setInt(4, t.getEid());
+        stmt.setInt(5, t.getBid());
         return stmt;
     }
 }

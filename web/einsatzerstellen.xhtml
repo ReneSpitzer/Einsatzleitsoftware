@@ -32,10 +32,10 @@
                             <f:selectItems value="#{einsatzListBean.statuslist}" var="status" 
                                    itemValue="#{status}" itemLabel="#{status}" />                            
                         </h:selectOneMenu>                         
-                    </p:panelGrid>
-                <p:commandButton  value="Löschen" action="#{einsatzListBean.delete(einsatzBean.einsatz)}" onclick="grundmodul.xhtml" style="float:left;" />      
-                <p:commandButton value="Abbrechen" action="/grundmodul.xhtml" immediate="true" style="float:right;"/>
-                <p:commandButton  value="Sichern" action="#{einsatzListBean.saveEditEinsatz(einsatzBean.einsatz)}" style="float:right;" />
+                    </p:panelGrid>               
+                <p:commandButton  value="Sichern" action="#{einsatzListBean.saveEditEinsatz(einsatzBean.einsatz)}" style="float:left;" />
+                <p:commandButton value="Abbrechen" action="/grundmodul.xhtml" immediate="true" style="float:left;"/>
+                <p:commandButton  value="Löschen" action="#{einsatzListBean.delete(einsatzBean.einsatz)}" onclick="grundmodul.xhtml" style="float:right;" />      
             </p:dialog>
         </h:form> 
     </ui:define>

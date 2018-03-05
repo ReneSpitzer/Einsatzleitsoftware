@@ -5,7 +5,7 @@
  */
 package at.htlpinkafeld.service;
 
-import at.htlpinkafeld.pojo.Nüssler;
+import at.htlpinkafeld.pojo.Nuessler;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,29 +14,29 @@ import java.util.List;
  * @author alexa
  */
 public class adminNuesslerService {
-    private List<Nüssler> nList;
+    private List<Nuessler> nList;
     
     public adminNuesslerService(){
          this.nList = new ArrayList<>();
     }
     
-    public List<Nüssler> getNüsslerList() {
+    public List<Nuessler> getNüsslerList() {
         return nList;
     }
 
-    public void setNüsslerList(List<Nüssler> bList2){
+    public void setNüsslerList(List<Nuessler> bList2){
         this.nList = bList2;
     }
     
-    public void addNüssler(Nüssler f){
+    public void addNüssler(Nuessler f){
         this.nList.add(f);
     }
     
-    public void removeNüssler(Nüssler f){
+    public void removeNüssler(Nuessler f){
         this.nList.remove(f);
     }
     
-    public Nüssler getNüssler(){
+    public Nuessler getNüssler(){
         return this.nList.get(this.nList.size()-1);
     }
 }

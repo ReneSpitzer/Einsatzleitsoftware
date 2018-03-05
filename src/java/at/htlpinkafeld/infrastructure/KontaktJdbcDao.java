@@ -36,18 +36,22 @@ public class KontaktJdbcDao extends BaseJdbcDao<Kontakt> implements KontaktDao {
         stmt.setString(1, t.getKname());
         stmt.setString(2, t.getBez());
         stmt.setLong(3, t.getFunknr());
-        stmt.setInt(4, t.getId());
+        stmt.setInt(4, t.getEid());
+        stmt.setInt(5, t.getId());
         return stmt;
 
     }
 
     @Override
     protected PreparedStatement getInsertStatement(Connection c, Kontakt t) throws SQLException {
-        String s = "INSERT INTO " + getTablename() + " (kname, bez, funknr, eid) VALUES (?,?,?,?)";
+        String s = "INSERT INTO " + getTablename() + " (kid, kname, bez, funknr, eid) VALUES (?,?,?,?,?)";
         PreparedStatement stmt = c.prepareStatement(s, Statement.RETURN_GENERATED_KEYS);
+        stmt.setInt(5, t.getId());
         stmt.setString(1, t.getKname());
         stmt.setString(2, t.getBez());
         stmt.setLong(3, t.getFunknr());
+        stmt.setInt(5, t.getEid());
+        
         return stmt;
     }
 }
