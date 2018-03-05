@@ -22,4 +22,14 @@
         <managed-bean-class>at.htlpinkafeld.presentation.adminNuesslerBean</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>karteBean</managed-bean-name>
+        <managed-bean-class>at.htlpinkafeld.presentation.karteBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>nuesslerBerechnungsBean</managed-bean-name>
+        <managed-bean-class>at.htlpinkafeld.presentation.NuesslerBerechnungsBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
 </faces-config>

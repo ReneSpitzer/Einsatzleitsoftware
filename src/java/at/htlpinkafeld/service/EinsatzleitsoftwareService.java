@@ -138,6 +138,7 @@ public class EinsatzleitsoftwareService {
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2018", "offen", 1), "Brand in der HTL"));
         posteingangEinsaetze.add(new Fremdeinsatz(3, "Fuchs", "FF-Pinkafeld", 1, new Einsatz(1, "Pinkafeld", "Steinermanager", "1", "Keine Ahnung",
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2019", "offen", 1), "Brand in der HTL"));
+        
         //Test-Daten-Kontakte
        kontaktliste.add(new Kontakt("Hauptlöschfahrzeug","HLF1",010101210));
        kontaktliste.add(new Kontakt("Transportfahrzeug","TLF1",01017));
@@ -162,11 +163,10 @@ public class EinsatzleitsoftwareService {
         this.fillEinsatzList();
         createEinsatz(new Einsatz("Oberloisdorf", "McStrasse", "15", "Brand löschen", 
                 "Spitzer", 6, "LFZ06", "15:03", "25.10.2017", "abgeschlossen", 1));
-        
         this.fillEinsatzList();
         
-        flist.add(new Fahrzeuge(1, "", "Pinkafeld", "FZ1", 10, 0, "LFZPkfd", 1));
-        flist.add(new Fahrzeuge(2, "", "Test", "FZ2", 2, 0, "LFZHb", 1));
+        flist.add(new Fahrzeuge(1, "FF", "Pinkafeld", "FZ1", 10, 0, "LFZPkfd", 1));
+        flist.add(new Fahrzeuge(2, "FF", "Test", "FZ2", 2, 0, "LFZHb", 1));
         
         statuslist.add("offen");
         statuslist.add("in Arbeit");
@@ -716,14 +716,6 @@ public class EinsatzleitsoftwareService {
 
     public void addBenutzer(Benutzer ben) {
         this.benutzerListe.add(ben);
-    }
-
-    public void addFahrzeug(Fahrzeuge kfz) {
-        this.fahrzeugeList.add(kfz);
-    }
-
-    public void removeFahrzeug(Fahrzeuge p) {
-        this.fahrzeugeList.remove(p);
     }
 
     public Object getNuesslerList() {

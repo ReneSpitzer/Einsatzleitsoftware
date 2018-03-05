@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Informations:
+    Koordinaten Pinkafeld: 47.370875, 16.124291
+    Google Maps API-Key: AIzaSyDt8qMzVMYYENoIQeiLzzyCTDXva51m6yg
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    
+    <h:head>
+      
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDt8qMzVMYYENoIQeiLzzyCTDXva51m6yg" 
+                type="text/javascript">
+        </script>
+       
+        
+    </h:head>
+    <h:body>
+        
+            <p:growl id="growl" life="3000" />
+            
+            <p:gmap center="47.370875, 16.124291" zoom="13" type="HYBRID" style="width:1850px;height:900px"  model="#{karteBean.simpleModel}">
+                <p:ajax event="overlaySelect" listener="#{karteBean.onCircleSelect}" update="growl" />
+            </p:gmap>
+                
+    </h:body>
+</html>

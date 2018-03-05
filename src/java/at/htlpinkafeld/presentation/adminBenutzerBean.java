@@ -7,6 +7,8 @@ package at.htlpinkafeld.presentation;
 
 import at.htlpinkafeld.pojo.Benutzer;
 import at.htlpinkafeld.service.EinsatzleitsoftwareService;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -23,19 +25,21 @@ public class adminBenutzerBean {
     @ManagedProperty(value="#{einsatzleitsoftwareService}")
     private EinsatzleitsoftwareService abs = new EinsatzleitsoftwareService();
     
-    private Benutzer ben;
+    private Benutzer ben = new Benutzer();
+    private List<Benutzer> bList = new ArrayList<>();
     /**
      * Creates a new instance of adminBenutzerBean
      */
     
     @PostConstruct
     public void SetUp(){
-        
+        //this.bList = this.abs.getBenutzerListe();
     }
     
     public adminBenutzerBean() {
-        this.ben = new Benutzer();
-        //this.abs = new EinsatzleitsoftwareService();
+        //this.ben = new Benutzer();
+        this.abs = new EinsatzleitsoftwareService();
+        this.bList = this.abs.getBenutzerListe();
     }
         
     public EinsatzleitsoftwareService getBenutzerService(){
@@ -47,17 +51,22 @@ public class adminBenutzerBean {
     }
            
     public Object add(){
-        ben.setId(this.abs.getBenutzerListe().indexOf(ben));
+        this.ben.setId(this.bList.size()+1);
           
-        this.abs.addBenutzer(ben);           
+        this.abs.addBenutzer(ben);        
+        
+        this.ben = new Benutzer();
         return null;
     }
     
     public Object save(){
         Benutzer help = null;
+        int i = -1;
         for(Benutzer p: this.abs.getBenutzerListe()){
             if(p.getId() == ben.getId())
                     help = p;
+            else
+                i++;
         }
         
         if(help != null){
@@ -66,6 +75,8 @@ public class adminBenutzerBean {
             help.setAdmin(ben.isAdmin());
             help.setPassword(ben.getPassword());
             help.setPid(ben.getPid());
+            
+            this.bList.set(i, help);
         }
         return null;
     } 
@@ -91,4 +102,14 @@ public class adminBenutzerBean {
         ben.setPid(p.getPid());
         return null;
     }
+
+    public List<Benutzer> getbList() {
+        return bList;
+    }
+
+    public void setbList(List<Benutzer> bList) {
+        this.bList = bList;
+    }
+    
+    
 }

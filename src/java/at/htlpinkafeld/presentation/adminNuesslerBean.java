@@ -8,6 +8,8 @@ package at.htlpinkafeld.presentation;
 
 import at.htlpinkafeld.pojo.Nüssler;
 import at.htlpinkafeld.service.EinsatzleitsoftwareService;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -23,9 +25,10 @@ import javax.faces.bean.SessionScoped;
 public class adminNuesslerBean {
 
     @ManagedProperty(value="#{einsatzleitsoftwareService}")
-    private EinsatzleitsoftwareService ans;
+    EinsatzleitsoftwareService ans;
     
-    private Nüssler nus;
+    private Nüssler nus = new Nüssler();
+    private List<Nüssler> nList = new ArrayList<>();
     
     /**
      * Creates a new instance of adminBenutzerBean
@@ -33,12 +36,13 @@ public class adminNuesslerBean {
     
     @PostConstruct
     public void SetUp(){
-        
+        //this.nList = this.ans.getNüsslerList();
     }
     
     public adminNuesslerBean() {
-           this.nus = new Nüssler();
+           //this.nus = new Nüssler();
            this.ans = new EinsatzleitsoftwareService();
+           this.nList = this.ans.getNüsslerList();
     }
     
     
@@ -51,18 +55,21 @@ public class adminNuesslerBean {
     }
            
     public Object add(){
-        nus.setId(this.ans.getNüsslerList().indexOf(nus));
+        nus.setId(this.nList.size()+1);
         this.ans.addNuessler(nus);
     
-        
+        this.nus= new Nüssler();
         return null;
     }
     
     public Object save(){
         Nüssler help = null;
+        int i = -1;
         for(Nüssler p: this.ans.getNüsslerList()){
             if(p.getId() == nus.getId() && p.getUNnr() == nus.getUNnr())
                     help = p;
+            else 
+                  i++;
         }
         
         if(help != null){
@@ -73,6 +80,8 @@ public class adminNuesslerBean {
             help.setRadius_innen(nus.getRadius_innen());
             help.setRadius_außen(nus.getRadius_außen());
             help.setInfo(nus.getInfo());
+            
+            this.nList.set(i, help);
         }
         return null;
     }
@@ -100,5 +109,15 @@ public class adminNuesslerBean {
         nus.setInfo(p.getInfo());
         return null;
     }
+
+    public List<Nüssler> getnList() {
+        return nList;
+    }
+
+    public void setnList(List<Nüssler> nList) {
+        this.nList = nList;
+    }
+    
+    
     
 }

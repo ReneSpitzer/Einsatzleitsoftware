@@ -21,30 +21,28 @@ and open the template in the editor.
                 <p:layout fullPage="true">
              
                         <p:growl id="msgs" showDetail="true" />
- 
-                        <h2 style="margin-top:0">Bearbeitungsmodus</h2>
                         <p:tabView>
+                            
+                            <!--Fahrzeuge                                       -->
                             <p:tab title="Fahrzeuge">
                                 <h:form id="reg1Form">                                 
                                     <h:panelGrid id="regGrid" columns ="2"> 
                                         <h:outputLabel for="inpOrg" value="Organisation" />
-                                            <h:inputText id="inpOrg" value="#{adminFahrzeugeBean.fahrzeug.organisation}" required="true"/> 
+                                        <h:inputText id="inpOrg" value="#{adminFahrzeugeBean.fahrzeug.organisation}" required="true"/> 
                                         <h:outputLabel for="inpOrt" value="Ort" />
                                             <h:inputText id="inpOrt" value="#{adminFahrzeugeBean.fahrzeug.ort}" required="true"/> 
                                         <h:outputLabel for="inpType" value="Typ"/>
                                             <h:inputText id="inpType" value="#{adminFahrzeugeBean.fahrzeug.type}" required="true"/>          
                                         <h:outputLabel for="inpAPers" value="Anzahl der Personen"/>
-                                        <h:inputText id="inpAPers" value="#{adminFahrzeugeBean.fahrzeug.anzPers}"/> 
-                                        <h:outputLabel for="inpStat" value="Status"/>
-                                            <h:inputText id="inpStat" value="#{adminFahrzeugeBean.fahrzeug.status}" required="true"/>          
+                                        <h:inputText id="inpAPers" value="#{adminFahrzeugeBean.fahrzeug.anzPers}" required="true"/>       
                                         <h:outputLabel for="inpName" value="Name des Fahrzeugs"/>
-                                            <h:inputText id="inpName" value="#{adminFahrzeugeBean.fahrzeug.name}" required="true"/> 
+                                        <h:inputText id="inpName" value="#{adminFahrzeugeBean.fahrzeug.name}" required="true"/> 
                                             
-                                        <h:commandButton value="New" action="#{adminFahrzeugeBean.add()}"/>
-                                        <h:commandButton value="Save" action="#{adminFahrzeugeBean.save()}"/>
+                                        <h:commandButton value="Neu" action="#{adminFahrzeugeBean.add()}"/>
+                                        <h:commandButton value="Ändern" action="#{adminFahrzeugeBean.save()}"/>
                                     </h:panelGrid> 
             
-                                    <p:dataTable var="pup" value="#{adminFahrzeugeBean.fahrzeugeService.flist}" scrollable="true" >
+                                    <p:dataTable var="far" value="#{adminFahrzeugeBean.fList}" scrollable="true" >
                                         <f:facet name="header">
                                             <h:outputText value="Fahrzeugliste"/>
                                         </f:facet>
@@ -53,48 +51,49 @@ and open the template in the editor.
                                             <f:facet name="header">
                                                 <h:outputText value="Organisation"/>
                                             </f:facet>
-                                                <h:outputText value="#{pup.organisation}"/>
+                                            <h:outputText value="#{far.organisation}"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
                                                  <h:outputText value="Ort"/>
                                             </f:facet>
-                                            <h:outputText value="#{pup.ort}"/>
+                                            <h:outputText value="#{far.ort}"/>
                                         </p:column>
                 
                                         <p:column>
                                             <f:facet name="header">
                                                  <h:outputText value="Typ"/>
                                             </f:facet>
-                                            <h:outputText value="#{pup.type}"/>
+                                            <h:outputText value="#{far.type}"/>
                                         </p:column>
 
                                         <p:column>
                                             <f:facet name="header">
                                                  <h:outputText value="Mannschaft"/>
                                             </f:facet>
-                                            <h:outputText value="#{pup.anzPers}"/>
+                                            <h:outputText value="#{far.anzPers}"/>
                                         </p:column>
                                         
                                         <p:column>
                                             <f:facet name="header">
                                                  <h:outputText value="Name"/>
                                             </f:facet>
-                                            <h:outputText value="#{pup.name}"/>
+                                            <h:outputText value="#{far.name}"/>
                                         </p:column>
 
                                          <p:column>
-                                               <h:commandLink value="edit" action="#{adminFahrzeugeBean.edit(pup)}"/>
+                                               <h:commandLink value="edit" action="#{adminFahrzeugeBean.edit(far)}"/>
                                         </p:column>
 
                                         <p:column>
-                                               <h:commandLink value="remove" action="#{adminFahrzeugeBean.remove(pup)}"/>
+                                               <h:commandLink value="remove" action="#{adminFahrzeugeBean.remove(far)}"/>
                                         </p:column>
 
                                     </p:dataTable>
                                 </h:form>
                             </p:tab>
-        
+                            
+                            <!--Benutzer                                        -->
                             <p:tab title="Benutzer">
                                 <h:form id="reg2Form">
                                     <h:panelGrid id="regGrid" columns ="2"> 
@@ -114,7 +113,7 @@ and open the template in the editor.
                                         <h:commandButton value="Save" action="#{adminBenutzerBean.save()}"/>
                                     </h:panelGrid> 
             
-                                    <p:dataTable var="pup" value="#{adminBenutzerBean.benutzerService.benutzerListe}" scrollable="true">
+                                    <p:dataTable var="ben" value="#{adminBenutzerBean.bList}" scrollable="true">
                                         <f:facet name="header">
                                             <h:outputText value="Benutzerliste"/>
                                         </f:facet>
@@ -123,48 +122,49 @@ and open the template in the editor.
                                             <f:facet name="header">
                                                 <h:outputText value="Id"/>
                                             </f:facet>
-                                            <h:outputText value="#{pup.id}"/>
+                                            <h:outputText value="#{ben.id}"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
                                                  <h:outputText value="Username"/>
                                             </f:facet>
-                                            <h:outputText value="#{pup.username}"/>
+                                            <h:outputText value="#{ben.username}"/>
                                         </p:column>
                 
                                         <p:column>
                                             <f:facet name="header">
                                                  <h:outputText value="Admin"/>
                                             </f:facet>
-                                            <h:outputText value="#{pup.admin}"/>
+                                            <h:outputText value="#{ben.admin}"/>
                                         </p:column>
 
                                         <p:column>
                                             <f:facet name="header">
                                                  <h:outputText value="password"/>
                                             </f:facet>
-                                            <h:outputText value="#{pup.password}"/>
+                                            <h:outputText value="#{ben.password}"/>
                                         </p:column>
                                         
                                         <p:column>
                                             <f:facet name="header">
                                                  <h:outputText value="pId"/>
                                             </f:facet>
-                                            <h:outputText value="#{pup.pid}"/>
+                                            <h:outputText value="#{ben.pid}"/>
                                         </p:column>
 
                                          <p:column>
-                                               <h:commandLink value="edit" action="#{adminFahrzeugeBean.edit(pup)}"/>
+                                               <h:commandLink value="edit" action="#{adminFahrzeugeBean.edit(ben)}"/>
                                         </p:column>
 
                                         <p:column>
-                                               <h:commandLink value="remove" action="#{adminFahrzeugeBean.remove(pup)}"/>
+                                               <h:commandLink value="remove" action="#{adminFahrzeugeBean.remove(ben)}"/>
                                         </p:column>
 
                                     </p:dataTable>
                                 </h:form>
                             </p:tab>
         
+                            <!--Nuessler                                        -->
                             <p:tab title="Nüssler">
                                 <h:form id="reg3Form">
                                     <h:panelGrid id="regGrid" columns ="2"> 
@@ -186,7 +186,7 @@ and open the template in the editor.
                                         <h:commandButton value="Save" action="#{adminNuesslerBean.save()}"/>
                                     </h:panelGrid> 
             
-                                    <p:dataTable var="pup" value="#{adminNuesslerBean.nuesslerService.nuesslerList}" scrollable="true">
+                                    <p:dataTable var="nus" value="#{adminNuesslerBean.nList}" scrollable="true">
                                         <f:facet name="header">
                                             <h:outputText value="Nüsslermodel"/>
                                         </f:facet>
@@ -195,49 +195,49 @@ and open the template in the editor.
                                             <f:facet name="header">
                                                 <h:outputText value="UN Nr"/>
                                             </f:facet>
-                                                <h:outputText value="#{pup.UNnr}"/>
+                                                <h:outputText value="#{nus.UNnr}"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
                                                  <h:outputText value="Stoffname"/>
                                             </f:facet>
-                                            <h:outputText value="#{pup.stoffname}"/>
+                                            <h:outputText value="#{nus.stoffname}"/>
                                         </p:column>
                 
                                         <p:column>
                                             <f:facet name="header">
                                                  <h:outputText value="Merkblattnr"/>
                                             </f:facet>
-                                            <h:outputText value="#{pup.merkblattnr}"/>
+                                            <h:outputText value="#{nus.merkblattnr}"/>
                                         </p:column>
 
                                         <p:column>
                                             <f:facet name="header">
                                                  <h:outputText value="Radius Innen"/>
                                             </f:facet>
-                                            <h:outputText value="#{pup.radius_innen}"/>
+                                            <h:outputText value="#{nus.radius_innen}"/>
                                         </p:column>
                                         
                                         <p:column>
                                             <f:facet name="header">
                                                  <h:outputText value="Radius Außen"/>
                                             </f:facet>
-                                            <h:outputText value="#{pup.radius_außen}"/>
+                                            <h:outputText value="#{nus.radius_außen}"/>
                                         </p:column>
                                         
                                         <p:column>
                                             <f:facet name="header">
                                                  <h:outputText value="Info"/>
                                             </f:facet>
-                                            <h:outputText value="#{pup.info}"/>
+                                            <h:outputText value="#{nus.info}"/>
                                         </p:column>
 
                                          <p:column>
-                                               <h:commandLink value="edit" action="#{adminNuesslerBean.edit(pup)}"/>
+                                               <h:commandLink value="edit" action="#{adminNuesslerBean.edit(nus)}"/>
                                         </p:column>
 
                                         <p:column>
-                                               <h:commandLink value="remove" action="#{adminNuesslerBean.remove(pup)}"/>
+                                               <h:commandLink value="remove" action="#{adminNuesslerBean.remove(nus)}"/>
                                         </p:column>
 
                                     </p:dataTable>
