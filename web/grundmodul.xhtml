@@ -3,7 +3,7 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
- 
+
     <ui:define name="content">
         <p:layout fullPage="true">
             <h:form>
@@ -74,7 +74,7 @@
                             </p:dataTable>
                                
                               
-                              <p:dataTable var="fahrzeug" value="#{einsatzListBean.felist}" draggableRows="true" tableStyle="table-layout: auto;">  
+                           <p:dataTable var="fahrzeug" value="#{einsatzListBean.felist}" draggableRows="true" tableStyle="table-layout: auto;">  
                                 <p:column>
                                       <f:facet name="header">
                                           <p:selectOneMenu value="Fahrzeugfilter" onchange="submit()" valueChangeListener="#{einsatzListBean.changedSmth}">
@@ -148,7 +148,78 @@
                                     <p:commandButton value="Einsatz abschließen" action="#{einsatzListBean.changeToAbgeschlossen(einsatz)}" onclick="submit()" style="color:blue"/>
                                 </p:column>
                             </p:dataTable>  
+                          
+                          
+                          <p:outputLabel />
+                           
+                           
+                          <p:dataTable var="einsatz" value="#{einsatzListBean.aelist}" resizableColumns="true" draggableRows="true" tableStyle="table-layout: auto;">
+                            <f:facet name="header">
+                                <p:outputLabel value="Abgeschlossene Einsätze" style="color:green"/>
+                            </f:facet>
+
+                            <p:column style="color:green" sortBy="#{einsatz.id}">
+                                <f:facet name="header">
+                                    <p:outputLabel value="Einsatznummer" />
+                                </f:facet>
+                                <p:outputLabel value="#{einsatz.id}" />
+                            </p:column>
+
+                            <p:column style="color:green" sortBy="#{einsatz.eort}">
+                                <f:facet name="header">
+                                    <p:outputLabel value="Ort" />
+                                </f:facet>
+                                <p:outputLabel value="#{einsatz.eort}" />
+                                <p:outputLabel value=" - " />
+                                <p:outputLabel value="#{einsatz.estraße}" />
+                                <p:outputLabel value=" " />
+                                <p:outputLabel value="#{einsatz.hausnr}" />
+                            </p:column>
+
+                            <p:column style="color:green" sortBy="#{einsatz.aufgabe}">
+                                <f:facet name="header">
+                                    <p:outputLabel value="Aufgabe" />
+                                </f:facet>
+                                <p:outputLabel value="#{einsatz.aufgabe}" />
+                            </p:column>
+
+                            <p:column style="color:green" sortBy="#{einsatz.eleiter}">
+                                <f:facet name="header">
+                                    <p:outputLabel value="Leiter" />
+                                </f:facet>
+                                <p:outputLabel value="#{einsatz.eleiter}" />
+                            </p:column>
+
+                            <p:column style="color:green" sortBy="#{einsatz.emittel}">
+                                <f:facet name="header">
+                                    <p:outputLabel value="Einsatzmittel" />
+                                </f:facet>
+                                <p:outputLabel value="#{einsatz.emittel}" />
+                            </p:column>
+
+                            <p:column width="180" style="color:green" sortBy="#{einsatz.datum}">
+                                <f:facet name="header">
+                                    <p:outputLabel value="Datum" />
+                                </f:facet>
+                                <p:outputLabel value="#{einsatz.datum}" />
+                                <p:outputLabel value=" - " />
+                                <p:outputLabel value="#{einsatz.uhrzeit}" />
+                            </p:column>
+
+                            <p:column width="125">
+                                <p:commandButton value="Bearbeiten" action="#{einsatzBean.edit(einsatz)}" onclick="einsatzerstellen.xhtml" style="color:green"/>                                   
+                            </p:column> 
+
+                            <p:column width="250">
+                                <p:commandButton value="Einsätze archivieren" action="#{einsatzListBean.changeToArchiviert(einsatz)}" onclick="submit()" style="color:green"/>
+                            </p:column>
+                        </p:dataTable>   
+                          
                           </p:panelGrid>
+                        
+                       <p:outputLabel />
+                        
+                        
                          </p:tab>
 
                     
@@ -288,49 +359,12 @@
                          </p:column>
 
                     </p:tab>
-                    
-                    
                     <p:tab title="Nüssler">
-                            <h:panelGrid columns="2" cellpadding="5">
-                                <p:outputLabel value="UN-Nr.:" for="acUN" />
-                                <p:autoComplete id="acUN" dropdown="true" value="#{nuesslerBerechnungsBean.nr}" completeMethod="#{nuesslerBerechnungsBean.completeNumber}" >
-                                    <p:ajax event="itemSelect" listener="#{nuesslerBerechnungsBean.autoCompleteUNAction}" process="@this"/> 
-                                </p:autoComplete>
-                                
-                                <p:outputLabel value="Stoffname:" for="acSN" />
-                                <p:autoComplete id="acSN" dropdown="true" value="#{nuesslerBerechnungsBean.name}" completeMethod="#{nuesslerBerechnungsBean.completeName}"/>
-                                
-                                <h:commandButton value="Anzeigen" action="#{nuesslerBerechnungsBean.show()}">
-                                    <f:ajax execute="acUN acSN" render="fullOut"/>
-                                </h:commandButton>
-                            </h:panelGrid>
-                        
-                        
-                        <p:panelGrid id="fullOut" columns="2">
-                            <p:outputLabel value="UN-Nr:" for="unnr" />
-                            <p:outputLabel id="unnr" value="#{nuesslerBerechnungsBean.nus.UNnr}" />
-                            
-                            <p:outputLabel value="Stoffname:" for="name" />
-                            <p:outputLabel id="name" value="#{nuesslerBerechnungsBean.nus.stoffname}" />
-                            
-                            <p:outputLabel value="AEGL-2 (30min):" for="aegl1" />
-                            <p:outputLabel id="aegl1" value="" />
-                            
-                            <p:outputLabel value="AEGL-2 (4h):" for="aegl2" />
-                            <p:outputLabel id="aegl2" value="" />
-                            
-                            <p:outputLabel value="AGW/MAK" for="agw" />
-                            <p:outputLabel id="agw" value="" />     
-                        </p:panelGrid>  
-                
+                        <p:outputLabel value="in Arbeit" />
                     </p:tab>
-                    
-                    
                     <p:tab title="Bearbeitungsmodus" >
                         <p:outputLabel value="in Arbeit" />
                     </p:tab>
-                    
-                    
                 </p:tabView>
             </h:form>
         </p:layout>

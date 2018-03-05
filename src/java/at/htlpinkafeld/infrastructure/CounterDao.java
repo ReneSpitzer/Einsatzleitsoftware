@@ -5,12 +5,12 @@
  */
 package at.htlpinkafeld.infrastructure;
 
-import at.htlpinkafeld.pojo.Nuessler;
+import at.htlpinkafeld.pojo.Counter;
 
 /**
  *
  * @author Bernhard Fuchs
  */
-public interface NüsslerDao extends Dao<Nuessler>{
+public interface CounterDao extends Dao<Counter>{
     
 }

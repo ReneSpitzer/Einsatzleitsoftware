@@ -7,6 +7,8 @@ package at.htlpinkafeld.service;
 
 import at.htlpinkafeld.infrastructure.BenutzerDao;
 import at.htlpinkafeld.infrastructure.BenutzerJdbcDao;
+import at.htlpinkafeld.infrastructure.CounterDao;
+import at.htlpinkafeld.infrastructure.CounterJdbcDao;
 import at.htlpinkafeld.infrastructure.EigeneinsatzDao;
 import at.htlpinkafeld.infrastructure.EigeneinsatzJdbcDao;
 import at.htlpinkafeld.infrastructure.EinsatzDao;
@@ -26,13 +28,14 @@ import at.htlpinkafeld.infrastructure.PersonJdbcDao;
 import at.htlpinkafeld.infrastructure.ZeitaufzeichnungDao;
 import at.htlpinkafeld.infrastructure.ZeitaufzeichnungJdbcDao;
 import at.htlpinkafeld.pojo.Benutzer;
+import at.htlpinkafeld.pojo.Counter;
 import at.htlpinkafeld.pojo.Eigeneinsatz;
 import at.htlpinkafeld.pojo.Einsatz;
 import at.htlpinkafeld.pojo.Fahrzeuge;
 import at.htlpinkafeld.pojo.Fremdeinsatz;
 import at.htlpinkafeld.pojo.Funkgeraet;
 import at.htlpinkafeld.pojo.Kontakt;
-import at.htlpinkafeld.pojo.Nüssler;
+import at.htlpinkafeld.pojo.Nuessler;
 import at.htlpinkafeld.pojo.Person;
 import at.htlpinkafeld.pojo.Zeitaufzeichnung;
 import java.util.ArrayList;
@@ -88,13 +91,16 @@ public class EinsatzleitsoftwareService {
     private List<Kontakt> kontaktList;
     
     private NüsslerDao nüsslerDao = new NüsslerJdbcDao("nüssler", "nid");
-    private List<Nüssler> nüsslerList;
+    private List<Nuessler> nüsslerList;
     
     private PersonDao personDao = new PersonJdbcDao("person", "pid");
     private List<Person> personList;
     
     private ZeitaufzeichnungDao zeitaufzeichnungDao = new ZeitaufzeichnungJdbcDao("zeitaufzeichnung", "zid");
     private List<Zeitaufzeichnung> zeitaufzeichnungList;
+    
+    private CounterDao counterDao = new CounterJdbcDao("counter","cid");
+    private List<Counter> counterList;
     
     public EinsatzleitsoftwareService() {
     //Berni-Code
@@ -108,6 +114,7 @@ public class EinsatzleitsoftwareService {
         fillNüsslerList();
         fillPersonList();
         fillZeitaufzeichnungList();
+        fillCounterList();
 
     //Test-Daten-Benutzer
         benutzerListe.add(new Benutzer(1, "Herbert", false, "1234ABC", 1));
@@ -146,27 +153,33 @@ public class EinsatzleitsoftwareService {
        kontaktliste.add(new Kontakt("Truppentransport","TTL",01513110));
        
        //Berni-Code
-       createEinsatz(new Einsatz("Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
+       einsatzlist.add(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen",1));
-        this.fillEinsatzList();
-        createEinsatz(new Einsatz("Oberwart", "Eo", "7", "Hochwasser", 
+        //this.fillEinsatzList();
+        einsatzlist.add(new Einsatz(2,"Oberwart", "Eo", "7", "Hochwasser", 
                 "Prunner", 2, "LFZ02", "14:06", "20.11.2017", "offen", 1));
-        this.fillEinsatzList();
-        createEinsatz(new Einsatz("Hartberg", "Roseggergasse", "2", "Katze von Baum retten", 
+        //this.fillEinsatzList();
+        einsatzlist.add(new Einsatz(3,"Hartberg", "Roseggergasse", "2", "Katze von Baum retten", 
                 "Altmann", 3, "LFZ03", "12:06", "20.1.2018", "in Arbeit", 1));
-        this.fillEinsatzList();
-        createEinsatz(new Einsatz("Test", "Testgasse", "7", "Hochwasser", 
+        //this.fillEinsatzList();
+        einsatzlist.add(new Einsatz(4,"Test", "Testgasse", "7", "Hochwasser", 
                 "Maierhofer", 4, "LFZ04", "4:27", "2.11.2017", "in Arbeit", 1));
-        this.fillEinsatzList();
-        createEinsatz(new Einsatz("Güssing", "gu", "1a", "Lkw Unfall ", 
+        //this.fillEinsatzList();
+        einsatzlist.add(new Einsatz(5,"Güssing", "gu", "1a", "Lkw Unfall ", 
                 "Fleck", 5, "LFZ05", "13:05", "27.8.2017", "abgeschlossen", 1));
-        this.fillEinsatzList();
-        createEinsatz(new Einsatz("Oberloisdorf", "McStrasse", "15", "Brand löschen", 
+        //this.fillEinsatzList();
+        einsatzlist.add(new Einsatz(6,"Oberloisdorf", "McStrasse", "15", "Brand löschen", 
                 "Spitzer", 6, "LFZ06", "15:03", "25.10.2017", "abgeschlossen", 1));
-        this.fillEinsatzList();
         
-        flist.add(new Fahrzeuge(1, "FF", "Pinkafeld", "FZ1", 10, 0, "LFZPkfd", 1));
-        flist.add(new Fahrzeuge(2, "FF", "Test", "FZ2", 2, 0, "LFZHb", 1));
+       // this.fillEinsatzList();
+        
+        flist.add(new Fahrzeuge(1, "", "Pinkafeld", "FZ1", 10, true, "LFZPkfd", 1));
+        flist.add(new Fahrzeuge(2, "", "Pinkafeld", "FZ2", 2, true, "LFZPkfd", 1));
+        flist.add(new Fahrzeuge(3, "", "Test", "FZ3", 2, false, "LFZHb", 1));
+        flist.add(new Fahrzeuge(4, "", "Güssing", "FZ4", 2, false, "LFZHb", 1));
+        flist.add(new Fahrzeuge(5, "", "Hartberg", "FZ5", 2, true, "LFZHb", 1));
+        
+        
         
         statuslist.add("offen");
         statuslist.add("in Arbeit");
@@ -562,28 +575,28 @@ public class EinsatzleitsoftwareService {
         this.kontaktDao.delete(k);
     }
 
-    public List<Nüssler> getNüsslerList() {
+    public List<Nuessler> getNüsslerList() {
         return nüsslerList;
     }
 
-    public void setNüsslerList(List<Nüssler> nüsslerList) {
+    public void setNüsslerList(List<Nuessler> nüsslerList) {
         this.nüsslerList = nüsslerList;
     }
 
-    public void createNüssler(Nüssler n){
+    public void createNüssler(Nuessler n){
         this.nüsslerDao.create(n);
     }
     
-    public Nüssler findNüsslerById(int id){
+    public Nuessler findNüsslerById(int id){
         return nüsslerDao.read(id);
     }
     
-    public void updateNüssler(Nüssler n)
+    public void updateNüssler(Nuessler n)
     {
         this.nüsslerDao.update(n);
     }
     
-    public void deleteNüssler(Nüssler n)
+    public void deleteNüssler(Nuessler n)
     {
         this.nüsslerDao.delete(n);
     }
@@ -697,6 +710,10 @@ public class EinsatzleitsoftwareService {
     public void fillZeitaufzeichnungList() {
         this.zeitaufzeichnungList = this.zeitaufzeichnungDao.list();
     }
+    
+    public void fillCounterList() {
+        this.counterList = counterDao.list();
+    }
 
     public Einsatz getEinsatz() {
         return einsatz;
@@ -706,6 +723,40 @@ public class EinsatzleitsoftwareService {
         this.einsatz = einsatz;
     }
 
+    public CounterDao getCounterDao() {
+        return counterDao;
+    }
+
+    public void setCounterDao(CounterDao counterDao) {
+        this.counterDao = counterDao;
+    }
+
+    public List<Counter> getCounterList() {
+        return counterList;
+    }
+
+    public void setCounterList(List<Counter> counterList) {
+        this.counterList = counterList;
+    }
+
+    public void createCounter(Counter c){
+        this.counterDao.create(c);
+    }
+    
+    public Counter findCounterById(int id){
+        return counterDao.read(id);
+    }
+    
+    public void updateCounter(Counter c)
+    {
+        this.counterDao.update(c);
+    }
+    
+    public void deleteCounter(Counter c)
+    {
+        this.counterDao.delete(c);
+    }
+    
     public void removeBenutzer(Benutzer p) {
        this.benutzerListe.remove(p);
     }
@@ -722,11 +773,12 @@ public class EinsatzleitsoftwareService {
         return this.nüsslerList;
     }
 
-    public void addNuessler(Nüssler nus) {
+    public void addNuessler(Nuessler nus) {
         this.nüsslerList.add(nus);
     }
 
-    public void removeNuessler(Nüssler p) {
+    public void removeNuessler(Nuessler p) {
         this.nüsslerList.remove(p);
     }
 }
+

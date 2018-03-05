@@ -5,7 +5,7 @@
  */
 package at.htlpinkafeld.presentation;
 
-import at.htlpinkafeld.pojo.Nüssler;
+import at.htlpinkafeld.pojo.Nuessler;
 import at.htlpinkafeld.service.EinsatzleitsoftwareService;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +28,10 @@ public class NuesslerBerechnungsBean {
     @ManagedProperty(value="#{einsatzleitsoftwareService}")
     EinsatzleitsoftwareService einsatzleitsoftwares;
     //Listen
-    private List<Nüssler> nList = new ArrayList<>();
-    private List<Nüssler> filteredNuesslerList = new ArrayList<>();
+    private List<Nuessler> nList = new ArrayList<>();
+    private List<Nuessler> filteredNuesslerList = new ArrayList<>();
     //Variablen
-    private Nüssler nus = new Nüssler();
+    private Nuessler nus = new Nuessler();
     private String name = "";
     private int nr = 0;
     private int menge = 0;
@@ -67,19 +67,19 @@ public class NuesslerBerechnungsBean {
         this.einsatzleitsoftwares = einsatzleitsoftwares;
     }
 
-    public List<Nüssler> getnList() {
+    public List<Nuessler> getnList() {
         return nList;
     }
 
-    public void setnList(List<Nüssler> nList) {
+    public void setnList(List<Nuessler> nList) {
         this.nList = nList;
     }
 
-    public Nüssler getNus() {
+    public Nuessler getNus() {
         return nus;
     }
 
-    public void setNus(Nüssler nus) {
+    public void setNus(Nuessler nus) {
         this.nus = nus;
     }
 
@@ -107,11 +107,11 @@ public class NuesslerBerechnungsBean {
         this.menge = menge;
     }
 
-    public List<Nüssler> getFilteredNuesslerList() {
+    public List<Nuessler> getFilteredNuesslerList() {
         return filteredNuesslerList;
     }
 
-    public void setFilteredNuesslerList(List<Nüssler> filteredNuesslerList) {
+    public void setFilteredNuesslerList(List<Nuessler> filteredNuesslerList) {
         this.filteredNuesslerList = filteredNuesslerList;
     }
 
@@ -193,7 +193,7 @@ public class NuesslerBerechnungsBean {
     
     public List<String> completeName(String query) {
         List<String> results = new ArrayList<String>();
-        for(Nüssler k: this.filteredNuesslerList) {
+        for(Nuessler k: this.filteredNuesslerList) {
             results.add(k.getStoffname());
         }
          
@@ -202,8 +202,8 @@ public class NuesslerBerechnungsBean {
     
     public List<Integer> completeNumber(int query) {
         List<Integer> results = new ArrayList<Integer>();
-        for(Nüssler k: this.nList) {
-            results.add(k.getUNnr());
+        for(Nuessler k: this.nList) {
+            results.add(k.getUnnr());
         }
          
         return results;
@@ -222,11 +222,11 @@ public class NuesslerBerechnungsBean {
         return null;
     }
     
-    public Nüssler searchUNnr(int nr){
-        Nüssler help;
+    public Nuessler searchUNnr(int nr){
+        Nuessler help;
        
-        for(Nüssler k: this.nList){
-            if(k.getUNnr() == nr){
+        for(Nuessler k: this.nList){
+            if(k.getUnnr() == nr){
                 //help = new Nüssler(k);
                 //return help;
             }
@@ -235,10 +235,10 @@ public class NuesslerBerechnungsBean {
         return null;
     }
     
-    public Nüssler searchName(String name){
-        Nüssler help;
+    public Nuessler searchName(String name){
+        Nuessler help;
        
-        for(Nüssler k: this.nList){
+        for(Nuessler k: this.nList){
             if(k.getStoffname() == name){
                 //help = new Nüssler(k);
                 //return help;
@@ -249,7 +249,7 @@ public class NuesslerBerechnungsBean {
     }
     
     public void autoCompleteUNAction(AjaxBehaviorEvent event){
-        this.filteredNuesslerList = this.nList.stream().filter(var -> var.getUNnr()==this.nr).collect(Collectors.toList());
+        this.filteredNuesslerList = this.nList.stream().filter(var -> var.getUnnr()==this.nr).collect(Collectors.toList());
     }
     
 }

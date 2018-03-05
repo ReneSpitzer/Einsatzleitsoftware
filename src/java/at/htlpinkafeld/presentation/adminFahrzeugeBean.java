@@ -50,7 +50,6 @@ public class adminFahrzeugeBean {
            
     public Object add(){
         this.kfz.setId(this.fList.size()+1);
-        this.kfz.setStatus(0);
         this.fList.add(kfz);
         
         this.kfz = new Fahrzeuge();

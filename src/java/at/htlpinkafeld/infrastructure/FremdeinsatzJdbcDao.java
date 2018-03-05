@@ -43,11 +43,12 @@ public class FremdeinsatzJdbcDao extends BaseJdbcDao<Fremdeinsatz> implements Fr
 
     @Override
     protected PreparedStatement getInsertStatement(Connection c, Fremdeinsatz t) throws SQLException {
-        String s = "INSERT INTO " + getTablename() + " (absender, empfaenger, eid) VALUES (?,?,?)";
+        String s = "INSERT INTO " + getTablename() + " (frid, absender, empfaenger, eid) VALUES (?,?,?,?)";
         PreparedStatement stmt = c.prepareStatement(s, Statement.RETURN_GENERATED_KEYS);
-        stmt.setString(1, t.getAbsender());
-        stmt.setString(2, t.getEmpfaenger());
-        stmt.setInt(3, t.getEid());
+        stmt.setInt(1, t.getId());
+        stmt.setString(2, t.getAbsender());
+        stmt.setString(3, t.getEmpfaenger());
+        stmt.setInt(4, t.getEid());
         return stmt;
     }
 }

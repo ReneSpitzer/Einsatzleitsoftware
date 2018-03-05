@@ -5,37 +5,37 @@
                             xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="content">
         <p:growl id="growl" life="5000" autoUpdate="true" showDetail="true" escape="false"/>
- 
+
         <h:form> 
             <p:dialog  header="Einsatz bearbeiten"   visible="true" closable="false" showEffect="clip" draggable="false" resizable="false" style="box-shadow: 7px 10px 5px #303050;"> 
                     <p:panelGrid columns="2" style="margin: 0 auto;">
                         <h:outputText value="Einsatznummer:" />            
-                        <h:outputText value="#{einsatzBean.einsatz.id}" />
-                        <h:outputText value="Einsatzort:" />            
-                        <h:inputText value="#{einsatzBean.einsatz.eort}" required="true" /> 
-                        <h:outputText value="Einsatzstraße:" />            
-                        <h:inputText value="#{einsatzBean.einsatz.estraße}" required="true" /> 
-                        <h:outputText value="Einsatzhausnummer:" />            
-                        <h:inputText value="#{einsatzBean.einsatz.hausnr}" required="true" />
-                        <h:outputText value="Einsatzaufgabe:" />            
-                        <h:inputText value="#{einsatzBean.einsatz.aufgabe}" required="true" />  
+                        <h:outputText value="#{einsatzBean.einsatz.id}" /> 
+                        <h:outputText value="Ort:" />            
+                        <h:inputText value="#{einsatzBean.einsatz.eort}" required="true" requiredMessage="Ort muss eingegeben werden!" /> 
+                        <h:outputText value="Straße:" />            
+                        <h:inputText value="#{einsatzBean.einsatz.estraße}" required="true" requiredMessage="Straße muss eingegeben werden!"/> 
+                        <h:outputText value="Hausnummer:" />            
+                        <h:inputText value="#{einsatzBean.einsatz.hausnr}" required="true" requiredMessage="Hausnummer muss eingegeben werden!"/>
+                        <h:outputText value="Aufgabe:" />            
+                        <h:inputText value="#{einsatzBean.einsatz.aufgabe}" required="true" requiredMessage="Aufgabe muss eingegeben werden!"/>  
                         <h:outputText value="Einsatzleiter:" />            
-                        <h:inputText value="#{einsatzBean.einsatz.eleiter}" required="true" /> 
+                        <h:inputText value="#{einsatzBean.einsatz.eleiter}" required="true" requiredMessage="Einsatzleiter muss eingegeben werden!"/> 
                         <h:outputText value="Einsatzmittel:" />            
-                        <h:inputText value="#{einsatzBean.einsatz.emittel}" required="true" />
+                        <h:inputText value="#{einsatzBean.einsatz.emittel}" required="true" requiredMessage="Einsatzmittel muss eingegeben werden!"/>
                         <h:outputText value="Einsatzdatum: (YYYY-MM-TT)" />            
-                        <h:inputText value="#{einsatzBean.einsatz.datum}" required="true" />  
-                        <h:outputText value="Einsatzuhrzeit:(HH:MM)" />                 
-                        <h:inputText value="#{einsatzBean.einsatz.uhrzeit}" required="true" />  
+                        <h:inputText value="#{einsatzBean.einsatz.datum}" required="true" requiredMessage="Einsatzdatum muss eingegeben werden!"/>  
+                        <h:outputText value="Einsatzuhrzeit:(HH:MM)" />            
+                        <h:inputText value="#{einsatzBean.einsatz.uhrzeit}" required="true" requiredMessage="Einsatzuhrzeit muss eingegeben werden!"/>  
                         <h:outputText value="Status" />            
                         <h:selectOneMenu value="#{einsatzBean.einsatz.e_status}" >
                             <f:selectItems value="#{einsatzListBean.statuslist}" var="status" 
                                    itemValue="#{status}" itemLabel="#{status}" />                            
                         </h:selectOneMenu>                         
-                    </p:panelGrid>
-                <p:commandButton  value="Löschen" action="#{einsatzListBean.delete(einsatzBean.einsatz)}" onclick="grundmodul.xhtml" style="float:left;" />      
-                <p:commandButton value="Abbrechen" action="/grundmodul.xhtml" immediate="true" style="float:right;"/>
-                <p:commandButton  value="Sichern" action="#{einsatzListBean.saveEditEinsatz(einsatzBean.einsatz)}" style="float:right;" />
+                    </p:panelGrid>               
+                <p:commandButton  value="Sichern" action="#{einsatzListBean.saveEditEinsatz(einsatzBean.einsatz)}" style="float:left;" />
+                <p:commandButton value="Abbrechen" action="/grundmodul.xhtml" immediate="true" style="float:left;"/>
+                <p:commandButton  value="Löschen" action="#{einsatzListBean.delete(einsatzBean.einsatz)}" onclick="grundmodul.xhtml" style="float:right;" />      
             </p:dialog>
         </h:form> 
     </ui:define>

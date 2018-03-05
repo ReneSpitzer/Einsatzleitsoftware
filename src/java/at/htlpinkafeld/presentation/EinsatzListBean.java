@@ -5,6 +5,7 @@
  */
 package at.htlpinkafeld.presentation;
 
+import at.htlpinkafeld.pojo.Counter;
 import at.htlpinkafeld.pojo.Einsatz;
 import at.htlpinkafeld.pojo.Fahrzeuge;
 import at.htlpinkafeld.service.EinsatzleitsoftwareService;
@@ -33,9 +34,10 @@ public class EinsatzListBean {
     private List<Einsatz> eialist = new ArrayList<>(); //Liste der Einsätzen in Arbeit
     private List<Einsatz> aelist = new ArrayList<>(); //Liste der abgeschlossenen Einsätzen
     private List<Einsatz> arelist = new ArrayList<>(); //Liste der archivierten Einsätzen
-    private List<Fahrzeuge> flist = new LinkedList<>(); //Liste aller Fahrzeugen
-    private List<Fahrzeuge> fplist = new LinkedList<>(); //Liste aller Fahrzeugen von Pinkafeld
-    private List<Fahrzeuge> felist = new LinkedList<>(); //Liste aller Fahrzeuge die tatsächlich angezeigt werden
+    private List<Fahrzeuge> flist = new ArrayList<>(); //Liste aller Fahrzeugen
+    private List<Fahrzeuge> fvlist = new ArrayList<>(); //Liste aller Fahrzeugen, die verfügbar sind
+    private List<Fahrzeuge> fplist = new ArrayList<>(); //Liste aller Fahrzeugen von Pinkafeld, welche verfügbar sind
+    private List<Fahrzeuge> felist = new ArrayList<>(); //Liste aller Fahrzeuge die tatsächlich angezeigt werden
     private Fahrzeuge fahrzeug = new Fahrzeuge();
     private List<String> statuslist = new ArrayList<>();
     private List<String> stautslistarchiviert = new ArrayList<>();
@@ -66,6 +68,7 @@ public class EinsatzListBean {
         fillEialist();
         fillARelist();
         fillFPlist();
+        fillFVlist();
         
         this.setFelist(this.fplist);
     }
@@ -188,8 +191,19 @@ public class EinsatzListBean {
         this.getFPlist().removeAll(fplist);
         for(Fahrzeuge f: this.getFlist())
         {
-            if(f.getOrt().equals("Pinkafeld")){
+            if(f.getOrt().equals("Pinkafeld") && f.isVerfuegbar()){
                 fplist.add(f);
+            }
+        }
+    }
+    
+    public void fillFVlist()
+    {
+        this.getFvlist().removeAll(fvlist);
+        for(Fahrzeuge f: this.getFlist())
+        {
+            if(f.isVerfuegbar()){
+                fvlist.add(f);
             }
         }
     }
@@ -297,6 +311,12 @@ public class EinsatzListBean {
     
     public String saveNewEinsatz(Einsatz e){
  
+        Counter c = this.einsatzleitsoftwares.findCounterById(1);
+        int newCnt = c.getCntEinsatz() + 1;
+        c.setCntEinsatz(newCnt);
+        this.einsatzleitsoftwares.updateCounter(c);
+        e.setId(newCnt);
+        
         this.einsatzleitsoftwares.createEinsatz(e);
         this.einsatzleitsoftwares.fillEinsatzList();
         einsatzlist.add(e);
@@ -346,7 +366,7 @@ public class EinsatzListBean {
         
         if(s.equals("Alle"))
         {
-            this.setFelist(this.flist);
+            this.setFelist(this.fvlist);
         }
     }
 
@@ -357,4 +377,12 @@ public class EinsatzListBean {
     public void setEinsatzleitsoftwares(EinsatzleitsoftwareService einsatzleitsoftwares) {
         this.einsatzleitsoftwares = einsatzleitsoftwares;
     }  
+
+    public List<Fahrzeuge> getFvlist() {
+        return fvlist;
+    }
+
+    public void setFvlist(List<Fahrzeuge> fvlist) {
+        this.fvlist = fvlist;
+    }
 }

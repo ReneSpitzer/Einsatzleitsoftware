@@ -52,18 +52,19 @@ public class PersonJdbcDao extends BaseJdbcDao<Person> implements PersonDao {
 
     @Override
     protected PreparedStatement getInsertStatement(Connection c, Person t) throws SQLException {
-        String s = "INSERT INTO " + getTablename() + " (vorname, nachname, gebDat, str, hausnr, grad, email, telnr, eid) "
-                + "VALUES (?,?,?,?,?,?,?,?,?)";
+        String s = "INSERT INTO " + getTablename() + " (pid,vorname, nachname, gebDat, str, hausnr, grad, email, telnr, kid) "
+                + "VALUES (?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement stmt = c.prepareStatement(s, Statement.RETURN_GENERATED_KEYS);
-         stmt.setString(1, t.getVorname());
-        stmt.setString(2, t.getNachname());
-        stmt.setDate(3, (Date) t.getGebDat());
-        stmt.setString(4, t.getStr());
-        stmt.setString(5, t.getHausnr());
-        stmt.setString(6, t.getGrad());
-        stmt.setString(7, t.getEmail());
-        stmt.setInt(8, t.getTelnr());
-        stmt.setInt(9, t.getKid());
+        stmt.setInt(1, t.getId());
+        stmt.setString(2, t.getVorname());
+        stmt.setString(3, t.getNachname());
+        stmt.setDate(4, (Date) t.getGebDat());
+        stmt.setString(5, t.getStr());
+        stmt.setString(6, t.getHausnr());
+        stmt.setString(7, t.getGrad());
+        stmt.setString(8, t.getEmail());
+        stmt.setInt(9, t.getTelnr());
+        stmt.setInt(10, t.getKid());
         return stmt;
     }
 }
