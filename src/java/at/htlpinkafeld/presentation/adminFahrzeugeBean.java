@@ -24,59 +24,54 @@ import javax.faces.bean.SessionScoped;
 public class adminFahrzeugeBean {
      
     @ManagedProperty(value="#{einsatzleitsoftwareService}")
-     EinsatzleitsoftwareService afs;
+    private EinsatzleitsoftwareService afs;
     
     private List<Fahrzeuge> fList; //= new ArrayList<>();
     private Fahrzeuge kfz = new Fahrzeuge();
+    //private Fahrzeuge kfzBearbeitung = new Fahrzeuge();
     
     @PostConstruct
     public void SetUp(){
         //this.fList= this.afs.getFlist();
+        this.fList= this.afs.getFlist();
     }
+
+    /*
+    public Fahrzeuge getKfzBearbeitung() {
+        return kfzBearbeitung;
+    }
+
+    public void setKfzBearbeitung(Fahrzeuge kfzBearbeitung) {
+        this.kfzBearbeitung = kfzBearbeitung;
+    }
+    */
     
-    public EinsatzleitsoftwareService getFahrzeugeService(){
+
+    public EinsatzleitsoftwareService getAfs() {
         return afs;
     }
 
-    public adminFahrzeugeBean(){
-        //this.kfz = new Fahrzeuge();
-        this.afs = new EinsatzleitsoftwareService();
-        this.fList= this.afs.getFlist();
-    }
-     
-    public void setEinsatzleitsoftwareService(EinsatzleitsoftwareService pms){
-        this.afs = pms;
+    public void setAfs(EinsatzleitsoftwareService afs) {
+        this.afs = afs;
     }
            
     public Object add(){
-        this.kfz.setId(this.fList.size()+1);
-        this.fList.add(kfz);
+        if(this.kfz.getId() != 0){
+            this.fList.set((kfz.getId()-1), kfz);
+        }else{
+            this.kfz.setId(this.fList.size()+1);   
+            this.fList.add(new Fahrzeuge(kfz));
+        }
         
         this.kfz = new Fahrzeuge();
         return null;
     }
     
-    public Object save(){
-        Fahrzeuge help = null;
-        int i = -1;
-        for(Fahrzeuge p: this.getfList()){
-            if(p.getId() == kfz.getId())
-                    help = p;
-            else
-                  i++;
-        }
+    public Object bearbeiten(Fahrzeuge f){
         
-        if(help != null){
-            help.setOrganisation(kfz.getOrganisation());
-            help.setOrt(kfz.getOrt());
-            help.setType(kfz.getType());
-            help.setAnzPers(kfz.getAnzPers());
-            help.setName(kfz.getName());
-            
-            this.fList.set(i, help);
-        }
         return null;
     }
+    
     
     public Object remove(Fahrzeuge p){
         this.fList.remove(p);
@@ -92,11 +87,16 @@ public class adminFahrzeugeBean {
     }
     
     public Object edit(Fahrzeuge p){
-        kfz.setOrganisation((p.getOrganisation() == null) ? "" : p.getOrganisation());
-        kfz.setOrt((p.getOrt()== null) ? "" : p.getOrt());
-        kfz.setType((p.getType() == null) ? "" : p.getType());
-        kfz.setAnzPers(p.getAnzPers());
-        kfz.setName((p.getName() == null) ? "" :p.getName());
+        this.kfz.setId(p.getId());
+        this.kfz.setAnzPers(p.getAnzPers());
+        this.kfz.setBenutzer(p.getBenutzer());
+        this.kfz.setBid(p.getBid());
+        this.kfz.setName(p.getName());
+        this.kfz.setOrganisation(p.getOrganisation());
+        this.kfz.setOrt(p.getOrt());
+        this.kfz.setType(p.getType());
+        this.kfz.setVerfuegbar(p.isVerfuegbar());
+  
         return null;
     }
 
@@ -108,6 +108,6 @@ public class adminFahrzeugeBean {
         this.fList = fList;
     }
     
-    
+  
 }
 

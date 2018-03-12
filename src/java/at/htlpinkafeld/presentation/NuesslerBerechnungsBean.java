@@ -26,7 +26,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 public class NuesslerBerechnungsBean {
 
     @ManagedProperty(value="#{einsatzleitsoftwareService}")
-    EinsatzleitsoftwareService einsatzleitsoftwares;
+    private EinsatzleitsoftwareService einsatzleitsoftwares;
     //Listen
     private List<Nuessler> nList = new ArrayList<>();
     private List<Nuessler> filteredNuesslerList = new ArrayList<>();
@@ -211,14 +211,8 @@ public class NuesslerBerechnungsBean {
     
     public Object show(){
         if(this.name != null || this.name != ""){
-            //this.nus = new Nüssler(searchName(this.name));
-        }else{
-            if(this.nr != 0){
-                //this.nus = new Nüssler(searchUNnr(this.nr));
-            }else{
-                return null;
-            }
-        } 
+            this.nus = new Nuessler(searchName(this.name));
+        }
         return null;
     }
     
@@ -240,8 +234,8 @@ public class NuesslerBerechnungsBean {
        
         for(Nuessler k: this.nList){
             if(k.getStoffname() == name){
-                //help = new Nüssler(k);
-                //return help;
+                help = new Nuessler(k);
+                return help;
             }
         }
         
@@ -249,7 +243,7 @@ public class NuesslerBerechnungsBean {
     }
     
     public void autoCompleteUNAction(AjaxBehaviorEvent event){
-        this.filteredNuesslerList = this.nList.stream().filter(var -> var.getUnnr()==this.nr).collect(Collectors.toList());
+        this.filteredNuesslerList = this.nList.stream().filter(var -> (this.nr==0)? true : (var.getUnnr()==this.nr)).collect(Collectors.toList());
     }
     
 }

@@ -360,21 +360,53 @@
 
                     </p:tab>
                     <p:tab title="Nüssler">
-                        <p:outputLabel value="in Arbeit" />
+                        
+                        //Auswahl des Stoffs
+                        <p:panelGrid columns="2">
+                                <p:outputLabel value="UN-Nr.:" for="acUN" />
+                                <p:autoComplete id="acUN" dropdown="true" value="#{nuesslerBerechnungsBean.nr}" completeMethod="#{nuesslerBerechnungsBean.completeNumber}" >
+                                    <p:ajax event="itemSelect" listener="#{nuesslerBerechnungsBean.autoCompleteUNAction}" process="@this"/> 
+                                </p:autoComplete>
+                                
+                                <p:outputLabel value="Stoffname:" for="acSN" />
+                                <p:autoComplete id="acSN" dropdown="true" value="#{nuesslerBerechnungsBean.name}" completeMethod="#{nuesslerBerechnungsBean.completeName}"/>
+                                   
+                        </p:panelGrid>
+                        <p:commandButton value="Anzeigen"  process="acUN acSN" update="Output"  action="#{nuesslerBerechnungsBean.show()}"  />
+                        
+                        <br/>
+                        <br/>
+                        <br/>
+                        
+                        
+                        //Informationen des ausgewählten Stoffs
+                        <p:panelGrid id="Output" columns="2">
+                            <p:outputLabel value="UN-Nr:" for="unnr" />
+                            <p:outputLabel id="unnr" value="#{nuesslerBerechnungsBean.nus.unnr}" />
+                            
+                            <p:outputLabel value="Stoffname:" for="name" />
+                            <p:outputLabel id="name" value="#{nuesslerBerechnungsBean.nus.stoffname}" />
+                            
+                            <p:outputLabel value="AEGL-2 (30min):" for="aegl1" />
+                            <p:outputLabel id="aegl1" value="#{nuesslerBerechnungsBean.nus.aegl21}" />
+                            
+                            <p:outputLabel value="AEGL-2 (4h):" for="aegl2" />
+                            <p:outputLabel id="aegl2" value="#{nuesslerBerechnungsBean.nus.aegl22}" />
+                            
+                            <p:outputLabel value="AGW/MAK" for="agw" />
+                            <p:outputLabel id="agw" value="#{nuesslerBerechnungsBean.nus.agw}" />     
+                        </p:panelGrid> 
+                        <p:commandButton value="Berechnen" />
+                    
                     </p:tab>
-                    <p:tab title="Bearbeitungsmodus" >
-                        <p:outputLabel value="in Arbeit" />
-                    </p:tab>
+
                 </p:tabView>
             </h:form>
         </p:layout>
     </ui:define>
     <ui:define name="bottom">
-
         <h:form>
-
             <p:commandButton value="Zurück zur Übersicht" action="/uebersichtauswahl.xhtml" onclick="uebersichtauswahl.xhtml"/>
         </h:form>
-
     </ui:define>
 </ui:composition>

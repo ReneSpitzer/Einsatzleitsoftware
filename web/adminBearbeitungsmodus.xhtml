@@ -26,27 +26,30 @@ and open the template in the editor.
                             <!--Fahrzeuge                                       -->
                             <p:tab title="Fahrzeuge">
                                 <h:form id="reg1Form">                                 
-                                    <h:panelGrid id="regGrid" columns ="2"> 
-                                        <h:outputLabel for="inpOrg" value="Organisation" />
-                                        <h:inputText id="inpOrg" value="#{adminFahrzeugeBean.fahrzeug.organisation}" required="true"/> 
-                                        <h:outputLabel for="inpOrt" value="Ort" />
-                                            <h:inputText id="inpOrt" value="#{adminFahrzeugeBean.fahrzeug.ort}" required="true"/> 
-                                        <h:outputLabel for="inpType" value="Typ"/>
-                                            <h:inputText id="inpType" value="#{adminFahrzeugeBean.fahrzeug.type}" required="true"/>          
-                                        <h:outputLabel for="inpAPers" value="Anzahl der Personen"/>
-                                        <h:inputText id="inpAPers" value="#{adminFahrzeugeBean.fahrzeug.anzPers}" required="true"/>       
-                                        <h:outputLabel for="inpName" value="Name des Fahrzeugs"/>
-                                        <h:inputText id="inpName" value="#{adminFahrzeugeBean.fahrzeug.name}" required="true"/> 
-                                            
-                                        <h:commandButton value="Neu" action="#{adminFahrzeugeBean.add()}"/>
-                                        <h:commandButton value="Ändern" action="#{adminFahrzeugeBean.save()}"/>
-                                    </h:panelGrid> 
+                                    <p:panelGrid id="regGrid" columns ="2"> 
+                                        <p:outputLabel for="inpOrg" value="Organisation (z.B. FF, Rettung, Privat,...)" />
+                                            <p:inputText id="inpOrg" value="#{adminFahrzeugeBean.fahrzeug.organisation}"/> 
+                                        <p:outputLabel for="inpOrt" value="Ort" />
+                                            <p:inputText id="inpOrt" value="#{adminFahrzeugeBean.fahrzeug.ort}" /> 
+                                        <p:outputLabel for="inpType" value="Typ (z.B. RLF Mercedes)"/>
+                                            <p:inputText id="inpType" value="#{adminFahrzeugeBean.fahrzeug.type}" /> 
+                                        <p:outputLabel for="inpName" value="Bezeichnung (z.B. RLF 2000 100)"/>
+                                            <p:inputText id="inpName" value="#{adminFahrzeugeBean.fahrzeug.name}"/> 
+                                        <p:outputLabel for="inpAPers" value="Anzahl der Sitze"/>
+                                            <p:inputText id="inpAPers" value="#{adminFahrzeugeBean.fahrzeug.anzPers}" />
+                                        <p:outputLabel for="verB" value="Verfügbar (true/false)"/>
+                                        <p:inputText id="verB" value="#{adminFahrzeugeBean.fahrzeug.verfuegbar}" />     
+                                    </p:panelGrid>                                             
+                                    <p:commandButton value="Speichern" action="#{adminFahrzeugeBean.add()}"  update="tapFahr"/>
             
-                                    <p:dataTable var="far" value="#{adminFahrzeugeBean.fList}" scrollable="true" >
+                                    <br/>
+                                    <br/>
+                                        
+                                    <p:dataTable id="tapFahr" var="far" value="#{adminFahrzeugeBean.fList}" scrollable="true" >
                                         <f:facet name="header">
                                             <h:outputText value="Fahrzeugliste"/>
                                         </f:facet>
-                
+          
                                         <p:column>
                                             <f:facet name="header">
                                                 <h:outputText value="Organisation"/>
@@ -66,6 +69,13 @@ and open the template in the editor.
                                             </f:facet>
                                             <h:outputText value="#{far.type}"/>
                                         </p:column>
+                                        
+                                        <p:column>
+                                            <f:facet name="header">
+                                                 <h:outputText value="Bezeichnungs"/>
+                                            </f:facet>
+                                            <h:outputText value="#{far.name}"/>
+                                        </p:column>
 
                                         <p:column>
                                             <f:facet name="header">
@@ -73,47 +83,39 @@ and open the template in the editor.
                                             </f:facet>
                                             <h:outputText value="#{far.anzPers}"/>
                                         </p:column>
-                                        
-                                        <p:column>
-                                            <f:facet name="header">
-                                                 <h:outputText value="Name"/>
-                                            </f:facet>
-                                            <h:outputText value="#{far.name}"/>
-                                        </p:column>
 
-                                         <p:column>
-                                               <h:commandLink value="edit" action="#{adminFahrzeugeBean.edit(far)}"/>
+                                        <p:column>
+                                            <h:commandButton value="Bearbeiten" action="#{adminFahrzeugeBean.edit(far)}" />
                                         </p:column>
 
                                         <p:column>
-                                               <h:commandLink value="remove" action="#{adminFahrzeugeBean.remove(far)}"/>
+                                              <h:commandButton value="Löschen" action="#{adminFahrzeugeBean.remove(far)}"/>
                                         </p:column>
 
                                     </p:dataTable>
+                                    
                                 </h:form>
                             </p:tab>
                             
                             <!--Benutzer                                        -->
                             <p:tab title="Benutzer">
                                 <h:form id="reg2Form">
-                                    <h:panelGrid id="regGrid" columns ="2"> 
-                                        <h:outputLabel for="inpId" value="Id" />
-                                        <h:inputText id="inpId" value="#{adminBenutzerBean.benutzer.id}" required="true"/> 
-                                        <h:outputLabel for="inpUsern" value="Username" />
-                                            <h:inputText id="inpUsern" value="#{adminBenutzerBean.benutzer.username}" required="true"/> 
-                                        <h:outputLabel for="inpadmin" value="Admin (true/false)"/>
-                                            <h:inputText id="inpadmin" value="#{adminBenutzerBean.benutzer.admin}" required="true"/> 
-                                        <h:outputLabel for="inpPasw" value="Passwort"/>
-                                            <h:inputText id="inpPasw" value="#{adminBenutzerBean.benutzer.password}" required="true"/>    
-                                        <h:outputLabel for="inppid" value="pId"/>
-                                            <h:inputText id="inppid" value="#{adminBenutzerBean.benutzer.pid}"/> 
-                                                  
-                                                                                   
-                                        <h:commandButton value="New" action="#{adminBenutzerBean.add()}"/>
-                                        <h:commandButton value="Save" action="#{adminBenutzerBean.save()}"/>
-                                    </h:panelGrid> 
+                                    <p:panelGrid id="regGrid" columns ="2">  
+                                        <p:outputLabel for="inpUsern" value="Username" />
+                                            <p:inputText id="inpUsern" value="#{adminBenutzerBean.ben.username}" /> 
+                                        <p:outputLabel for="inpadmin" value="Admin (true/false)"/>
+                                            <p:inputText id="inpadmin" value="#{adminBenutzerBean.ben.admin}" /> 
+                                        <p:outputLabel for="inpPasw" value="Passwort"/>
+                                            <p:inputText id="inpPasw" value="#{adminBenutzerBean.ben.password}" />    
+                                        <p:outputLabel for="inppid" value="pId"/>
+                                            <p:inputText id="inppid" value="#{adminBenutzerBean.ben.pid}"/>  
+                                    </p:panelGrid> 
+                                    <p:commandButton value="Speichern" action="#{adminBenutzerBean.add()}" update="tabBen"/>
             
-                                    <p:dataTable var="ben" value="#{adminBenutzerBean.bList}" scrollable="true">
+                                    <br/>
+                                    <br/>
+                                    
+                                    <p:dataTable id="tabBen" var="ben" value="#{adminBenutzerBean.bList}" scrollable="true">
                                         <f:facet name="header">
                                             <h:outputText value="Benutzerliste"/>
                                         </f:facet>
@@ -153,11 +155,11 @@ and open the template in the editor.
                                         </p:column>
 
                                          <p:column>
-                                               <h:commandLink value="edit" action="#{adminFahrzeugeBean.edit(ben)}"/>
+                                               <h:commandLink value="Bearbeiten" action="#{adminFahrzeugeBean.edit(ben)}"/>
                                         </p:column>
 
                                         <p:column>
-                                               <h:commandLink value="remove" action="#{adminFahrzeugeBean.remove(ben)}"/>
+                                               <h:commandLink value="Löschen" action="#{adminFahrzeugeBean.remove(ben)}"/>
                                         </p:column>
 
                                     </p:dataTable>
@@ -167,26 +169,26 @@ and open the template in the editor.
                             <!--Nuessler                                        -->
                             <p:tab title="Nüssler">
                                 <h:form id="reg3Form">
-                                    <h:panelGrid id="regGrid" columns ="2"> 
-                                        <h:outputLabel for="inpUnr" value="UN Nummer" />
-                                        <h:inputText id="inpUnr" value="#{adminNuesslerBean.nuessler.UNnr}" required="true"/> 
-                                        <h:outputLabel for="inpStoffname" value="Stoffname" />
-                                            <h:inputText id="inpStoffname" value="#{adminNuesslerBean.nuessler.stoffname}" required="true"/> 
-                                        <h:outputLabel for="inpmerkblattnr" value="Merkblattnummer"/>
-                                            <h:inputText id="inpmerkblattnr" value="#{adminNuesslerBean.nuessler.merkblattnr}" required="true"/> 
-                                        <h:outputLabel for="inpradius_innen" value="Radius Innen"/>
-                                            <h:inputText id="inpradius_innen" value="#{adminNuesslerBean.nuessler.radius_innen}" required="true"/>    
-                                        <h:outputLabel for="inpradius_außen" value="Radius Außen"/>
-                                            <h:inputText id="inpradius_außen" value="#{adminNuesslerBean.nuessler.radius_außen}" required="true"/> 
-                                        <h:outputLabel for="inpinfo" value="Info"/>
-                                            <h:inputText id="inpinfo" value="#{adminNuesslerBean.nuessler.info}"/>     
+                                    <p:panelGrid id="regGrid" columns ="2"> 
+                                        <p:outputLabel for="inpUnr" value="UN-Nr" />
+                                        <p:inputText id="inpUnr" value="#{adminNuesslerBean.nuessler.unnr}"/> 
+                                        <p:outputLabel for="inpStoffname" value="Stoffname" />
+                                            <p:inputText id="inpStoffname" value="#{adminNuesslerBean.nuessler.stoffname}"/> 
+                                        <p:outputLabel for="aegl21" value="AEGL-2 (30min)"/>
+                                        <p:inputText id="aegl21" value="#{adminNuesslerBean.nuessler.aegl21}" /> 
+                                        <p:outputLabel for="aegl22" value="AEGL-2 (4h)"/>
+                                        <p:inputText id="aegl22" value="#{adminNuesslerBean.nuessler.aegl22}" />    
+                                        <p:outputLabel for="agw" value="AGW/MAK"/>
+                                        <p:inputText id="agw" value="#{adminNuesslerBean.nuessler.agw}"/> 
+                                 
                                                   
-                                                                                   
-                                        <h:commandButton value="New" action="#{adminNuesslerBean.add()}"/>
-                                        <h:commandButton value="Save" action="#{adminNuesslerBean.save()}"/>
-                                    </h:panelGrid> 
+                                    </p:panelGrid> 
+                                    <p:commandButton value="Speichern" action="#{adminNuesslerBean.add()}" update="tabNus" />
             
-                                    <p:dataTable var="nus" value="#{adminNuesslerBean.nList}" scrollable="true">
+                                    <br/>
+                                    <br/>
+                                    
+                                    <p:dataTable id="tabNus" var="nus" value="#{adminNuesslerBean.nList}" scrollable="true">
                                         <f:facet name="header">
                                             <h:outputText value="Nüsslermodel"/>
                                         </f:facet>
@@ -195,7 +197,7 @@ and open the template in the editor.
                                             <f:facet name="header">
                                                 <h:outputText value="UN Nr"/>
                                             </f:facet>
-                                                <h:outputText value="#{nus.UNnr}"/>
+                                                <h:outputText value="#{nus.unnr}"/>
                                         </p:column>
                                         <p:column>
                                             <f:facet name="header">
@@ -203,41 +205,34 @@ and open the template in the editor.
                                             </f:facet>
                                             <h:outputText value="#{nus.stoffname}"/>
                                         </p:column>
-                
+                                               
                                         <p:column>
                                             <f:facet name="header">
-                                                 <h:outputText value="Merkblattnr"/>
+                                                 <h:outputText value="AEGL-2 (30min)"/>
                                             </f:facet>
-                                            <h:outputText value="#{nus.merkblattnr}"/>
-                                        </p:column>
-
-                                        <p:column>
-                                            <f:facet name="header">
-                                                 <h:outputText value="Radius Innen"/>
-                                            </f:facet>
-                                            <h:outputText value="#{nus.radius_innen}"/>
+                                            <h:outputText value="#{nus.aegl21}"/>
                                         </p:column>
                                         
                                         <p:column>
                                             <f:facet name="header">
-                                                 <h:outputText value="Radius Außen"/>
+                                                 <h:outputText value="AEGL-2 (4h)"/>
                                             </f:facet>
-                                            <h:outputText value="#{nus.radius_außen}"/>
+                                            <h:outputText value="#{nus.aegl22}"/>
                                         </p:column>
                                         
                                         <p:column>
                                             <f:facet name="header">
-                                                 <h:outputText value="Info"/>
+                                                 <h:outputText value="AGW/MAK"/>
                                             </f:facet>
-                                            <h:outputText value="#{nus.info}"/>
+                                            <h:outputText value="#{nus.agw}"/>
                                         </p:column>
 
                                          <p:column>
-                                               <h:commandLink value="edit" action="#{adminNuesslerBean.edit(nus)}"/>
+                                               <h:commandLink value="Bearbeiten" action="#{adminNuesslerBean.edit(nus)}"/>
                                         </p:column>
 
                                         <p:column>
-                                               <h:commandLink value="remove" action="#{adminNuesslerBean.remove(nus)}"/>
+                                               <h:commandLink value="Löschen" action="#{adminNuesslerBean.remove(nus)}"/>
                                         </p:column>
 
                                     </p:dataTable>

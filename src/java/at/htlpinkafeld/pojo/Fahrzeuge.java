@@ -22,7 +22,9 @@ public class Fahrzeuge implements Identifiable{
     private Benutzer benutzer;
     private int bid;
 
-    public Fahrzeuge(){}
+    public Fahrzeuge(){
+        this(0, "", "", "", 0, false, "", 0);
+    }
     
     public Fahrzeuge(String organisation, String ort, String type, int anzPers, boolean verfuegbar, String name, int bid) {
         this.organisation = organisation;
@@ -41,6 +43,16 @@ public class Fahrzeuge implements Identifiable{
         this.anzPers = anzPers;
         this.verfuegbar = verfuegbar;
         this.name = name;
+    }
+
+    public Fahrzeuge(Fahrzeuge p) {
+        this.fid = p.fid;
+        this.organisation = p.organisation;
+        this.ort = p.ort;
+        this.type = p.type;
+        this.anzPers = p.anzPers;
+        this.verfuegbar = p.verfuegbar;
+        this.name = p.name;
     }
 
     @Override

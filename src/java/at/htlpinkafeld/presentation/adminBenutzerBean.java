@@ -23,7 +23,7 @@ import javax.faces.bean.SessionScoped;
 public class adminBenutzerBean {
 
     @ManagedProperty(value="#{einsatzleitsoftwareService}")
-    private EinsatzleitsoftwareService abs = new EinsatzleitsoftwareService();
+    private EinsatzleitsoftwareService abs;
     
     private Benutzer ben = new Benutzer();
     private List<Benutzer> bList = new ArrayList<>();
@@ -34,65 +34,52 @@ public class adminBenutzerBean {
     @PostConstruct
     public void SetUp(){
         //this.bList = this.abs.getBenutzerListe();
+         //this.abs = new EinsatzleitsoftwareService();
+        this.bList = this.abs.getBenutzerListe();
     }
     
     public adminBenutzerBean() {
         //this.ben = new Benutzer();
-        this.abs = new EinsatzleitsoftwareService();
-        this.bList = this.abs.getBenutzerListe();
+       
     }
-        
-    public EinsatzleitsoftwareService getBenutzerService(){
+
+    public EinsatzleitsoftwareService getAbs() {
         return abs;
     }
-    
-    public void setPupilManagerService(EinsatzleitsoftwareService pms){
-        this.abs = pms;
+
+    public void setAbs(EinsatzleitsoftwareService abs) {
+        this.abs = abs;
     }
+
+    public Benutzer getBen() {
+        return ben;
+    }
+
+    public void setBen(Benutzer ben) {
+        this.ben = ben;
+    }
+
+    
            
     public Object add(){
-        this.ben.setId(this.bList.size()+1);
-          
-        this.abs.addBenutzer(ben);        
-        
+        if(this.ben.getId()!=0){
+            this.bList.set((this.ben.getId()-1), ben);
+        }else{
+            this.ben.setId(this.bList.size()+1);        
+            this.abs.addBenutzer(ben);        
+        }
         this.ben = new Benutzer();
         return null;
     }
     
-    public Object save(){
-        Benutzer help = null;
-        int i = -1;
-        for(Benutzer p: this.abs.getBenutzerListe()){
-            if(p.getId() == ben.getId())
-                    help = p;
-            else
-                i++;
-        }
-        
-        if(help != null){
-            help.setId(ben.getId());
-            help.setUsername(ben.getUsername());
-            help.setAdmin(ben.isAdmin());
-            help.setPassword(ben.getPassword());
-            help.setPid(ben.getPid());
-            
-            this.bList.set(i, help);
-        }
-        return null;
-    } 
     
+
     public Object remove(Benutzer p){
         this.abs.removeBenutzer(p);
         return null;
     }
     
-    public Benutzer getBenutzer() {
-        return ben;
-    }
 
-    public void setBenutzer(Benutzer fz) {
-        this.ben = fz;
-    }
     
     public Object edit(Benutzer p){
         ben.setId(p.getId());

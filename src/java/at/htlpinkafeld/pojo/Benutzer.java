@@ -19,7 +19,9 @@ public class Benutzer implements Identifiable{
     private int pid;
     private Person person;
 
-    public Benutzer() {}
+    public Benutzer() {
+        this(0, "", false, "", 0);
+    }
     
     public Benutzer(int bid, String username, boolean admin, String password, int pid) {
         this.bid = bid;
@@ -34,6 +36,14 @@ public class Benutzer implements Identifiable{
         this.admin = admin;
         this.password = password;
         this.pid = pid;
+    }
+    
+    public Benutzer(Benutzer b) {
+        this.bid = b.bid;
+        this.username = b.username;
+        this.admin = b.admin;
+        this.password = b.password;
+        this.pid = b.pid;
     }
 
     @Override

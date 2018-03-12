@@ -23,7 +23,6 @@ Informations:
     <h:body>
         
             <p:growl id="growl" life="3000" />
-            
             <p:gmap center="47.370875, 16.124291" zoom="13" type="HYBRID" style="width:1850px;height:900px"  model="#{karteBean.simpleModel}">
                 <p:ajax event="overlaySelect" listener="#{karteBean.onCircleSelect}" update="growl" />
             </p:gmap>

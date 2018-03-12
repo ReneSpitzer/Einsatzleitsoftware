@@ -152,6 +152,11 @@ public class EinsatzleitsoftwareService {
        kontaktliste.add(new Kontakt("Löschfahrzeug","LLF1",0101332110));
        kontaktliste.add(new Kontakt("Truppentransport","TTL",01513110));
        
+       //Test-Daten-Nuessler
+       this.nüsslerList.add(new Nuessler(1811, "Kalium-Hydrogen-Fluorid",0,0,0.65 ));
+       this.nüsslerList.add(new Nuessler(1811, "Kalium-Hydrogen-DI-Fluorid",0,0,0.65 ));
+       this.nüsslerList.add(new Nuessler(2846, "Kalium-Meta-Vanadat",0,0,0.02 ));
+       
        //Berni-Code
        einsatzlist.add(new Einsatz(1,"Pinkafeld", "Meierhofplatz", "1", "Brand löschen", 
                 "Fuchs", 1, "LFZ01", "13:05", "25.11.2017", "offen",1));
@@ -172,12 +177,12 @@ public class EinsatzleitsoftwareService {
                 "Spitzer", 6, "LFZ06", "15:03", "25.10.2017", "abgeschlossen", 1));
         
        // this.fillEinsatzList();
-        
-        flist.add(new Fahrzeuge(1, "", "Pinkafeld", "FZ1", 10, true, "LFZPkfd", 1));
-        flist.add(new Fahrzeuge(2, "", "Pinkafeld", "FZ2", 2, true, "LFZPkfd", 1));
-        flist.add(new Fahrzeuge(3, "", "Test", "FZ3", 2, false, "LFZHb", 1));
-        flist.add(new Fahrzeuge(4, "", "Güssing", "FZ4", 2, false, "LFZHb", 1));
-        flist.add(new Fahrzeuge(5, "", "Hartberg", "FZ5", 2, true, "LFZHb", 1));
+       
+        flist.add(new Fahrzeuge(1, "FF", "Pinkafeld", "FZ1", 10, true, "LFZPkfd", 1));
+        flist.add(new Fahrzeuge(2, "FF", "Pinkafeld", "FZ2", 2, true, "LFZPkfd", 1));
+        flist.add(new Fahrzeuge(3, "FF", "Test", "FZ3", 2, false, "LFZHb", 1));
+        flist.add(new Fahrzeuge(4, "FF", "Güssing", "FZ4", 2, false, "LFZHb", 1));
+        flist.add(new Fahrzeuge(5, "FF", "Hartberg", "FZ5", 2, true, "LFZHb", 1));
         
         
         

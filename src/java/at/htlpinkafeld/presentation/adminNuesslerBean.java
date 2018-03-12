@@ -25,10 +25,10 @@ import javax.faces.bean.SessionScoped;
 public class adminNuesslerBean {
 
     @ManagedProperty(value="#{einsatzleitsoftwareService}")
-    EinsatzleitsoftwareService ans;
+    private EinsatzleitsoftwareService einsatzleitsoftwareService;
     
     private Nuessler nus = new Nuessler();
-    private List<Nuessler> nList = new ArrayList<>();
+    private List<Nuessler> nList= new ArrayList<>();
     
     /**
      * Creates a new instance of adminBenutzerBean
@@ -36,56 +36,49 @@ public class adminNuesslerBean {
     
     @PostConstruct
     public void SetUp(){
-        //this.nList = this.ans.getNüsslerList();
+        //this.nList = this.einsatzleitsoftwareService.getNüsslerList();
+        this.nList = this.einsatzleitsoftwareService.getNüsslerList();
     }
     
     public adminNuesslerBean() {
            //this.nus = new Nüssler();
-           this.ans = new EinsatzleitsoftwareService();
-           this.nList = this.ans.getNüsslerList();
+           //this.einsatzleitsoftwareService = new EinsatzleitsoftwareService();    
+    }
+
+    public EinsatzleitsoftwareService getEinsatzleitsoftwareService() {
+        return einsatzleitsoftwareService;
+    }
+
+    public void setEinsatzleitsoftwareService(EinsatzleitsoftwareService einsatzleitsoftwareService) {
+        this.einsatzleitsoftwareService = einsatzleitsoftwareService;
+    }
+
+ 
+    public Nuessler getNus() {
+        return nus;
+    }
+
+    public void setNus(Nuessler nus) {
+        this.nus = nus;
     }
     
     
-    public EinsatzleitsoftwareService getNuesslerService(){
-        return ans;
-    }
-    
-    public void setNuesslerService(EinsatzleitsoftwareService pms){
-        this.ans = pms;
-    }
            
     public Object add(){
-        nus.setId(this.nList.size()+1);
-        this.ans.addNuessler(nus);
-    
+        if(this.nus.getId()!=0){
+            this.nList.set((this.nus.getId()-1), nus);
+        }else{
+            nus.setId(this.nList.size()+1);
+            this.einsatzleitsoftwareService.addNuessler(nus);
+        }
+        
         this.nus= new Nuessler();
         return null;
     }
     
-    public Object save(){
-        Nuessler help = null;
-        int i = -1;
-        for(Nuessler p: this.ans.getNüsslerList()){
-            if(p.getId() == nus.getId() && p.getUnnr() == nus.getUnnr())
-                    help = p;
-            else 
-                  i++;
-        }
-        
-        if(help != null){
-            help.setId(nus.getId());
-            help.setUnnr(nus.getUnnr());
-            help.setMerkblattnr(nus.getMerkblattnr());
-            help.setStoffname(nus.getStoffname());
-            help.setInfo(nus.getInfo());
-            
-            this.nList.set(i, help);
-        }
-        return null;
-    }
     
     public Object remove(Nuessler p){
-        this.ans.removeNuessler(p);
+        this.einsatzleitsoftwareService.removeNuessler(p);
         return null;
     }
     
@@ -101,8 +94,9 @@ public class adminNuesslerBean {
         nus.setId(p.getId());
         nus.setUnnr(p.getUnnr());
         nus.setStoffname(p.getStoffname());
-        nus.setMerkblattnr(p.getMerkblattnr());
-        nus.setInfo(p.getInfo());
+        nus.setAegl21(p.getAegl21());
+        nus.setAegl22(p.getAegl22());
+        nus.setAgw(p.getAgw());
         return null;
     }
 
